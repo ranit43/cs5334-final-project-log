@@ -1,0 +1,305 @@
+(base) ➜  ~ ssh rakash@bridges2.psc.edu                                      
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br013.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Wed Apr 26 23:49:11 2023 from cpe-70-120-229-82.elp.res.rr.com
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,983 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 644.9M used of 1.953T
+
+[rakash@bridges2-login013 ~]$ ls
+class-mar28-nv100
+[rakash@bridges2-login013 ~]$ pip freeze | grep tensorflow
+-bash: pip: command not found
+[rakash@bridges2-login013 ~]$ conda 
+.bash_history      .bashrc            .conda/            .local/            
+.bash_logout       .cache/            .emacs             .nv/               
+.bash_profile      class-mar28-nv100/ .kshrc             .zshrc             
+[rakash@bridges2-login013 ~]$ conda 
+.bash_history      .bashrc            .conda/            .local/            
+.bash_logout       .cache/            .emacs             .nv/               
+.bash_profile      class-mar28-nv100/ .kshrc             .zshrc             
+[rakash@bridges2-login013 ~]$ conda --help
+-bash: conda: command not found
+[rakash@bridges2-login013 ~]$ ls
+class-mar28-nv100
+[rakash@bridges2-login013 ~]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 15940057
+salloc: job 15940057 queued and waiting for resources
+^Csalloc: Job allocation 15940057 has been revoked.
+salloc: Job aborted due to signal
+[rakash@bridges2-login013 ~]$ pip -v
+-bash: pip: command not found
+[rakash@bridges2-login013 ~]$ pip3 -v
+
+Usage:   
+  pip <command> [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  check                       Verify installed packages have compatible dependencies.
+  search                      Search PyPI for packages.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion.
+  help                        Show help for commands.
+
+General Options:
+  -h, --help                  Show help.
+  --isolated                  Run pip in an isolated mode, ignoring environment variables and user
+                              configuration.
+  -v, --verbose               Give more output. Option is additive, and can be used up to 3 times.
+  -V, --version               Show version and exit.
+  -q, --quiet                 Give less output. Option is additive, and can be used up to 3 times
+                              (corresponding to WARNING, ERROR, and CRITICAL logging levels).
+  --log <path>                Path to a verbose appending log.
+  --proxy <proxy>             Specify a proxy in the form [user:passwd@]proxy.server:port.
+  --retries <retries>         Maximum number of retries each connection should attempt (default 5
+                              times).
+  --timeout <sec>             Set the socket timeout (default 15 seconds).
+  --exists-action <action>    Default action when a path already exists: (s)witch, (i)gnore, (w)ipe,
+                              (b)ackup, (a)bort.
+  --trusted-host <hostname>   Mark this host as trusted, even though it does not have valid or any
+                              HTTPS.
+  --cert <path>               Path to alternate CA bundle.
+  --client-cert <path>        Path to SSL client certificate, a single file containing the private key
+                              and the certificate in PEM format.
+  --cache-dir <dir>           Store the cache data in <dir>.
+  --no-cache-dir              Disable the cache.
+  --disable-pip-version-check
+                              Don't periodically check PyPI to determine whether a new version of pip is
+                              available for download. Implied with --no-index.
+[rakash@bridges2-login013 ~]$ pip3 freeze | grep tensorflow
+[rakash@bridges2-login013 ~]$ pip3 install torch torchvision torchaudio
+Collecting torch
+  Downloading https://files.pythonhosted.org/packages/a4/54/81b1c3c574a1ffde54b0c82ed2a37d81395709cdd5f50e59970aeed5d95e/torch-1.10.2-cp36-cp36m-manylinux1_x86_64.whl (881.9MB)
+    33% |██████████▉                     | 298.7MB 93.4MB/s eta 0:00:07^C
+Operation cancelled by user
+[rakash@bridges2-login013 ~]$ module load anaconda3
+(base) [rakash@bridges2-login013 ~]$ pip3 freeze | grep tensorflow
+(base) [rakash@bridges2-login013 ~]$ pip3 freeze | grep tensorflow^C
+(base) [rakash@bridges2-login013 ~]$ conda activate rda-ngpt-env-v0
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip3 freeze | grep tensorflow
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip freeze | grep tensorflow
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda freeze | grep tensorflow
+
+CommandNotFoundError: No command 'conda freeze'.
+
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list | grep tensorflow
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip3 install torch torchvision torchaudio
+Requirement already satisfied: torch in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (2.0.0)
+Requirement already satisfied: torchvision in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (0.15.0)
+Requirement already satisfied: torchaudio in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (2.0.0)
+Requirement already satisfied: filelock in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torch) (3.9.0)
+Requirement already satisfied: typing-extensions in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torch) (4.5.0)
+Requirement already satisfied: sympy in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torch) (1.11.1)
+Requirement already satisfied: networkx in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torch) (2.8.4)
+Requirement already satisfied: jinja2 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torch) (3.1.2)
+Requirement already satisfied: numpy in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torchvision) (1.24.3)
+Requirement already satisfied: requests in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torchvision) (2.28.1)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from torchvision) (9.4.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from jinja2->torch) (2.1.1)
+Requirement already satisfied: idna<4,>=2.5 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->torchvision) (3.4)
+Requirement already satisfied: certifi>=2017.4.17 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->torchvision) (2022.12.7)
+Requirement already satisfied: charset-normalizer<3,>=2 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->torchvision) (2.0.4)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->torchvision) (1.26.15)
+Requirement already satisfied: mpmath>=0.19 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages/mpmath-1.2.1-py3.10.egg (from sympy->torch) (1.2.1)
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip3 freeze | grep tensorflow
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ tensorflow -v
+-bash: tensorflow: command not found
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ less conda list
+conda: No such file or directory
+list: No such file or directory
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list
+# packages in environment at /jet/home/rakash/.conda/envs/rda-ngpt-env-v0:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                        main  
+_openmp_mutex             5.1                       1_gnu  
+blas                      1.0                         mkl  
+brotlipy                  0.7.0           py310h7f8727e_1002  
+bzip2                     1.0.8                h7b6447c_0  
+ca-certificates           2023.01.10           h06a4308_0  
+certifi                   2022.12.7       py310h06a4308_0  
+cffi                      1.15.1          py310h5eee18b_3  
+charset-normalizer        2.0.4              pyhd3eb1b0_0  
+cryptography              39.0.1          py310h9ce1e76_0  
+cuda-cudart               11.7.99                       0    nvidia
+cuda-cupti                11.7.101                      0    nvidia
+cuda-libraries            11.7.1                        0    nvidia
+cuda-nvrtc                11.7.99                       0    nvidia
+cuda-nvtx                 11.7.91                       0    nvidia
+cuda-runtime              11.7.1                        0    nvidia
+ffmpeg                    4.3                  hf484d3e_0    pytorch
+filelock                  3.9.0           py310h06a4308_0  
+freetype                  2.12.1               h4a9f257_0  
+giflib                    5.2.1                h5eee18b_3  
+gmp                       6.2.1                h295c915_3  
+gmpy2                     2.1.2           py310heeb90bb_0  
+gnutls                    3.6.15               he1e5248_0  
+idna                      3.4             py310h06a4308_0  
+intel-openmp              2021.4.0          h06a4308_3561  
+jinja2                    3.1.2           py310h06a4308_0  
+jpeg                      9e                   h5eee18b_1  
+lame                      3.100                h7b6447c_0  
+lcms2                     2.12                 h3be6417_0  
+ld_impl_linux-64          2.38                 h1181459_1  
+lerc                      3.0                  h295c915_0  
+libcublas                 11.10.3.66                    0    nvidia
+libcufft                  10.7.2.124           h4fbf590_0    nvidia
+libcufile                 1.6.1.9                       0    nvidia
+libcurand                 10.3.2.106                    0    nvidia
+libcusolver               11.4.0.1                      0    nvidia
+libcusparse               11.7.4.91                     0    nvidia
+libdeflate                1.17                 h5eee18b_0  
+libffi                    3.4.2                h6a678d5_6  
+libgcc-ng                 11.2.0               h1234567_1  
+libgomp                   11.2.0               h1234567_1  
+libiconv                  1.16                 h7f8727e_2  
+libidn2                   2.3.2                h7f8727e_0  
+libnpp                    11.7.4.75                     0    nvidia
+libnvjpeg                 11.8.0.2                      0    nvidia
+libpng                    1.6.39               h5eee18b_0  
+libstdcxx-ng              11.2.0               h1234567_1  
+libtasn1                  4.19.0               h5eee18b_0  
+libtiff                   4.5.0                h6a678d5_2  
+libunistring              0.9.10               h27cfd23_0  
+libuuid                   1.41.5               h5eee18b_0  
+libwebp                   1.2.4                h11a3e52_1  
+libwebp-base              1.2.4                h5eee18b_1  
+lz4-c                     1.9.4                h6a678d5_0  
+markupsafe                2.1.1           py310h7f8727e_0  
+mkl                       2021.4.0           h06a4308_640  
+mkl-service               2.4.0           py310h7f8727e_0  
+mkl_fft                   1.3.1           py310hd6ae3a3_0  
+mkl_random                1.2.2           py310h00e6091_0  
+mpc                       1.1.0                h10f8cd9_1  
+mpfr                      4.0.2                hb69a4c5_1  
+mpmath                    1.2.1                    pypi_0    pypi
+ncurses                   6.4                  h6a678d5_0  
+nettle                    3.7.3                hbbd107a_1  
+networkx                  2.8.4           py310h06a4308_1  
+numpy                     1.24.3          py310hd5efca6_0  
+numpy-base                1.24.3          py310h8e6c178_0  
+openh264                  2.1.1                h4ff587b_0  
+openssl                   1.1.1t               h7f8727e_0  
+pillow                    9.4.0           py310h6a678d5_0  
+pip                       23.0.1          py310h06a4308_0  
+pycparser                 2.21               pyhd3eb1b0_0  
+pyopenssl                 23.0.0          py310h06a4308_0  
+pysocks                   1.7.1           py310h06a4308_0  
+python                    3.10.11              h7a1cb2a_2  
+pytorch                   2.0.0           py3.10_cuda11.7_cudnn8.5.0_0    pytorch
+pytorch-cuda              11.7                 h778d358_3    pytorch
+pytorch-mutex             1.0                        cuda    pytorch
+readline                  8.2                  h5eee18b_0  
+requests                  2.28.1          py310h06a4308_1  
+setuptools                66.0.0          py310h06a4308_0  
+six                       1.16.0             pyhd3eb1b0_1  
+sqlite                    3.41.2               h5eee18b_0  
+sympy                     1.11.1          py310h06a4308_0  
+tk                        8.6.12               h1ccaba5_0  
+torchaudio                2.0.0               py310_cu117    pytorch
+torchtriton               2.0.0                     py310    pytorch
+torchvision               0.15.0              py310_cu117    pytorch
+typing_extensions         4.5.0           py310h06a4308_0  
+tzdata                    2023c                h04d1e81_0  
+urllib3                   1.26.15         py310h06a4308_0  
+wheel                     0.38.4          py310h06a4308_0  
+xz                        5.2.10               h5eee18b_1  
+zlib                      1.2.13               h5eee18b_0  
+zstd                      1.5.5                hc292b87_0  
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip3 freeze | grep pytorch
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list | grep pytroch
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list | grep pytroch*
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda install numpy
+
+Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+# All requested packages already installed.
+
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ 
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip install transformers
+Collecting transformers
+  Downloading transformers-4.28.1-py3-none-any.whl (7.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 14.0 MB/s eta 0:00:00                            
+Collecting regex!=2019.12.17
+  Downloading regex-2023.3.23-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (769 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 769.6/769.6 kB 11.9 MB/s eta 0:00:00                        
+Collecting tokenizers!=0.11.3,<0.14,>=0.11.1
+  Downloading tokenizers-0.13.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.8/7.8 MB 20.7 MB/s eta 0:00:00                            
+Requirement already satisfied: numpy>=1.17 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from transformers) (1.24.3)
+Requirement already satisfied: requests in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from transformers) (2.28.1)
+Requirement already satisfied: filelock in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from transformers) (3.9.0)
+Collecting huggingface-hub<1.0,>=0.11.0
+  Downloading huggingface_hub-0.14.1-py3-none-any.whl (224 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.5/224.5 kB 16.9 MB/s eta 0:00:00                        
+Collecting tqdm>=4.27
+  Downloading tqdm-4.65.0-py3-none-any.whl (77 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.1/77.1 kB 12.9 MB/s eta 0:00:00                          
+Collecting pyyaml>=5.1
+  Downloading PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (682 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 682.2/682.2 kB 20.4 MB/s eta 0:00:00                        
+Collecting packaging>=20.0
+  Downloading packaging-23.1-py3-none-any.whl (48 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.9/48.9 kB 8.0 MB/s eta 0:00:00                           
+Requirement already satisfied: typing-extensions>=3.7.4.3 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.11.0->transformers) (4.5.0)
+Collecting fsspec
+  Downloading fsspec-2023.4.0-py3-none-any.whl (153 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.0/154.0 kB 19.8 MB/s eta 0:00:00                        
+Requirement already satisfied: charset-normalizer<3,>=2 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->transformers) (2.0.4)
+Requirement already satisfied: idna<4,>=2.5 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->transformers) (3.4)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->transformers) (1.26.15)
+Requirement already satisfied: certifi>=2017.4.17 in ./.conda/envs/rda-ngpt-env-v0/lib/python3.10/site-packages (from requests->transformers) (2022.12.7)
+Installing collected packages: tokenizers, tqdm, regex, pyyaml, packaging, fsspec, huggingface-hub, transformers
+Successfully installed fsspec-2023.4.0 huggingface-hub-0.14.1 packaging-23.1 pyyaml-6.0 regex-2023.3.23 tokenizers-0.13.3 tqdm-4.65.0 transformers-4.28.1
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip freeze | grep transformers
+transformers==4.28.1
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list | grep python
+python                    3.10.11              h7a1cb2a_2  
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list | grep transformers
+transformers              4.28.1                   pypi_0    pypi
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda list | grep pytorch
+ffmpeg                    4.3                  hf484d3e_0    pytorch
+pytorch                   2.0.0           py3.10_cuda11.7_cudnn8.5.0_0    pytorch
+pytorch-cuda              11.7                 h778d358_3    pytorch
+pytorch-mutex             1.0                        cuda    pytorch
+torchaudio                2.0.0               py310_cu117    pytorch
+torchtriton               2.0.0                     py310    pytorch
+torchvision               0.15.0              py310_cu117    pytorch
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ logout
+Connection to bridges2.psc.edu closed.
+(base) ➜  ~ 

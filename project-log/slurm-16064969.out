@@ -1,0 +1,69 @@
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ export HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ module load cuda
+++ /usr/share/lmod/lmod/libexec/lmod bash load cuda
++ eval '__LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_CPATH;' 'CPATH=/opt/packages/cuda/v11.7.1/include;' export 'CPATH;' 'CUDA_HOME=/opt/packages/cuda/v11.7.1;' export 'CUDA_HOME;' 'CUDA_PATH=/opt/packages/cuda/v11.7.1;' export 'CUDA_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' 'LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LD_LIBRARY_PATH;' '__LMOD_REF_COUNT_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LIBRARY_PATH;' 'LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LIBRARY_PATH;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h;' export '_ModuleTable001_;' '_ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs;' export '_ModuleTable002_;' '_ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi;' export '_ModuleTable003_;' '_ModuleTable004_=LH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;'
+++ __LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_CPATH
+++ CPATH=/opt/packages/cuda/v11.7.1/include
+++ export CPATH
+++ CUDA_HOME=/opt/packages/cuda/v11.7.1
+++ export CUDA_HOME
+++ CUDA_PATH=/opt/packages/cuda/v11.7.1
+++ export CUDA_PATH
+++ __LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LD_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LD_LIBRARY_PATH
+++ LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LD_LIBRARY_PATH
+++ __LMOD_REF_COUNT_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LIBRARY_PATH
+++ LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LIBRARY_PATH
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h
+++ export _ModuleTable001_
+++ _ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs
+++ export _ModuleTable002_
+++ _ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi
+++ export _ModuleTable003_
+++ _ModuleTable004_=LH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load cuda
++ return 0
++ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+/var/spool/slurm/d/job16064969/slurm_script: line 27: conda: command not found
++ python train.py config/train_shakespeare_char.py
+/var/spool/slurm/d/job16064969/slurm_script: line 29: python: command not found
++ python sample.py --out_dir=out-shakespeare-char
+/var/spool/slurm/d/job16064969/slurm_script: line 30: python: command not found

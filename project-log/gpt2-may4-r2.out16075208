@@ -1,0 +1,2793 @@
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ export HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ module load cuda
+++ /usr/share/lmod/lmod/libexec/lmod bash load cuda
++ eval '__LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_CPATH;' 'CPATH=/opt/packages/cuda/v11.7.1/include;' export 'CPATH;' 'CUDA_HOME=/opt/packages/cuda/v11.7.1;' export 'CUDA_HOME;' 'CUDA_PATH=/opt/packages/cuda/v11.7.1;' export 'CUDA_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' 'LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LD_LIBRARY_PATH;' '__LMOD_REF_COUNT_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LIBRARY_PATH;' 'LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LIBRARY_PATH;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h;' export '_ModuleTable001_;' '_ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs;' export '_ModuleTable002_;' '_ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi;' export '_ModuleTable003_;' '_ModuleTable004_=LH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;'
+++ __LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_CPATH
+++ CPATH=/opt/packages/cuda/v11.7.1/include
+++ export CPATH
+++ CUDA_HOME=/opt/packages/cuda/v11.7.1
+++ export CUDA_HOME
+++ CUDA_PATH=/opt/packages/cuda/v11.7.1
+++ export CUDA_PATH
+++ __LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LD_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LD_LIBRARY_PATH
+++ LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LD_LIBRARY_PATH
+++ __LMOD_REF_COUNT_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LIBRARY_PATH
+++ LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LIBRARY_PATH
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h
+++ export _ModuleTable001_
+++ _ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs
+++ export _ModuleTable002_
+++ _ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi
+++ export _ModuleTable003_
+++ _ModuleTable004_=LH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load cuda
++ return 0
++ module load anaconda3
+++ /usr/share/lmod/lmod/libexec/lmod bash load anaconda3
++ eval '__LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1;' export '__LMOD_REF_COUNT_ACLOCAL_PATH;' 'ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal;' export 'ACLOCAL_PATH;' '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1;' export '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH;' 'CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10;' export 'CMAKE_PREFIX_PATH;' 'CONDA_PKGS_DIRS=\$HOME/.conda/pkgs/;' export 'CONDA_PKGS_DIRS;' '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH;' 'CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'CPLUS_INCLUDE_PATH;' '__LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_C_INCLUDE_PATH;' 'C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'C_INCLUDE_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1\;/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1\;anaconda3/2022.10:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1\;/opt/packages/anaconda3-2022.10/man:1\;/opt/packages/anaconda3-2022.10/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/anaconda3-2022.10/bin:1\;/opt/packages/anaconda3-2022.10/condabin:1\;/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1\;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1\;/opt/modulefiles/production/anaconda3/2022.10.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k;' export '_ModuleTable001_;' '_ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs;' export '_ModuleTable002_;' '_ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp;' export '_ModuleTable003_;' '_ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;' '__LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv;' export '__LMOD_STACK_CONDA_PKGS_DIRS;' source '/opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh;' conda 'activate;'
+++ __LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1
+++ export __LMOD_REF_COUNT_ACLOCAL_PATH
+++ ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal
+++ export ACLOCAL_PATH
+++ __LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1
+++ export __LMOD_REF_COUNT_CMAKE_PREFIX_PATH
+++ CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10
+++ export CMAKE_PREFIX_PATH
+++ CONDA_PKGS_DIRS='$HOME/.conda/pkgs/'
+++ export CONDA_PKGS_DIRS
+++ __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH
+++ CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export CPLUS_INCLUDE_PATH
+++ __LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_C_INCLUDE_PATH
+++ C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export C_INCLUDE_PATH
+++ __LMOD_REF_COUNT_INCLUDE='/opt/packages/cuda/v11.7.1/include:1;/opt/packages/anaconda3-2022.10/include:1'
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1;anaconda3/2022.10:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1;/opt/packages/anaconda3-2022.10/man:1;/opt/packages/anaconda3-2022.10/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/anaconda3-2022.10/bin:1;/opt/packages/anaconda3-2022.10/condabin:1;/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH='/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1'
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1;/opt/modulefiles/production/anaconda3/2022.10.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k
+++ export _ModuleTable001_
+++ _ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs
+++ export _ModuleTable002_
+++ _ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp
+++ export _ModuleTable003_
+++ _ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ __LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv
+++ export __LMOD_STACK_CONDA_PKGS_DIRS
+++ source /opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ '[' -z '' ']'
++++ export CONDA_SHLVL=0
++++ CONDA_SHLVL=0
++++ '[' -n '' ']'
++++++ dirname /opt/packages/anaconda3-2022.10/bin/conda
+++++ dirname /opt/packages/anaconda3-2022.10/bin
++++ PATH=/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export PATH
++++ '[' -z '' ']'
++++ PS1=
+++ conda activate
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate
++++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate
+++ ask_conda='PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
+++ eval 'PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
++++ PS1='(base) '
++++ export PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=base
++++ CONDA_DEFAULT_ENV=base
++++ export 'CONDA_PROMPT_MODIFIER=(base) '
++++ CONDA_PROMPT_MODIFIER='(base) '
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh
+++++ '[' -n '' ']'
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/proj ']'
+++++ export PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ '[' -f /opt/packages/anaconda3-2022.10/share/proj/copyright_and_licenses.csv ']'
+++++ export PROJ_NETWORK=ON
+++++ PROJ_NETWORK=ON
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh
+++++ [[ -n '' ]]
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/udunits ']'
+++++ export UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++++ UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load anaconda3
++ return 0
++ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ '[' -n '' ']'
++ local ask_conda
+++ PS1='(base) '
+++ __conda_exe shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ ask_conda='. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
++ eval '. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh
++++ unset UDUNITS2_XML_PATH
++++ [[ -n '' ]]
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh
++++ unset PROJ_LIB
++++ unset PROJ_NETWORK
++++ '[' -n '' ']'
+++ PS1='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export CONDA_SHLVL=2
+++ CONDA_SHLVL=2
+++ export CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export 'CONDA_PROMPT_MODIFIER=(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ CONDA_PROMPT_MODIFIER='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
+++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2_reduced.py
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:
+Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:
+
+
+Overriding config with config/train_gpt2_reduced.py:
+Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:
+
+
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+
+
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = False
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+
+
+
+
+
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720tokens per iteration will be: 30,720
+
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+Initializing a new model from scratchInitializing a new model from scratchInitializing a new model from scratch
+Initializing a new model from scratch
+Initializing a new model from scratchInitializing a new model from scratch
+Initializing a new model from scratchdefaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+Initializing a new model from scratch
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+
+
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+step 0: train loss 10.8368, val loss 10.8350
+iter 0: loss 10.8345, time 43987.24ms, mfu -100.00%
+iter 1: loss 10.8444, time 1057.62ms, mfu -100.00%
+iter 2: loss 10.8350, time 1376.64ms, mfu -100.00%
+iter 3: loss 10.8385, time 1109.40ms, mfu -100.00%
+iter 4: loss 10.8205, time 1008.04ms, mfu -100.00%
+iter 5: loss 10.8430, time 1219.56ms, mfu 0.04%
+iter 6: loss 10.8287, time 1037.71ms, mfu 0.04%
+iter 7: loss 10.8309, time 1069.85ms, mfu 0.05%
+iter 8: loss 10.8131, time 983.20ms, mfu 0.05%
+iter 9: loss 10.8303, time 1210.07ms, mfu 0.05%
+iter 10: loss 10.8141, time 1042.25ms, mfu 0.05%
+iter 11: loss 10.8204, time 1206.52ms, mfu 0.05%
+iter 12: loss 10.8178, time 954.39ms, mfu 0.05%
+iter 13: loss 10.8208, time 1266.81ms, mfu 0.05%
+iter 14: loss 10.8154, time 853.06ms, mfu 0.05%
+iter 15: loss 10.8106, time 1184.59ms, mfu 0.05%
+iter 16: loss 10.8014, time 1401.26ms, mfu 0.05%
+iter 17: loss 10.7938, time 1503.48ms, mfu 0.05%
+iter 18: loss 10.8097, time 2778.63ms, mfu 0.04%
+iter 19: loss 10.7886, time 1411.25ms, mfu 0.04%
+iter 20: loss 10.7902, time 1274.17ms, mfu 0.04%
+iter 21: loss 10.7913, time 1277.35ms, mfu 0.04%
+iter 22: loss 10.8019, time 1093.12ms, mfu 0.04%
+iter 23: loss 10.7692, time 1005.39ms, mfu 0.04%
+iter 24: loss 10.7725, time 1010.89ms, mfu 0.05%
+iter 25: loss 10.7494, time 1295.96ms, mfu 0.04%
+iter 26: loss 10.7578, time 1182.05ms, mfu 0.05%
+iter 27: loss 10.7659, time 1043.70ms, mfu 0.05%
+iter 28: loss 10.7505, time 1247.82ms, mfu 0.05%
+iter 29: loss 10.7567, time 957.71ms, mfu 0.05%
+iter 30: loss 10.7481, time 1002.76ms, mfu 0.05%
+iter 31: loss 10.7608, time 1206.97ms, mfu 0.05%
+iter 32: loss 10.7497, time 1155.04ms, mfu 0.05%
+iter 33: loss 10.7479, time 1216.55ms, mfu 0.05%
+iter 34: loss 10.6997, time 1341.46ms, mfu 0.05%
+iter 35: loss 10.7441, time 1385.78ms, mfu 0.05%
+iter 36: loss 10.7242, time 1020.00ms, mfu 0.05%
+iter 37: loss 10.7077, time 1104.87ms, mfu 0.05%
+iter 38: loss 10.7149, time 1193.26ms, mfu 0.05%
+iter 39: loss 10.6743, time 998.24ms, mfu 0.05%
+iter 40: loss 10.7109, time 1127.55ms, mfu 0.05%
+iter 41: loss 10.6755, time 1002.81ms, mfu 0.05%
+iter 42: loss 10.6454, time 1170.29ms, mfu 0.05%
+iter 43: loss 10.6636, time 1004.34ms, mfu 0.05%
+iter 44: loss 10.6498, time 1271.60ms, mfu 0.05%
+iter 45: loss 10.6794, time 995.60ms, mfu 0.05%
+iter 46: loss 10.6370, time 1275.51ms, mfu 0.05%
+iter 47: loss 10.6740, time 1001.55ms, mfu 0.05%
+iter 48: loss 10.6511, time 1184.95ms, mfu 0.05%
+iter 49: loss 10.6341, time 1488.71ms, mfu 0.05%
+iter 50: loss 10.5855, time 1130.91ms, mfu 0.05%
+iter 51: loss 10.6333, time 1154.91ms, mfu 0.05%
+iter 52: loss 10.6192, time 1307.18ms, mfu 0.05%
+iter 53: loss 10.6064, time 1140.12ms, mfu 0.05%
+iter 54: loss 10.6255, time 1023.97ms, mfu 0.05%
+iter 55: loss 10.6010, time 1025.00ms, mfu 0.05%
+iter 56: loss 10.5943, time 1276.85ms, mfu 0.05%
+iter 57: loss 10.5734, time 1142.44ms, mfu 0.05%
+iter 58: loss 10.5901, time 1136.99ms, mfu 0.05%
+iter 59: loss 10.6006, time 1579.47ms, mfu 0.05%
+iter 60: loss 10.5812, time 1828.90ms, mfu 0.04%
+iter 61: loss 10.6113, time 1301.64ms, mfu 0.04%
+iter 62: loss 10.5511, time 1593.14ms, mfu 0.04%
+iter 63: loss 10.5509, time 1064.17ms, mfu 0.04%
+iter 64: loss 10.5548, time 1454.29ms, mfu 0.04%
+iter 65: loss 10.5720, time 1326.20ms, mfu 0.04%
+iter 66: loss 10.5543, time 1051.80ms, mfu 0.04%
+iter 67: loss 10.5608, time 1064.14ms, mfu 0.04%
+iter 68: loss 10.5538, time 1348.61ms, mfu 0.04%
+iter 69: loss 10.4968, time 1013.81ms, mfu 0.04%
+iter 70: loss 10.5367, time 1093.42ms, mfu 0.05%
+iter 71: loss 10.5559, time 1286.93ms, mfu 0.04%
+iter 72: loss 10.5377, time 952.47ms, mfu 0.05%
+iter 73: loss 10.5405, time 1104.75ms, mfu 0.05%
+iter 74: loss 10.4762, time 1142.98ms, mfu 0.05%
+iter 75: loss 10.5032, time 1368.02ms, mfu 0.05%
+iter 76: loss 10.5097, time 956.61ms, mfu 0.05%
+iter 77: loss 10.5323, time 1106.74ms, mfu 0.05%
+iter 78: loss 10.4952, time 1069.36ms, mfu 0.05%
+iter 79: loss 10.4984, time 1256.70ms, mfu 0.05%
+iter 80: loss 10.4759, time 1300.44ms, mfu 0.05%
+iter 81: loss 10.5015, time 1014.99ms, mfu 0.05%
+iter 82: loss 10.4827, time 1287.83ms, mfu 0.05%
+iter 83: loss 10.4689, time 1015.13ms, mfu 0.05%
+iter 84: loss 10.5104, time 1162.70ms, mfu 0.05%
+iter 85: loss 10.4873, time 917.79ms, mfu 0.05%
+iter 86: loss 10.4438, time 1364.44ms, mfu 0.05%
+iter 87: loss 10.4647, time 1089.64ms, mfu 0.05%
+iter 88: loss 10.4567, time 1021.71ms, mfu 0.05%
+iter 89: loss 10.4444, time 1183.21ms, mfu 0.05%
+iter 90: loss 10.4497, time 1021.08ms, mfu 0.05%
+iter 91: loss 10.3980, time 1157.87ms, mfu 0.05%
+iter 92: loss 10.4064, time 2154.98ms, mfu 0.05%
+iter 93: loss 10.4432, time 2561.67ms, mfu 0.04%
+iter 94: loss 10.3982, time 1426.32ms, mfu 0.04%
+iter 95: loss 10.4040, time 1124.96ms, mfu 0.04%
+iter 96: loss 10.3926, time 1093.87ms, mfu 0.04%
+iter 97: loss 10.3605, time 933.37ms, mfu 0.05%
+iter 98: loss 10.4371, time 1344.77ms, mfu 0.04%
+iter 99: loss 10.3796, time 970.22ms, mfu 0.05%
+iter 100: loss 10.3884, time 935.28ms, mfu 0.05%
+iter 101: loss 10.3962, time 1383.85ms, mfu 0.05%
+iter 102: loss 10.3558, time 1368.80ms, mfu 0.05%
+iter 103: loss 10.4062, time 1504.61ms, mfu 0.04%
+iter 104: loss 10.3612, time 1572.33ms, mfu 0.04%
+iter 105: loss 10.3706, time 1093.42ms, mfu 0.04%
+iter 106: loss 10.3347, time 1322.72ms, mfu 0.04%
+iter 107: loss 10.4152, time 1469.92ms, mfu 0.04%
+iter 108: loss 10.3630, time 1046.48ms, mfu 0.04%
+iter 109: loss 10.3341, time 1088.95ms, mfu 0.04%
+iter 110: loss 10.3289, time 1354.70ms, mfu 0.04%
+iter 111: loss 10.3539, time 988.66ms, mfu 0.05%
+iter 112: loss 10.3468, time 1050.73ms, mfu 0.05%
+iter 113: loss 10.2930, time 1080.05ms, mfu 0.05%
+iter 114: loss 10.3112, time 1449.14ms, mfu 0.05%
+iter 115: loss 10.3472, time 1019.78ms, mfu 0.05%
+iter 116: loss 10.3454, time 1200.25ms, mfu 0.05%
+iter 117: loss 10.3200, time 1348.28ms, mfu 0.05%
+iter 118: loss 10.2909, time 1036.55ms, mfu 0.05%
+iter 119: loss 10.3210, time 1144.40ms, mfu 0.05%
+iter 120: loss 10.2963, time 1200.81ms, mfu 0.05%
+iter 121: loss 10.3117, time 1513.83ms, mfu 0.04%
+iter 122: loss 10.2065, time 1346.92ms, mfu 0.04%
+iter 123: loss 10.2416, time 1134.85ms, mfu 0.04%
+iter 124: loss 10.2623, time 1202.81ms, mfu 0.04%
+iter 125: loss 10.3058, time 1038.10ms, mfu 0.05%
+iter 126: loss 10.2413, time 1025.71ms, mfu 0.05%
+iter 127: loss 10.2312, time 1317.28ms, mfu 0.05%
+iter 128: loss 10.2607, time 1081.54ms, mfu 0.05%
+iter 129: loss 10.2479, time 1005.74ms, mfu 0.05%
+iter 130: loss 10.2036, time 934.44ms, mfu 0.05%
+iter 131: loss 10.2267, time 1396.96ms, mfu 0.05%
+iter 132: loss 10.1859, time 1115.74ms, mfu 0.05%
+iter 133: loss 10.2438, time 1105.19ms, mfu 0.05%
+iter 134: loss 10.1494, time 1425.72ms, mfu 0.05%
+iter 135: loss 10.1575, time 1229.19ms, mfu 0.05%
+iter 136: loss 10.1975, time 1001.86ms, mfu 0.05%
+iter 137: loss 10.2188, time 929.84ms, mfu 0.05%
+iter 138: loss 10.1683, time 1326.17ms, mfu 0.05%
+iter 139: loss 10.1526, time 910.49ms, mfu 0.05%
+iter 140: loss 10.1899, time 1132.27ms, mfu 0.05%
+iter 141: loss 10.1896, time 1559.03ms, mfu 0.05%
+iter 142: loss 10.1759, time 970.02ms, mfu 0.05%
+iter 143: loss 10.1126, time 1150.24ms, mfu 0.05%
+iter 144: loss 10.1478, time 1109.19ms, mfu 0.05%
+iter 145: loss 10.1345, time 1226.30ms, mfu 0.05%
+iter 146: loss 10.1076, time 844.05ms, mfu 0.05%
+iter 147: loss 10.1595, time 946.04ms, mfu 0.05%
+iter 148: loss 10.1003, time 970.72ms, mfu 0.05%
+iter 149: loss 10.0799, time 1262.10ms, mfu 0.05%
+iter 150: loss 10.0748, time 991.15ms, mfu 0.05%
+iter 151: loss 10.0707, time 1007.41ms, mfu 0.05%
+iter 152: loss 10.0633, time 1302.23ms, mfu 0.05%
+iter 153: loss 10.0818, time 1055.85ms, mfu 0.05%
+iter 154: loss 10.0573, time 1108.69ms, mfu 0.05%
+iter 155: loss 10.0302, time 1998.99ms, mfu 0.05%
+iter 156: loss 10.0439, time 993.02ms, mfu 0.05%
+iter 157: loss 10.0078, time 887.39ms, mfu 0.05%
+iter 158: loss 10.0247, time 2015.92ms, mfu 0.05%
+iter 159: loss 10.0358, time 1704.14ms, mfu 0.05%
+iter 160: loss 9.9731, time 1384.81ms, mfu 0.04%
+iter 161: loss 10.0536, time 1371.28ms, mfu 0.04%
+iter 162: loss 10.0032, time 925.39ms, mfu 0.05%
+iter 163: loss 9.9646, time 990.85ms, mfu 0.05%
+iter 164: loss 9.9629, time 1036.91ms, mfu 0.05%
+iter 165: loss 9.9671, time 1257.79ms, mfu 0.05%
+iter 166: loss 10.0177, time 973.50ms, mfu 0.05%
+iter 167: loss 9.9346, time 1167.24ms, mfu 0.05%
+iter 168: loss 9.9972, time 1765.94ms, mfu 0.05%
+iter 169: loss 9.9481, time 2009.21ms, mfu 0.04%
+iter 170: loss 9.9000, time 1639.32ms, mfu 0.04%
+iter 171: loss 9.9247, time 950.27ms, mfu 0.04%
+iter 172: loss 9.9616, time 1042.81ms, mfu 0.04%
+iter 173: loss 9.9908, time 1182.20ms, mfu 0.04%
+iter 174: loss 9.9499, time 1224.19ms, mfu 0.04%
+iter 175: loss 9.8711, time 933.41ms, mfu 0.05%
+iter 176: loss 9.8708, time 1210.38ms, mfu 0.05%
+iter 177: loss 9.9438, time 1329.99ms, mfu 0.05%
+iter 178: loss 9.8252, time 1052.52ms, mfu 0.05%
+iter 179: loss 9.8733, time 1197.53ms, mfu 0.05%
+iter 180: loss 9.8732, time 852.55ms, mfu 0.05%
+iter 181: loss 9.8392, time 1187.08ms, mfu 0.05%
+iter 182: loss 9.8697, time 1122.40ms, mfu 0.05%
+iter 183: loss 9.8949, time 1059.59ms, mfu 0.05%
+iter 184: loss 9.8322, time 1208.96ms, mfu 0.05%
+iter 185: loss 9.8621, time 1068.04ms, mfu 0.05%
+iter 186: loss 9.8317, time 910.41ms, mfu 0.05%
+iter 187: loss 9.8367, time 985.14ms, mfu 0.05%
+iter 188: loss 9.8410, time 1333.82ms, mfu 0.05%
+iter 189: loss 9.7429, time 1031.87ms, mfu 0.05%
+iter 190: loss 9.7796, time 879.19ms, mfu 0.05%
+iter 191: loss 9.7662, time 955.28ms, mfu 0.05%
+iter 192: loss 9.7510, time 1145.58ms, mfu 0.05%
+iter 193: loss 9.7894, time 978.83ms, mfu 0.05%
+iter 194: loss 9.8102, time 922.57ms, mfu 0.05%
+iter 195: loss 9.7077, time 1076.49ms, mfu 0.05%
+iter 196: loss 9.7222, time 1327.35ms, mfu 0.05%
+iter 197: loss 9.7228, time 974.37ms, mfu 0.05%
+iter 198: loss 9.7492, time 956.27ms, mfu 0.05%
+iter 199: loss 9.6844, time 1035.81ms, mfu 0.05%
+iter 200: loss 9.7468, time 1339.39ms, mfu 0.05%
+iter 201: loss 9.7945, time 1113.93ms, mfu 0.05%
+iter 202: loss 9.7243, time 1181.25ms, mfu 0.05%
+iter 203: loss 9.6735, time 1253.85ms, mfu 0.05%
+iter 204: loss 9.6427, time 865.95ms, mfu 0.05%
+iter 205: loss 9.6397, time 1394.89ms, mfu 0.05%
+iter 206: loss 9.6549, time 2061.27ms, mfu 0.05%
+iter 207: loss 9.7035, time 1070.26ms, mfu 0.05%
+iter 208: loss 9.6331, time 1800.07ms, mfu 0.05%
+iter 209: loss 9.6744, time 1383.53ms, mfu 0.04%
+iter 210: loss 9.6425, time 1148.95ms, mfu 0.05%
+iter 211: loss 9.5977, time 967.44ms, mfu 0.05%
+iter 212: loss 9.5978, time 1901.93ms, mfu 0.04%
+iter 213: loss 9.5191, time 1376.56ms, mfu 0.04%
+iter 214: loss 9.5263, time 1160.81ms, mfu 0.04%
+iter 215: loss 9.5740, time 1374.84ms, mfu 0.04%
+iter 216: loss 9.5184, time 1146.37ms, mfu 0.04%
+iter 217: loss 9.6109, time 1110.44ms, mfu 0.04%
+iter 218: loss 9.5122, time 1263.90ms, mfu 0.04%
+iter 219: loss 9.5390, time 955.84ms, mfu 0.05%
+iter 220: loss 9.5041, time 1134.56ms, mfu 0.05%
+iter 221: loss 9.5507, time 929.57ms, mfu 0.05%
+iter 222: loss 9.4498, time 1035.48ms, mfu 0.05%
+iter 223: loss 9.4647, time 930.70ms, mfu 0.05%
+iter 224: loss 9.5438, time 911.57ms, mfu 0.05%
+iter 225: loss 9.4314, time 820.70ms, mfu 0.05%
+iter 226: loss 9.5237, time 1278.39ms, mfu 0.05%
+iter 227: loss 9.4381, time 934.98ms, mfu 0.05%
+iter 228: loss 9.4458, time 1111.96ms, mfu 0.05%
+iter 229: loss 9.4596, time 1011.04ms, mfu 0.05%
+iter 230: loss 9.3710, time 1547.48ms, mfu 0.05%
+iter 231: loss 9.4510, time 1428.57ms, mfu 0.05%
+iter 232: loss 9.4053, time 1972.91ms, mfu 0.05%
+iter 233: loss 9.4894, time 1107.62ms, mfu 0.05%
+iter 234: loss 9.5147, time 2586.37ms, mfu 0.04%
+iter 235: loss 9.4007, time 1140.21ms, mfu 0.04%
+iter 236: loss 9.3878, time 1369.33ms, mfu 0.04%
+iter 237: loss 9.5232, time 1442.88ms, mfu 0.04%
+iter 238: loss 9.3102, time 997.98ms, mfu 0.04%
+iter 239: loss 9.2212, time 990.49ms, mfu 0.05%
+iter 240: loss 9.3053, time 908.69ms, mfu 0.05%
+iter 241: loss 9.3547, time 1185.45ms, mfu 0.05%
+iter 242: loss 9.2915, time 978.78ms, mfu 0.05%
+iter 243: loss 9.2847, time 1012.09ms, mfu 0.05%
+iter 244: loss 9.3125, time 946.13ms, mfu 0.05%
+iter 245: loss 9.3309, time 1119.21ms, mfu 0.05%
+iter 246: loss 9.2807, time 1029.06ms, mfu 0.05%
+iter 247: loss 9.1705, time 935.02ms, mfu 0.05%
+iter 248: loss 9.2034, time 976.60ms, mfu 0.05%
+iter 249: loss 9.2294, time 1202.40ms, mfu 0.05%
+iter 250: loss 9.3564, time 976.71ms, mfu 0.05%
+iter 251: loss 9.1475, time 1238.74ms, mfu 0.05%
+iter 252: loss 9.3369, time 1023.72ms, mfu 0.05%
+iter 253: loss 9.1637, time 1226.76ms, mfu 0.05%
+iter 254: loss 9.2513, time 898.05ms, mfu 0.05%
+iter 255: loss 9.1586, time 1566.13ms, mfu 0.05%
+iter 256: loss 9.2779, time 1561.53ms, mfu 0.05%
+iter 257: loss 9.3576, time 1033.57ms, mfu 0.05%
+iter 258: loss 9.2895, time 1365.12ms, mfu 0.05%
+iter 259: loss 9.2176, time 1448.59ms, mfu 0.05%
+iter 260: loss 9.1870, time 1134.36ms, mfu 0.05%
+iter 261: loss 9.1700, time 1029.78ms, mfu 0.05%
+iter 262: loss 9.1016, time 1201.05ms, mfu 0.05%
+iter 263: loss 8.9854, time 1083.45ms, mfu 0.05%
+iter 264: loss 9.1833, time 967.47ms, mfu 0.05%
+iter 265: loss 9.1732, time 1061.13ms, mfu 0.05%
+iter 266: loss 9.0348, time 1282.41ms, mfu 0.05%
+iter 267: loss 9.0680, time 703.96ms, mfu 0.05%
+iter 268: loss 9.0515, time 1011.96ms, mfu 0.05%
+iter 269: loss 9.0458, time 968.05ms, mfu 0.05%
+iter 270: loss 9.0355, time 1200.39ms, mfu 0.05%
+iter 271: loss 9.0691, time 1035.85ms, mfu 0.05%
+iter 272: loss 8.9469, time 944.73ms, mfu 0.05%
+iter 273: loss 9.1063, time 983.41ms, mfu 0.05%
+iter 274: loss 9.1434, time 1152.35ms, mfu 0.05%
+iter 275: loss 9.0326, time 1140.55ms, mfu 0.05%
+iter 276: loss 9.0960, time 1326.61ms, mfu 0.05%
+iter 277: loss 8.9520, time 1569.67ms, mfu 0.05%
+iter 278: loss 9.0589, time 1225.75ms, mfu 0.05%
+iter 279: loss 8.9857, time 1069.79ms, mfu 0.05%
+iter 280: loss 8.9489, time 1340.74ms, mfu 0.05%
+iter 281: loss 9.0065, time 1050.64ms, mfu 0.05%
+iter 282: loss 9.0989, time 904.35ms, mfu 0.05%
+iter 283: loss 8.9156, time 1099.63ms, mfu 0.05%
+iter 284: loss 9.0253, time 1279.52ms, mfu 0.05%
+iter 285: loss 8.8408, time 1150.78ms, mfu 0.05%
+iter 286: loss 8.8773, time 938.47ms, mfu 0.05%
+iter 287: loss 8.9420, time 1162.29ms, mfu 0.05%
+iter 288: loss 8.8716, time 1166.28ms, mfu 0.05%
+iter 289: loss 8.9201, time 934.48ms, mfu 0.05%
+iter 290: loss 8.8195, time 1062.62ms, mfu 0.05%
+iter 291: loss 8.8281, time 1296.99ms, mfu 0.05%
+iter 292: loss 8.7667, time 920.52ms, mfu 0.05%
+iter 293: loss 8.8793, time 1044.96ms, mfu 0.05%
+iter 294: loss 8.8522, time 1041.08ms, mfu 0.05%
+iter 295: loss 8.8365, time 1192.88ms, mfu 0.05%
+iter 296: loss 8.8410, time 1005.65ms, mfu 0.05%
+iter 297: loss 8.7484, time 968.72ms, mfu 0.05%
+iter 298: loss 8.7343, time 1019.64ms, mfu 0.05%
+iter 299: loss 8.7879, time 1153.31ms, mfu 0.05%
+iter 300: loss 8.8229, time 1094.98ms, mfu 0.05%
+iter 301: loss 8.8088, time 1014.64ms, mfu 0.05%
+iter 302: loss 8.7316, time 878.39ms, mfu 0.05%
+iter 303: loss 8.7519, time 1139.43ms, mfu 0.05%
+iter 304: loss 8.7579, time 942.99ms, mfu 0.05%
+iter 305: loss 8.7841, time 1011.09ms, mfu 0.05%
+iter 306: loss 8.6291, time 981.04ms, mfu 0.05%
+iter 307: loss 8.6332, time 1209.24ms, mfu 0.05%
+iter 308: loss 8.8388, time 931.91ms, mfu 0.05%
+iter 309: loss 8.6907, time 968.30ms, mfu 0.05%
+iter 310: loss 8.7601, time 1176.29ms, mfu 0.05%
+iter 311: loss 8.7210, time 986.70ms, mfu 0.05%
+iter 312: loss 8.7272, time 931.99ms, mfu 0.05%
+iter 313: loss 8.7082, time 911.53ms, mfu 0.05%
+iter 314: loss 8.7364, time 1021.87ms, mfu 0.05%
+iter 315: loss 8.8334, time 1175.34ms, mfu 0.05%
+iter 316: loss 8.6948, time 918.79ms, mfu 0.05%
+iter 317: loss 8.6092, time 993.38ms, mfu 0.05%
+iter 318: loss 8.6098, time 856.33ms, mfu 0.05%
+iter 319: loss 8.5030, time 1185.59ms, mfu 0.05%
+iter 320: loss 8.6744, time 975.92ms, mfu 0.05%
+iter 321: loss 8.5593, time 1044.75ms, mfu 0.05%
+iter 322: loss 8.6029, time 1235.81ms, mfu 0.05%
+iter 323: loss 8.4783, time 1329.82ms, mfu 0.05%
+iter 324: loss 8.4688, time 1039.01ms, mfu 0.05%
+iter 325: loss 8.5312, time 1674.03ms, mfu 0.05%
+iter 326: loss 8.5341, time 974.95ms, mfu 0.05%
+iter 327: loss 8.5705, time 1013.48ms, mfu 0.05%
+iter 328: loss 8.5113, time 1216.75ms, mfu 0.05%
+iter 329: loss 8.5023, time 1113.05ms, mfu 0.05%
+iter 330: loss 8.2875, time 882.40ms, mfu 0.05%
+iter 331: loss 8.5056, time 980.91ms, mfu 0.05%
+iter 332: loss 8.5805, time 990.07ms, mfu 0.05%
+iter 333: loss 8.5994, time 1157.66ms, mfu 0.05%
+iter 334: loss 8.4734, time 928.27ms, mfu 0.05%
+iter 335: loss 8.3102, time 949.69ms, mfu 0.05%
+iter 336: loss 8.3646, time 1054.44ms, mfu 0.05%
+iter 337: loss 8.4972, time 1134.66ms, mfu 0.05%
+iter 338: loss 8.4905, time 1183.51ms, mfu 0.05%
+iter 339: loss 8.3418, time 1050.19ms, mfu 0.05%
+iter 340: loss 8.4578, time 993.30ms, mfu 0.05%
+iter 341: loss 8.3000, time 1242.95ms, mfu 0.05%
+iter 342: loss 8.5030, time 912.69ms, mfu 0.05%
+iter 343: loss 8.4085, time 1114.86ms, mfu 0.05%
+iter 344: loss 8.3664, time 1167.04ms, mfu 0.05%
+iter 345: loss 8.3319, time 981.52ms, mfu 0.05%
+iter 346: loss 8.4445, time 995.96ms, mfu 0.05%
+iter 347: loss 8.2861, time 1013.27ms, mfu 0.05%
+iter 348: loss 8.5065, time 1205.66ms, mfu 0.05%
+iter 349: loss 8.2535, time 882.10ms, mfu 0.05%
+iter 350: loss 8.1932, time 972.35ms, mfu 0.05%
+iter 351: loss 8.5330, time 1007.13ms, mfu 0.05%
+iter 352: loss 8.4724, time 1182.41ms, mfu 0.05%
+iter 353: loss 8.3788, time 956.96ms, mfu 0.05%
+iter 354: loss 8.3032, time 827.21ms, mfu 0.05%
+iter 355: loss 8.3526, time 925.48ms, mfu 0.05%
+iter 356: loss 8.3424, time 1189.42ms, mfu 0.05%
+iter 357: loss 8.2358, time 1167.44ms, mfu 0.05%
+iter 358: loss 8.3559, time 1342.80ms, mfu 0.05%
+iter 359: loss 8.1772, time 1486.96ms, mfu 0.05%
+iter 360: loss 8.2536, time 981.33ms, mfu 0.05%
+iter 361: loss 8.2535, time 1544.21ms, mfu 0.05%
+iter 362: loss 8.0632, time 1331.24ms, mfu 0.05%
+iter 363: loss 8.1933, time 863.52ms, mfu 0.05%
+iter 364: loss 8.0558, time 929.26ms, mfu 0.05%
+iter 365: loss 8.2638, time 1036.47ms, mfu 0.05%
+iter 366: loss 8.1128, time 1232.44ms, mfu 0.05%
+iter 367: loss 8.1712, time 975.69ms, mfu 0.05%
+iter 368: loss 8.2596, time 891.39ms, mfu 0.05%
+iter 369: loss 8.1586, time 974.78ms, mfu 0.05%
+iter 370: loss 8.2228, time 1342.11ms, mfu 0.05%
+iter 371: loss 8.1821, time 846.11ms, mfu 0.05%
+iter 372: loss 8.2847, time 975.41ms, mfu 0.05%
+iter 373: loss 8.2422, time 1136.02ms, mfu 0.05%
+iter 374: loss 8.3118, time 1708.50ms, mfu 0.05%
+iter 375: loss 7.9268, time 1614.33ms, mfu 0.05%
+iter 376: loss 8.0779, time 1445.76ms, mfu 0.05%
+iter 377: loss 8.1920, time 903.65ms, mfu 0.05%
+iter 378: loss 8.1473, time 1273.90ms, mfu 0.05%
+iter 379: loss 8.2747, time 1125.05ms, mfu 0.05%
+iter 380: loss 8.0710, time 1292.34ms, mfu 0.05%
+iter 381: loss 8.0170, time 919.50ms, mfu 0.05%
+iter 382: loss 8.0328, time 956.23ms, mfu 0.05%
+iter 383: loss 8.1064, time 1009.78ms, mfu 0.05%
+iter 384: loss 7.9701, time 1201.65ms, mfu 0.05%
+iter 385: loss 8.0980, time 1117.74ms, mfu 0.05%
+iter 386: loss 8.0669, time 904.74ms, mfu 0.05%
+iter 387: loss 8.0441, time 838.67ms, mfu 0.05%
+iter 388: loss 8.0755, time 1226.62ms, mfu 0.05%
+iter 389: loss 8.2036, time 1016.67ms, mfu 0.05%
+iter 390: loss 8.0214, time 1025.60ms, mfu 0.05%
+iter 391: loss 7.9781, time 1263.05ms, mfu 0.05%
+iter 392: loss 8.1755, time 960.35ms, mfu 0.05%
+iter 393: loss 7.7900, time 2029.62ms, mfu 0.05%
+iter 394: loss 8.0763, time 1359.39ms, mfu 0.05%
+iter 395: loss 7.9039, time 958.09ms, mfu 0.05%
+iter 396: loss 7.9565, time 1163.55ms, mfu 0.05%
+iter 397: loss 8.1835, time 927.88ms, mfu 0.05%
+iter 398: loss 8.1181, time 1183.95ms, mfu 0.05%
+iter 399: loss 7.9879, time 974.61ms, mfu 0.05%
+iter 400: loss 7.9859, time 947.68ms, mfu 0.05%
+iter 401: loss 7.7776, time 955.92ms, mfu 0.05%
+iter 402: loss 7.8224, time 1089.21ms, mfu 0.05%
+iter 403: loss 7.9249, time 908.64ms, mfu 0.05%
+iter 404: loss 7.9266, time 929.21ms, mfu 0.05%
+iter 405: loss 7.9156, time 903.35ms, mfu 0.05%
+iter 406: loss 8.0920, time 1256.45ms, mfu 0.05%
+iter 407: loss 7.8145, time 956.03ms, mfu 0.05%
+iter 408: loss 7.7464, time 901.48ms, mfu 0.05%
+iter 409: loss 7.7113, time 1089.03ms, mfu 0.05%
+iter 410: loss 7.9228, time 1273.80ms, mfu 0.05%
+iter 411: loss 7.7061, time 1209.91ms, mfu 0.05%
+iter 412: loss 7.9190, time 994.51ms, mfu 0.05%
+iter 413: loss 7.6966, time 1147.11ms, mfu 0.05%
+iter 414: loss 7.8921, time 1048.96ms, mfu 0.05%
+iter 415: loss 7.7206, time 983.57ms, mfu 0.05%
+iter 416: loss 7.6162, time 971.27ms, mfu 0.05%
+iter 417: loss 7.8582, time 1206.65ms, mfu 0.05%
+iter 418: loss 7.9211, time 921.43ms, mfu 0.05%
+iter 419: loss 7.7588, time 1013.84ms, mfu 0.05%
+iter 420: loss 7.8185, time 880.08ms, mfu 0.05%
+iter 421: loss 7.7424, time 1187.83ms, mfu 0.05%
+iter 422: loss 7.5902, time 917.78ms, mfu 0.05%
+iter 423: loss 7.9600, time 923.55ms, mfu 0.05%
+iter 424: loss 7.9341, time 977.60ms, mfu 0.05%
+iter 425: loss 7.5683, time 1206.12ms, mfu 0.05%
+iter 426: loss 7.7425, time 1046.83ms, mfu 0.05%
+iter 427: loss 7.5284, time 1380.55ms, mfu 0.05%
+iter 428: loss 7.3596, time 2607.25ms, mfu 0.05%
+iter 429: loss 7.6996, time 2113.86ms, mfu 0.05%
+iter 430: loss 7.6537, time 1162.86ms, mfu 0.05%
+iter 431: loss 7.8175, time 1146.02ms, mfu 0.05%
+iter 432: loss 7.6780, time 1138.23ms, mfu 0.05%
+iter 433: loss 7.3456, time 1150.42ms, mfu 0.05%
+iter 434: loss 7.6447, time 871.72ms, mfu 0.05%
+iter 435: loss 7.6374, time 1041.96ms, mfu 0.05%
+iter 436: loss 7.6509, time 1178.21ms, mfu 0.05%
+iter 437: loss 7.6178, time 1330.51ms, mfu 0.05%
+iter 438: loss 7.8411, time 1006.88ms, mfu 0.05%
+iter 439: loss 7.5808, time 1076.32ms, mfu 0.05%
+iter 440: loss 7.3866, time 961.86ms, mfu 0.05%
+iter 441: loss 7.6733, time 1375.78ms, mfu 0.05%
+iter 442: loss 7.7811, time 998.37ms, mfu 0.05%
+iter 443: loss 7.4730, time 965.57ms, mfu 0.05%
+iter 444: loss 7.6754, time 1116.83ms, mfu 0.05%
+iter 445: loss 7.2567, time 811.63ms, mfu 0.05%
+iter 446: loss 7.7335, time 1215.31ms, mfu 0.05%
+iter 447: loss 7.5076, time 1095.32ms, mfu 0.05%
+iter 448: loss 7.4704, time 1286.89ms, mfu 0.05%
+iter 449: loss 7.7667, time 1086.16ms, mfu 0.05%
+iter 450: loss 7.4059, time 994.82ms, mfu 0.05%
+iter 451: loss 7.6405, time 1063.85ms, mfu 0.05%
+iter 452: loss 7.6104, time 1106.20ms, mfu 0.05%
+iter 453: loss 7.5270, time 855.32ms, mfu 0.05%
+iter 454: loss 7.6105, time 1079.36ms, mfu 0.05%
+iter 455: loss 7.2830, time 936.12ms, mfu 0.05%
+iter 456: loss 7.5882, time 1243.41ms, mfu 0.05%
+iter 457: loss 7.3795, time 1058.00ms, mfu 0.05%
+iter 458: loss 7.2442, time 920.51ms, mfu 0.05%
+iter 459: loss 7.6435, time 1128.95ms, mfu 0.05%
+iter 460: loss 7.5183, time 890.79ms, mfu 0.05%
+iter 461: loss 7.6140, time 1135.51ms, mfu 0.05%
+iter 462: loss 7.5726, time 828.35ms, mfu 0.05%
+iter 463: loss 7.7047, time 1091.82ms, mfu 0.05%
+iter 464: loss 7.6242, time 849.72ms, mfu 0.05%
+iter 465: loss 7.5045, time 914.51ms, mfu 0.05%
+iter 466: loss 7.4460, time 968.15ms, mfu 0.05%
+iter 467: loss 7.3806, time 908.99ms, mfu 0.05%
+iter 468: loss 7.5679, time 1223.33ms, mfu 0.05%
+iter 469: loss 7.5711, time 937.74ms, mfu 0.05%
+iter 470: loss 7.3712, time 938.36ms, mfu 0.05%
+iter 471: loss 7.3448, time 1352.07ms, mfu 0.05%
+iter 472: loss 7.3259, time 872.47ms, mfu 0.05%
+iter 473: loss 7.7598, time 977.26ms, mfu 0.05%
+iter 474: loss 7.2498, time 945.02ms, mfu 0.05%
+iter 475: loss 7.8837, time 1371.36ms, mfu 0.05%
+iter 476: loss 7.3790, time 1532.16ms, mfu 0.05%
+iter 477: loss 7.4967, time 2088.45ms, mfu 0.05%
+iter 478: loss 7.5478, time 1749.23ms, mfu 0.05%
+iter 479: loss 7.6063, time 1084.81ms, mfu 0.05%
+iter 480: loss 7.4658, time 988.35ms, mfu 0.05%
+iter 481: loss 7.4839, time 1079.06ms, mfu 0.05%
+iter 482: loss 7.3071, time 909.15ms, mfu 0.05%
+iter 483: loss 7.1248, time 979.63ms, mfu 0.05%
+iter 484: loss 7.5044, time 1026.88ms, mfu 0.05%
+iter 485: loss 7.2682, time 1630.18ms, mfu 0.05%
+iter 486: loss 7.3370, time 897.09ms, mfu 0.05%
+iter 487: loss 7.3031, time 957.40ms, mfu 0.05%
+iter 488: loss 7.4839, time 1324.82ms, mfu 0.05%
+iter 489: loss 7.4877, time 1146.47ms, mfu 0.05%
+iter 490: loss 7.2457, time 956.84ms, mfu 0.05%
+iter 491: loss 7.4646, time 1125.22ms, mfu 0.05%
+iter 492: loss 7.1767, time 1570.83ms, mfu 0.05%
+iter 493: loss 7.6209, time 1060.68ms, mfu 0.05%
+iter 494: loss 7.7358, time 992.04ms, mfu 0.05%
+iter 495: loss 7.2165, time 1177.50ms, mfu 0.05%
+iter 496: loss 7.3318, time 1241.96ms, mfu 0.05%
+iter 497: loss 7.6091, time 1047.89ms, mfu 0.05%
+iter 498: loss 7.2723, time 1213.72ms, mfu 0.05%
+iter 499: loss 7.5051, time 1055.44ms, mfu 0.05%
+iter 500: loss 7.2602, time 817.44ms, mfu 0.05%
+iter 501: loss 7.1522, time 1127.19ms, mfu 0.05%
+iter 502: loss 7.0573, time 1183.35ms, mfu 0.05%
+iter 503: loss 7.1306, time 936.17ms, mfu 0.05%
+iter 504: loss 7.2536, time 937.36ms, mfu 0.05%
+iter 505: loss 7.4244, time 1038.16ms, mfu 0.05%
+iter 506: loss 7.3084, time 1261.44ms, mfu 0.05%
+iter 507: loss 7.2210, time 1061.04ms, mfu 0.05%
+iter 508: loss 7.0491, time 1394.81ms, mfu 0.05%
+iter 509: loss 7.5178, time 2325.50ms, mfu 0.05%
+iter 510: loss 7.2951, time 2468.80ms, mfu 0.04%
+iter 511: loss 7.4074, time 1541.96ms, mfu 0.04%
+iter 512: loss 7.0220, time 1631.89ms, mfu 0.04%
+iter 513: loss 7.4056, time 1048.35ms, mfu 0.04%
+iter 514: loss 7.0763, time 1138.39ms, mfu 0.04%
+iter 515: loss 7.2387, time 1024.33ms, mfu 0.04%
+iter 516: loss 7.2562, time 952.46ms, mfu 0.05%
+iter 517: loss 6.9596, time 1252.15ms, mfu 0.05%
+iter 518: loss 7.0251, time 804.79ms, mfu 0.05%
+iter 519: loss 7.2209, time 921.21ms, mfu 0.05%
+iter 520: loss 7.3834, time 898.85ms, mfu 0.05%
+iter 521: loss 7.1693, time 1152.79ms, mfu 0.05%
+iter 522: loss 7.0967, time 955.30ms, mfu 0.05%
+iter 523: loss 7.1349, time 920.39ms, mfu 0.05%
+iter 524: loss 7.1258, time 915.80ms, mfu 0.05%
+iter 525: loss 7.0966, time 957.86ms, mfu 0.05%
+iter 526: loss 7.2548, time 1032.05ms, mfu 0.05%
+iter 527: loss 7.2306, time 1143.28ms, mfu 0.05%
+iter 528: loss 7.5105, time 990.17ms, mfu 0.05%
+iter 529: loss 6.9120, time 919.13ms, mfu 0.05%
+iter 530: loss 7.2251, time 1013.39ms, mfu 0.05%
+iter 531: loss 7.0834, time 895.62ms, mfu 0.05%
+iter 532: loss 7.0704, time 1015.23ms, mfu 0.05%
+iter 533: loss 7.0774, time 974.07ms, mfu 0.05%
+iter 534: loss 7.3029, time 1233.14ms, mfu 0.05%
+iter 535: loss 7.2851, time 887.42ms, mfu 0.05%
+iter 536: loss 7.0254, time 1136.93ms, mfu 0.05%
+iter 537: loss 7.1334, time 1482.41ms, mfu 0.05%
+iter 538: loss 7.1824, time 884.94ms, mfu 0.05%
+iter 539: loss 6.7762, time 896.49ms, mfu 0.05%
+iter 540: loss 7.0463, time 909.38ms, mfu 0.05%
+iter 541: loss 6.9918, time 1178.35ms, mfu 0.05%
+iter 542: loss 6.9957, time 874.26ms, mfu 0.05%
+iter 543: loss 7.1764, time 1096.84ms, mfu 0.05%
+iter 544: loss 7.0275, time 1045.73ms, mfu 0.05%
+iter 545: loss 7.1097, time 1152.02ms, mfu 0.05%
+iter 546: loss 6.8410, time 1140.09ms, mfu 0.05%
+iter 547: loss 7.3083, time 980.84ms, mfu 0.05%
+iter 548: loss 6.7812, time 877.51ms, mfu 0.05%
+iter 549: loss 7.4773, time 1168.12ms, mfu 0.05%
+iter 550: loss 7.0182, time 997.89ms, mfu 0.05%
+iter 551: loss 7.0669, time 985.77ms, mfu 0.05%
+iter 552: loss 7.0922, time 1448.95ms, mfu 0.05%
+iter 553: loss 6.8737, time 899.07ms, mfu 0.05%
+iter 554: loss 7.2480, time 941.28ms, mfu 0.05%
+iter 555: loss 6.8973, time 1110.14ms, mfu 0.05%
+iter 556: loss 6.8738, time 1480.19ms, mfu 0.05%
+iter 557: loss 7.1456, time 1093.26ms, mfu 0.05%
+iter 558: loss 7.0805, time 1056.96ms, mfu 0.05%
+iter 559: loss 7.0197, time 1072.91ms, mfu 0.05%
+iter 560: loss 7.1588, time 1244.65ms, mfu 0.05%
+iter 561: loss 7.2843, time 897.99ms, mfu 0.05%
+iter 562: loss 7.1425, time 881.34ms, mfu 0.05%
+iter 563: loss 7.3450, time 874.13ms, mfu 0.05%
+iter 564: loss 6.9862, time 1305.58ms, mfu 0.05%
+iter 565: loss 7.0019, time 978.69ms, mfu 0.05%
+iter 566: loss 6.8617, time 928.33ms, mfu 0.05%
+iter 567: loss 6.9754, time 928.76ms, mfu 0.05%
+iter 568: loss 7.0861, time 1156.84ms, mfu 0.05%
+iter 569: loss 6.8635, time 911.20ms, mfu 0.05%
+iter 570: loss 7.0300, time 1037.77ms, mfu 0.05%
+iter 571: loss 7.0420, time 1009.05ms, mfu 0.05%
+iter 572: loss 6.9540, time 1052.93ms, mfu 0.05%
+iter 573: loss 7.0025, time 885.21ms, mfu 0.05%
+iter 574: loss 6.8223, time 1019.21ms, mfu 0.05%
+iter 575: loss 7.3033, time 910.34ms, mfu 0.05%
+iter 576: loss 6.8859, time 1017.07ms, mfu 0.05%
+iter 577: loss 6.9325, time 951.26ms, mfu 0.05%
+iter 578: loss 7.1380, time 903.24ms, mfu 0.05%
+iter 579: loss 6.8853, time 920.96ms, mfu 0.06%
+iter 580: loss 6.4946, time 1417.70ms, mfu 0.05%
+iter 581: loss 7.1739, time 860.19ms, mfu 0.05%
+iter 582: loss 6.9949, time 1053.50ms, mfu 0.05%
+iter 583: loss 6.8075, time 914.15ms, mfu 0.05%
+iter 584: loss 6.8556, time 1085.79ms, mfu 0.05%
+iter 585: loss 6.7983, time 1105.33ms, mfu 0.05%
+iter 586: loss 7.0670, time 939.73ms, mfu 0.05%
+iter 587: loss 6.7646, time 1152.76ms, mfu 0.05%
+iter 588: loss 6.6386, time 932.89ms, mfu 0.05%
+iter 589: loss 6.8643, time 1048.69ms, mfu 0.05%
+iter 590: loss 7.2388, time 1040.66ms, mfu 0.05%
+iter 591: loss 7.1038, time 1169.27ms, mfu 0.05%
+iter 592: loss 7.0079, time 867.49ms, mfu 0.05%
+iter 593: loss 6.7606, time 840.99ms, mfu 0.05%
+iter 594: loss 7.1601, time 935.39ms, mfu 0.05%
+iter 595: loss 6.9928, time 1268.74ms, mfu 0.05%
+iter 596: loss 6.5515, time 1006.60ms, mfu 0.05%
+iter 597: loss 6.7437, time 944.66ms, mfu 0.05%
+iter 598: loss 6.7878, time 998.14ms, mfu 0.05%
+iter 599: loss 6.7382, time 1330.70ms, mfu 0.05%
+iter 600: loss 6.7290, time 861.56ms, mfu 0.05%
+iter 601: loss 6.9403, time 977.21ms, mfu 0.05%
+iter 602: loss 7.0510, time 882.57ms, mfu 0.05%
+iter 603: loss 6.8773, time 1324.77ms, mfu 0.05%
+iter 604: loss 6.9618, time 1006.14ms, mfu 0.05%
+iter 605: loss 6.9762, time 1194.63ms, mfu 0.05%
+iter 606: loss 6.9819, time 1101.70ms, mfu 0.05%
+iter 607: loss 6.7492, time 1189.44ms, mfu 0.05%
+iter 608: loss 6.9107, time 855.00ms, mfu 0.05%
+iter 609: loss 6.5932, time 1802.14ms, mfu 0.05%
+iter 610: loss 6.6246, time 1535.27ms, mfu 0.05%
+iter 611: loss 7.3463, time 946.42ms, mfu 0.05%
+iter 612: loss 6.9692, time 926.06ms, mfu 0.05%
+iter 613: loss 6.8067, time 1317.84ms, mfu 0.05%
+iter 614: loss 6.8570, time 791.11ms, mfu 0.05%
+iter 615: loss 6.9098, time 1017.69ms, mfu 0.05%
+iter 616: loss 6.6622, time 821.34ms, mfu 0.05%
+iter 617: loss 7.0647, time 1224.60ms, mfu 0.05%
+iter 618: loss 6.6360, time 1059.65ms, mfu 0.05%
+iter 619: loss 6.4576, time 874.70ms, mfu 0.05%
+iter 620: loss 6.6866, time 1089.53ms, mfu 0.05%
+iter 621: loss 6.9875, time 1173.76ms, mfu 0.05%
+iter 622: loss 6.4289, time 962.22ms, mfu 0.05%
+iter 623: loss 6.9668, time 1095.90ms, mfu 0.05%
+iter 624: loss 6.5731, time 1098.88ms, mfu 0.05%
+iter 625: loss 6.8832, time 1117.12ms, mfu 0.05%
+iter 626: loss 7.1971, time 1075.63ms, mfu 0.05%
+iter 627: loss 6.9672, time 1064.58ms, mfu 0.05%
+iter 628: loss 6.6530, time 942.64ms, mfu 0.05%
+iter 629: loss 6.8254, time 1139.25ms, mfu 0.05%
+iter 630: loss 6.8822, time 977.21ms, mfu 0.05%
+iter 631: loss 6.7106, time 1037.27ms, mfu 0.05%
+iter 632: loss 6.6867, time 1327.33ms, mfu 0.05%
+iter 633: loss 6.6591, time 985.32ms, mfu 0.05%
+iter 634: loss 6.5450, time 1036.86ms, mfu 0.05%
+iter 635: loss 6.6261, time 1274.52ms, mfu 0.05%
+iter 636: loss 6.5937, time 1437.19ms, mfu 0.05%
+iter 637: loss 6.6421, time 996.50ms, mfu 0.05%
+iter 638: loss 7.0150, time 1144.99ms, mfu 0.05%
+iter 639: loss 6.8485, time 1277.15ms, mfu 0.05%
+iter 640: loss 6.8408, time 997.82ms, mfu 0.05%
+iter 641: loss 7.1009, time 1076.49ms, mfu 0.05%
+iter 642: loss 7.1891, time 995.89ms, mfu 0.05%
+iter 643: loss 6.6962, time 1275.28ms, mfu 0.05%
+iter 644: loss 6.9247, time 945.45ms, mfu 0.05%
+iter 645: loss 7.2025, time 917.01ms, mfu 0.05%
+iter 646: loss 6.8782, time 1185.75ms, mfu 0.05%
+iter 647: loss 6.5640, time 1136.96ms, mfu 0.05%
+iter 648: loss 6.6116, time 1033.66ms, mfu 0.05%
+iter 649: loss 6.7303, time 1427.20ms, mfu 0.05%
+iter 650: loss 6.8190, time 1435.47ms, mfu 0.05%
+iter 651: loss 6.9453, time 1028.59ms, mfu 0.05%
+iter 652: loss 6.5429, time 1089.63ms, mfu 0.05%
+iter 653: loss 6.9237, time 1218.03ms, mfu 0.05%
+iter 654: loss 6.6693, time 1152.05ms, mfu 0.05%
+iter 655: loss 6.5607, time 1301.54ms, mfu 0.05%
+iter 656: loss 6.6080, time 1046.95ms, mfu 0.05%
+iter 657: loss 6.7906, time 1292.91ms, mfu 0.05%
+iter 658: loss 6.6378, time 1048.45ms, mfu 0.05%
+iter 659: loss 6.8453, time 896.41ms, mfu 0.05%
+iter 660: loss 7.1206, time 906.30ms, mfu 0.05%
+iter 661: loss 6.9448, time 1191.83ms, mfu 0.05%
+iter 662: loss 6.4604, time 835.00ms, mfu 0.05%
+iter 663: loss 6.4310, time 857.68ms, mfu 0.05%
+iter 664: loss 6.3819, time 1104.93ms, mfu 0.05%
+iter 665: loss 6.7066, time 1112.95ms, mfu 0.05%
+iter 666: loss 6.8125, time 989.52ms, mfu 0.05%
+iter 667: loss 7.0417, time 839.22ms, mfu 0.05%
+iter 668: loss 6.9411, time 1357.01ms, mfu 0.05%
+iter 669: loss 6.4177, time 993.59ms, mfu 0.05%
+iter 670: loss 6.8135, time 893.83ms, mfu 0.05%
+iter 671: loss 6.7641, time 900.75ms, mfu 0.05%
+iter 672: loss 6.6291, time 768.52ms, mfu 0.06%
+iter 673: loss 6.6756, time 1325.66ms, mfu 0.05%
+iter 674: loss 6.7923, time 918.31ms, mfu 0.05%
+iter 675: loss 6.6697, time 1279.29ms, mfu 0.05%
+iter 676: loss 6.3773, time 1502.14ms, mfu 0.05%
+iter 677: loss 6.6207, time 862.93ms, mfu 0.05%
+iter 678: loss 6.6631, time 1145.94ms, mfu 0.05%
+iter 679: loss 6.5023, time 872.85ms, mfu 0.05%
+iter 680: loss 6.4338, time 1110.58ms, mfu 0.05%
+iter 681: loss 6.6484, time 886.52ms, mfu 0.05%
+iter 682: loss 6.6028, time 947.24ms, mfu 0.05%
+iter 683: loss 6.7302, time 873.38ms, mfu 0.05%
+iter 684: loss 6.6302, time 1064.61ms, mfu 0.05%
+iter 685: loss 6.7883, time 884.90ms, mfu 0.05%
+iter 686: loss 6.7249, time 1092.13ms, mfu 0.05%
+iter 687: loss 6.5665, time 884.58ms, mfu 0.05%
+iter 688: loss 6.7269, time 1380.80ms, mfu 0.05%
+iter 689: loss 6.4785, time 853.74ms, mfu 0.05%
+iter 690: loss 6.2860, time 921.68ms, mfu 0.05%
+iter 691: loss 6.3689, time 987.50ms, mfu 0.05%
+iter 692: loss 6.2553, time 1082.25ms, mfu 0.05%
+iter 693: loss 6.2329, time 889.22ms, mfu 0.05%
+iter 694: loss 6.7330, time 919.37ms, mfu 0.06%
+iter 695: loss 6.5694, time 815.47ms, mfu 0.06%
+iter 696: loss 6.6862, time 1156.19ms, mfu 0.06%
+iter 697: loss 6.8801, time 866.34ms, mfu 0.06%
+iter 698: loss 6.4088, time 1001.98ms, mfu 0.06%
+iter 699: loss 6.1167, time 852.10ms, mfu 0.06%
+iter 700: loss 6.5845, time 1142.79ms, mfu 0.06%
+iter 701: loss 6.4804, time 944.52ms, mfu 0.06%
+iter 702: loss 7.0010, time 943.89ms, mfu 0.06%
+iter 703: loss 6.7769, time 1025.63ms, mfu 0.06%
+iter 704: loss 6.7186, time 1070.34ms, mfu 0.05%
+iter 705: loss 6.8363, time 904.49ms, mfu 0.06%
+iter 706: loss 6.9197, time 905.48ms, mfu 0.06%
+iter 707: loss 6.4412, time 795.09ms, mfu 0.06%
+iter 708: loss 6.7584, time 929.60ms, mfu 0.06%
+iter 709: loss 6.3648, time 1181.66ms, mfu 0.06%
+iter 710: loss 6.9618, time 1134.42ms, mfu 0.06%
+iter 711: loss 6.4923, time 885.30ms, mfu 0.06%
+iter 712: loss 6.2650, time 1224.99ms, mfu 0.05%
+iter 713: loss 6.5671, time 2012.16ms, mfu 0.05%
+iter 714: loss 6.8102, time 2558.61ms, mfu 0.05%
+iter 715: loss 6.8612, time 1033.00ms, mfu 0.05%
+iter 716: loss 6.5889, time 1128.75ms, mfu 0.05%
+iter 717: loss 6.3269, time 965.40ms, mfu 0.05%
+iter 718: loss 6.5657, time 1146.57ms, mfu 0.05%
+iter 719: loss 6.6299, time 964.67ms, mfu 0.05%
+iter 720: loss 7.0224, time 865.34ms, mfu 0.05%
+iter 721: loss 6.7277, time 904.68ms, mfu 0.05%
+iter 722: loss 6.4826, time 1221.77ms, mfu 0.05%
+iter 723: loss 6.3914, time 994.39ms, mfu 0.05%
+iter 724: loss 6.6533, time 1033.23ms, mfu 0.05%
+iter 725: loss 6.9078, time 1512.88ms, mfu 0.05%
+iter 726: loss 6.5915, time 825.48ms, mfu 0.05%
+iter 727: loss 6.4965, time 915.59ms, mfu 0.05%
+iter 728: loss 6.7400, time 909.24ms, mfu 0.05%
+iter 729: loss 6.1772, time 1081.78ms, mfu 0.05%
+iter 730: loss 6.7469, time 915.81ms, mfu 0.05%
+iter 731: loss 6.4228, time 1098.67ms, mfu 0.05%
+iter 732: loss 6.4273, time 941.55ms, mfu 0.05%
+iter 733: loss 6.2079, time 1360.07ms, mfu 0.05%
+iter 734: loss 6.4627, time 920.95ms, mfu 0.05%
+iter 735: loss 6.1235, time 1049.79ms, mfu 0.05%
+iter 736: loss 6.2931, time 902.16ms, mfu 0.05%
+iter 737: loss 6.7074, time 1166.97ms, mfu 0.05%
+iter 738: loss 6.4530, time 1108.33ms, mfu 0.05%
+iter 739: loss 6.3124, time 1035.87ms, mfu 0.05%
+iter 740: loss 6.5081, time 843.02ms, mfu 0.05%
+iter 741: loss 6.6093, time 1160.87ms, mfu 0.05%
+iter 742: loss 6.8729, time 879.74ms, mfu 0.05%
+iter 743: loss 6.8941, time 963.18ms, mfu 0.05%
+iter 744: loss 6.6345, time 1069.82ms, mfu 0.05%
+iter 745: loss 6.5040, time 1303.68ms, mfu 0.05%
+iter 746: loss 6.6481, time 1055.12ms, mfu 0.05%
+iter 747: loss 6.6925, time 928.27ms, mfu 0.05%
+iter 748: loss 6.3484, time 890.37ms, mfu 0.05%
+iter 749: loss 6.4610, time 1165.49ms, mfu 0.05%
+iter 750: loss 6.3546, time 858.52ms, mfu 0.05%
+iter 751: loss 6.8764, time 896.82ms, mfu 0.05%
+iter 752: loss 6.4054, time 987.92ms, mfu 0.05%
+iter 753: loss 6.3651, time 1008.55ms, mfu 0.05%
+iter 754: loss 6.5559, time 865.00ms, mfu 0.06%
+iter 755: loss 6.3757, time 1011.51ms, mfu 0.05%
+iter 756: loss 6.3213, time 963.85ms, mfu 0.05%
+iter 757: loss 6.3437, time 1147.08ms, mfu 0.05%
+iter 758: loss 6.3254, time 966.80ms, mfu 0.05%
+iter 759: loss 7.0207, time 866.35ms, mfu 0.06%
+iter 760: loss 6.2346, time 869.95ms, mfu 0.06%
+iter 761: loss 6.4849, time 1162.26ms, mfu 0.05%
+iter 762: loss 6.3659, time 883.21ms, mfu 0.06%
+iter 763: loss 6.4387, time 974.47ms, mfu 0.06%
+iter 764: loss 6.2955, time 879.63ms, mfu 0.06%
+iter 765: loss 7.1237, time 1162.35ms, mfu 0.06%
+iter 766: loss 6.3125, time 1423.85ms, mfu 0.05%
+iter 767: loss 6.3909, time 1656.94ms, mfu 0.05%
+iter 768: loss 6.3218, time 2157.56ms, mfu 0.05%
+iter 769: loss 6.7016, time 1759.32ms, mfu 0.05%
+iter 770: loss 6.3774, time 1475.27ms, mfu 0.05%
+iter 771: loss 6.6248, time 925.98ms, mfu 0.05%
+iter 772: loss 6.4382, time 1069.59ms, mfu 0.05%
+iter 773: loss 6.8266, time 1227.00ms, mfu 0.05%
+iter 774: loss 6.5758, time 988.89ms, mfu 0.05%
+iter 775: loss 6.4335, time 999.95ms, mfu 0.05%
+iter 776: loss 6.5217, time 955.80ms, mfu 0.05%
+iter 777: loss 6.4761, time 1358.77ms, mfu 0.05%
+iter 778: loss 6.4304, time 933.35ms, mfu 0.05%
+iter 779: loss 6.4888, time 1033.15ms, mfu 0.05%
+iter 780: loss 6.6132, time 931.11ms, mfu 0.05%
+iter 781: loss 6.8426, time 1145.60ms, mfu 0.05%
+iter 782: loss 6.6015, time 1136.09ms, mfu 0.05%
+iter 783: loss 6.2344, time 1078.89ms, mfu 0.05%
+iter 784: loss 6.5281, time 894.49ms, mfu 0.05%
+iter 785: loss 5.9852, time 1148.03ms, mfu 0.05%
+iter 786: loss 6.7019, time 916.29ms, mfu 0.05%
+iter 787: loss 6.7123, time 861.16ms, mfu 0.05%
+iter 788: loss 6.3134, time 852.86ms, mfu 0.05%
+iter 789: loss 6.4551, time 1020.81ms, mfu 0.05%
+iter 790: loss 6.2825, time 884.68ms, mfu 0.05%
+iter 791: loss 6.3301, time 776.27ms, mfu 0.06%
+iter 792: loss 6.4656, time 855.06ms, mfu 0.06%
+iter 793: loss 6.4552, time 1113.85ms, mfu 0.06%
+iter 794: loss 6.5664, time 935.70ms, mfu 0.06%
+iter 795: loss 6.8521, time 1020.13ms, mfu 0.06%
+iter 796: loss 6.1451, time 1635.08ms, mfu 0.05%
+iter 797: loss 6.5935, time 1652.59ms, mfu 0.05%
+iter 798: loss 6.8672, time 1655.27ms, mfu 0.05%
+iter 799: loss 6.2543, time 1702.31ms, mfu 0.05%
+iter 800: loss 6.4868, time 1135.78ms, mfu 0.05%
+iter 801: loss 6.4651, time 1332.81ms, mfu 0.05%
+iter 802: loss 6.6106, time 1534.41ms, mfu 0.05%
+iter 803: loss 5.8566, time 1035.85ms, mfu 0.05%
+iter 804: loss 6.5119, time 986.67ms, mfu 0.05%
+iter 805: loss 6.4719, time 894.26ms, mfu 0.05%
+iter 806: loss 6.4055, time 1117.49ms, mfu 0.05%
+iter 807: loss 6.2251, time 942.48ms, mfu 0.05%
+iter 808: loss 6.7621, time 945.65ms, mfu 0.05%
+iter 809: loss 6.2708, time 1119.89ms, mfu 0.05%
+iter 810: loss 6.3391, time 1071.40ms, mfu 0.05%
+iter 811: loss 6.3672, time 978.39ms, mfu 0.05%
+iter 812: loss 6.3612, time 952.30ms, mfu 0.05%
+iter 813: loss 6.8101, time 862.31ms, mfu 0.05%
+iter 814: loss 6.5850, time 1118.98ms, mfu 0.05%
+iter 815: loss 6.7151, time 979.98ms, mfu 0.05%
+iter 816: loss 6.2042, time 847.94ms, mfu 0.05%
+iter 817: loss 6.5365, time 938.43ms, mfu 0.05%
+iter 818: loss 6.8425, time 1211.70ms, mfu 0.05%
+iter 819: loss 6.4558, time 920.48ms, mfu 0.05%
+iter 820: loss 5.9868, time 829.20ms, mfu 0.05%
+iter 821: loss 5.9312, time 785.48ms, mfu 0.06%
+iter 822: loss 6.2594, time 1302.00ms, mfu 0.05%
+iter 823: loss 6.2770, time 888.76ms, mfu 0.06%
+iter 824: loss 6.3131, time 1043.12ms, mfu 0.05%
+iter 825: loss 6.5396, time 1012.09ms, mfu 0.05%
+iter 826: loss 6.0220, time 1329.05ms, mfu 0.05%
+iter 827: loss 6.1984, time 910.52ms, mfu 0.05%
+iter 828: loss 6.3879, time 796.64ms, mfu 0.06%
+iter 829: loss 6.5990, time 1163.36ms, mfu 0.05%
+iter 830: loss 6.5398, time 1121.51ms, mfu 0.05%
+iter 831: loss 6.6885, time 942.64ms, mfu 0.05%
+iter 832: loss 6.3683, time 1082.02ms, mfu 0.05%
+iter 833: loss 6.4725, time 1295.62ms, mfu 0.05%
+iter 834: loss 6.3709, time 1010.71ms, mfu 0.05%
+iter 835: loss 6.3125, time 844.88ms, mfu 0.05%
+iter 836: loss 6.0485, time 896.56ms, mfu 0.05%
+iter 837: loss 6.4122, time 1369.94ms, mfu 0.05%
+iter 838: loss 6.2438, time 1243.13ms, mfu 0.05%
+iter 839: loss 6.5309, time 1044.26ms, mfu 0.05%
+iter 840: loss 6.3421, time 902.02ms, mfu 0.05%
+iter 841: loss 6.2084, time 1204.14ms, mfu 0.05%
+iter 842: loss 6.1449, time 916.09ms, mfu 0.05%
+iter 843: loss 6.5693, time 1048.71ms, mfu 0.05%
+iter 844: loss 6.4846, time 870.72ms, mfu 0.05%
+iter 845: loss 6.5627, time 1126.51ms, mfu 0.05%
+iter 846: loss 6.3715, time 924.49ms, mfu 0.05%
+iter 847: loss 6.0604, time 1228.78ms, mfu 0.05%
+iter 848: loss 6.6307, time 1395.54ms, mfu 0.05%
+iter 849: loss 6.9119, time 939.38ms, mfu 0.05%
+iter 850: loss 6.8145, time 1187.04ms, mfu 0.05%
+iter 851: loss 6.3010, time 1180.96ms, mfu 0.05%
+iter 852: loss 6.4679, time 1354.82ms, mfu 0.05%
+iter 853: loss 6.3059, time 846.08ms, mfu 0.05%
+iter 854: loss 6.6081, time 992.56ms, mfu 0.05%
+iter 855: loss 6.4087, time 909.73ms, mfu 0.05%
+iter 856: loss 6.4583, time 1438.80ms, mfu 0.05%
+iter 857: loss 6.4362, time 1023.76ms, mfu 0.05%
+iter 858: loss 6.4223, time 1027.93ms, mfu 0.05%
+iter 859: loss 6.3095, time 1249.36ms, mfu 0.05%
+iter 860: loss 6.4992, time 851.82ms, mfu 0.05%
+iter 861: loss 6.6624, time 995.92ms, mfu 0.05%
+iter 862: loss 6.2779, time 976.63ms, mfu 0.05%
+iter 863: loss 6.5424, time 1227.66ms, mfu 0.05%
+iter 864: loss 6.2772, time 857.14ms, mfu 0.05%
+iter 865: loss 6.2336, time 978.10ms, mfu 0.05%
+iter 866: loss 6.6902, time 922.23ms, mfu 0.05%
+iter 867: loss 6.7596, time 1137.27ms, mfu 0.05%
+iter 868: loss 6.1111, time 941.11ms, mfu 0.05%
+iter 869: loss 6.5163, time 966.94ms, mfu 0.05%
+iter 870: loss 6.4075, time 908.44ms, mfu 0.05%
+iter 871: loss 6.2104, time 1252.19ms, mfu 0.05%
+iter 872: loss 6.5721, time 1077.37ms, mfu 0.05%
+iter 873: loss 6.1795, time 975.29ms, mfu 0.05%
+iter 874: loss 6.3713, time 1081.88ms, mfu 0.05%
+iter 875: loss 5.9621, time 1301.95ms, mfu 0.05%
+iter 876: loss 6.1298, time 1045.20ms, mfu 0.05%
+iter 877: loss 6.3689, time 951.93ms, mfu 0.05%
+iter 878: loss 6.5872, time 814.93ms, mfu 0.05%
+iter 879: loss 6.5819, time 1244.98ms, mfu 0.05%
+iter 880: loss 6.4430, time 882.07ms, mfu 0.05%
+iter 881: loss 6.3647, time 1025.41ms, mfu 0.05%
+iter 882: loss 5.9733, time 871.99ms, mfu 0.05%
+iter 883: loss 6.6194, time 1101.39ms, mfu 0.05%
+iter 884: loss 6.3415, time 901.47ms, mfu 0.05%
+iter 885: loss 6.2291, time 894.29ms, mfu 0.05%
+iter 886: loss 6.4490, time 936.97ms, mfu 0.05%
+iter 887: loss 6.2794, time 1254.77ms, mfu 0.05%
+iter 888: loss 6.0443, time 868.00ms, mfu 0.05%
+iter 889: loss 6.2099, time 898.57ms, mfu 0.06%
+iter 890: loss 6.2085, time 956.73ms, mfu 0.06%
+iter 891: loss 6.4361, time 1142.68ms, mfu 0.05%
+iter 892: loss 6.4556, time 1042.13ms, mfu 0.05%
+iter 893: loss 6.5614, time 945.55ms, mfu 0.05%
+iter 894: loss 6.2875, time 960.60ms, mfu 0.05%
+iter 895: loss 6.3339, time 1327.11ms, mfu 0.05%
+iter 896: loss 6.6473, time 1562.71ms, mfu 0.05%
+iter 897: loss 6.4155, time 1467.74ms, mfu 0.05%
+iter 898: loss 6.0914, time 1199.22ms, mfu 0.05%
+iter 899: loss 6.5866, time 950.34ms, mfu 0.05%
+iter 900: loss 6.1111, time 879.95ms, mfu 0.05%
+iter 901: loss 6.2131, time 929.64ms, mfu 0.05%
+iter 902: loss 6.2092, time 1119.16ms, mfu 0.05%
+iter 903: loss 6.2308, time 875.66ms, mfu 0.05%
+iter 904: loss 5.8184, time 965.28ms, mfu 0.05%
+iter 905: loss 6.4851, time 884.07ms, mfu 0.05%
+iter 906: loss 5.8504, time 1239.18ms, mfu 0.05%
+iter 907: loss 6.2764, time 850.61ms, mfu 0.05%
+iter 908: loss 6.3349, time 882.43ms, mfu 0.05%
+iter 909: loss 6.2516, time 748.85ms, mfu 0.06%
+iter 910: loss 6.1643, time 1100.15ms, mfu 0.06%
+iter 911: loss 5.7910, time 893.44ms, mfu 0.06%
+iter 912: loss 6.2381, time 948.28ms, mfu 0.06%
+iter 913: loss 6.3613, time 859.69ms, mfu 0.06%
+iter 914: loss 6.7325, time 1174.42ms, mfu 0.06%
+iter 915: loss 5.8797, time 788.54ms, mfu 0.06%
+iter 916: loss 6.4670, time 966.50ms, mfu 0.06%
+iter 917: loss 6.3963, time 977.31ms, mfu 0.06%
+iter 918: loss 6.2954, time 1015.60ms, mfu 0.06%
+iter 919: loss 6.1495, time 979.49ms, mfu 0.06%
+iter 920: loss 6.1275, time 900.08ms, mfu 0.06%
+iter 921: loss 5.9378, time 919.62ms, mfu 0.06%
+iter 922: loss 6.2796, time 1000.89ms, mfu 0.06%
+iter 923: loss 6.0839, time 1283.58ms, mfu 0.05%
+iter 924: loss 6.3705, time 1310.58ms, mfu 0.05%
+iter 925: loss 6.6792, time 1352.20ms, mfu 0.05%
+iter 926: loss 6.5557, time 1144.95ms, mfu 0.05%
+iter 927: loss 6.1581, time 886.54ms, mfu 0.05%
+iter 928: loss 6.2222, time 849.30ms, mfu 0.05%
+iter 929: loss 6.5322, time 944.37ms, mfu 0.05%
+iter 930: loss 6.2152, time 1227.50ms, mfu 0.05%
+iter 931: loss 6.3110, time 1012.09ms, mfu 0.05%
+iter 932: loss 6.0709, time 943.71ms, mfu 0.05%
+iter 933: loss 6.2809, time 1046.83ms, mfu 0.05%
+iter 934: loss 6.2498, time 1106.88ms, mfu 0.05%
+iter 935: loss 6.3388, time 1064.25ms, mfu 0.05%
+iter 936: loss 6.1664, time 894.27ms, mfu 0.05%
+iter 937: loss 6.3317, time 1475.85ms, mfu 0.05%
+iter 938: loss 6.1075, time 1390.20ms, mfu 0.05%
+iter 939: loss 6.1387, time 1512.82ms, mfu 0.05%
+iter 940: loss 5.7388, time 1343.73ms, mfu 0.05%
+iter 941: loss 6.4115, time 933.94ms, mfu 0.05%
+iter 942: loss 6.3045, time 1016.15ms, mfu 0.05%
+iter 943: loss 6.2354, time 880.99ms, mfu 0.05%
+iter 944: loss 6.2594, time 1333.00ms, mfu 0.05%
+iter 945: loss 6.0258, time 880.85ms, mfu 0.05%
+iter 946: loss 6.5653, time 977.24ms, mfu 0.05%
+iter 947: loss 6.2878, time 928.14ms, mfu 0.05%
+iter 948: loss 6.7012, time 1118.26ms, mfu 0.05%
+iter 949: loss 6.3187, time 1040.33ms, mfu 0.05%
+iter 950: loss 6.3456, time 1046.94ms, mfu 0.05%
+iter 951: loss 6.6419, time 1300.59ms, mfu 0.05%
+iter 952: loss 6.4926, time 1026.23ms, mfu 0.05%
+iter 953: loss 6.1426, time 980.20ms, mfu 0.05%
+iter 954: loss 5.9233, time 927.00ms, mfu 0.05%
+iter 955: loss 6.2328, time 1145.72ms, mfu 0.05%
+iter 956: loss 6.4982, time 843.85ms, mfu 0.05%
+iter 957: loss 6.6082, time 939.47ms, mfu 0.05%
+iter 958: loss 7.0905, time 834.10ms, mfu 0.05%
+iter 959: loss 5.9783, time 1022.38ms, mfu 0.05%
+iter 960: loss 6.1878, time 1077.22ms, mfu 0.05%
+iter 961: loss 5.8256, time 1080.91ms, mfu 0.05%
+iter 962: loss 6.4102, time 704.85ms, mfu 0.06%
+iter 963: loss 6.1324, time 947.42ms, mfu 0.06%
+iter 964: loss 6.2837, time 1426.20ms, mfu 0.05%
+iter 965: loss 6.0463, time 1046.16ms, mfu 0.05%
+iter 966: loss 6.2098, time 1760.57ms, mfu 0.05%
+iter 967: loss 6.0367, time 1241.31ms, mfu 0.05%
+iter 968: loss 6.1519, time 1063.47ms, mfu 0.05%
+iter 969: loss 6.1699, time 943.73ms, mfu 0.05%
+iter 970: loss 6.1117, time 1195.78ms, mfu 0.05%
+iter 971: loss 5.8224, time 847.72ms, mfu 0.05%
+iter 972: loss 5.8201, time 872.72ms, mfu 0.05%
+iter 973: loss 5.9476, time 926.31ms, mfu 0.05%
+iter 974: loss 5.9468, time 886.41ms, mfu 0.05%
+iter 975: loss 5.9598, time 1081.14ms, mfu 0.05%
+iter 976: loss 5.9452, time 821.54ms, mfu 0.05%
+iter 977: loss 6.3986, time 925.10ms, mfu 0.06%
+iter 978: loss 6.4170, time 999.38ms, mfu 0.06%
+iter 979: loss 6.3790, time 1202.84ms, mfu 0.05%
+iter 980: loss 6.3774, time 940.67ms, mfu 0.05%
+iter 981: loss 6.2150, time 902.60ms, mfu 0.05%
+iter 982: loss 6.0326, time 779.60ms, mfu 0.06%
+iter 983: loss 6.2860, time 1143.18ms, mfu 0.06%
+iter 984: loss 5.9963, time 996.48ms, mfu 0.06%
+iter 985: loss 6.3612, time 927.31ms, mfu 0.06%
+iter 986: loss 6.3752, time 928.68ms, mfu 0.06%
+iter 987: loss 6.1007, time 1060.04ms, mfu 0.06%
+iter 988: loss 6.0461, time 876.12ms, mfu 0.06%
+iter 989: loss 6.8505, time 1034.14ms, mfu 0.06%
+iter 990: loss 6.1653, time 922.42ms, mfu 0.06%
+iter 991: loss 6.2123, time 1208.13ms, mfu 0.05%
+iter 992: loss 6.2615, time 933.68ms, mfu 0.05%
+iter 993: loss 6.1609, time 906.82ms, mfu 0.06%
+iter 994: loss 5.9432, time 953.21ms, mfu 0.06%
+iter 995: loss 6.4798, time 1136.94ms, mfu 0.05%
+iter 996: loss 5.9284, time 925.52ms, mfu 0.06%
+iter 997: loss 5.8023, time 828.17ms, mfu 0.06%
+iter 998: loss 6.2948, time 1067.16ms, mfu 0.06%
+iter 999: loss 6.4138, time 1201.02ms, mfu 0.05%
+step 1000: train loss 6.1450, val loss 6.1720
+saving checkpoint to out
+iter 1000: loss 6.2790, time 7769.02ms, mfu 0.05%
+iter 1001: loss 6.2806, time 813.83ms, mfu 0.05%
+iter 1002: loss 5.8704, time 990.73ms, mfu 0.05%
+iter 1003: loss 6.5361, time 1108.25ms, mfu 0.05%
+iter 1004: loss 6.1444, time 1073.75ms, mfu 0.05%
+iter 1005: loss 5.9946, time 905.00ms, mfu 0.05%
+iter 1006: loss 6.0403, time 938.75ms, mfu 0.05%
+iter 1007: loss 6.0118, time 1124.50ms, mfu 0.05%
+iter 1008: loss 6.3253, time 1377.52ms, mfu 0.05%
+iter 1009: loss 6.3395, time 1068.15ms, mfu 0.05%
+iter 1010: loss 6.3086, time 1009.08ms, mfu 0.05%
+iter 1011: loss 6.1251, time 1098.45ms, mfu 0.05%
+iter 1012: loss 6.1379, time 1284.10ms, mfu 0.05%
+iter 1013: loss 6.0952, time 873.51ms, mfu 0.05%
+iter 1014: loss 6.1416, time 834.48ms, mfu 0.05%
+iter 1015: loss 5.9211, time 855.45ms, mfu 0.05%
+iter 1016: loss 6.0135, time 1208.83ms, mfu 0.05%
+iter 1017: loss 6.2670, time 1182.23ms, mfu 0.05%
+iter 1018: loss 6.4672, time 883.19ms, mfu 0.05%
+iter 1019: loss 6.4176, time 877.13ms, mfu 0.05%
+iter 1020: loss 6.4006, time 1231.05ms, mfu 0.05%
+iter 1021: loss 6.3204, time 889.34ms, mfu 0.05%
+iter 1022: loss 5.8389, time 1163.20ms, mfu 0.05%
+iter 1023: loss 5.8444, time 1137.55ms, mfu 0.05%
+iter 1024: loss 6.0574, time 846.42ms, mfu 0.05%
+iter 1025: loss 5.8589, time 864.14ms, mfu 0.05%
+iter 1026: loss 6.3918, time 967.27ms, mfu 0.05%
+iter 1027: loss 6.1729, time 1189.98ms, mfu 0.05%
+iter 1028: loss 5.9772, time 907.30ms, mfu 0.05%
+iter 1029: loss 6.2872, time 993.99ms, mfu 0.05%
+iter 1030: loss 6.1443, time 838.24ms, mfu 0.06%
+iter 1031: loss 5.9851, time 1003.76ms, mfu 0.05%
+iter 1032: loss 6.5087, time 1144.45ms, mfu 0.05%
+iter 1033: loss 6.2893, time 917.43ms, mfu 0.05%
+iter 1034: loss 6.2728, time 928.76ms, mfu 0.05%
+iter 1035: loss 6.0359, time 816.34ms, mfu 0.06%
+iter 1036: loss 6.3664, time 1228.89ms, mfu 0.05%
+iter 1037: loss 6.2601, time 1191.45ms, mfu 0.05%
+iter 1038: loss 6.1975, time 1029.21ms, mfu 0.05%
+iter 1039: loss 6.1029, time 1113.86ms, mfu 0.05%
+iter 1040: loss 6.0551, time 859.52ms, mfu 0.05%
+iter 1041: loss 6.2880, time 822.41ms, mfu 0.06%
+iter 1042: loss 6.3092, time 979.16ms, mfu 0.06%
+iter 1043: loss 6.0978, time 828.99ms, mfu 0.06%
+iter 1044: loss 6.2552, time 1238.62ms, mfu 0.05%
+iter 1045: loss 6.3020, time 905.47ms, mfu 0.06%
+iter 1046: loss 5.7816, time 934.46ms, mfu 0.06%
+iter 1047: loss 5.8920, time 1215.93ms, mfu 0.05%
+iter 1048: loss 6.2276, time 1043.37ms, mfu 0.05%
+iter 1049: loss 6.3016, time 924.65ms, mfu 0.05%
+iter 1050: loss 6.3973, time 851.93ms, mfu 0.06%
+iter 1051: loss 6.0892, time 2027.12ms, mfu 0.05%
+iter 1052: loss 6.2902, time 930.59ms, mfu 0.05%
+iter 1053: loss 6.0435, time 1105.90ms, mfu 0.05%
+iter 1054: loss 6.5004, time 1671.02ms, mfu 0.05%
+iter 1055: loss 6.2178, time 1734.18ms, mfu 0.05%
+iter 1056: loss 5.7662, time 1370.35ms, mfu 0.05%
+iter 1057: loss 6.0379, time 1040.81ms, mfu 0.05%
+iter 1058: loss 6.0504, time 847.07ms, mfu 0.05%
+iter 1059: loss 6.0597, time 1044.13ms, mfu 0.05%
+iter 1060: loss 6.2456, time 864.55ms, mfu 0.05%
+iter 1061: loss 6.1369, time 1075.59ms, mfu 0.05%
+iter 1062: loss 6.0475, time 946.39ms, mfu 0.05%
+iter 1063: loss 5.9682, time 891.27ms, mfu 0.05%
+iter 1064: loss 6.4018, time 857.64ms, mfu 0.05%
+iter 1065: loss 6.2330, time 1465.32ms, mfu 0.05%
+iter 1066: loss 6.0744, time 1209.56ms, mfu 0.05%
+iter 1067: loss 5.9457, time 968.46ms, mfu 0.05%
+iter 1068: loss 5.9085, time 878.13ms, mfu 0.05%
+iter 1069: loss 6.2405, time 1322.52ms, mfu 0.05%
+iter 1070: loss 6.4901, time 848.56ms, mfu 0.05%
+iter 1071: loss 6.0042, time 835.64ms, mfu 0.05%
+iter 1072: loss 6.3413, time 849.20ms, mfu 0.05%
+iter 1073: loss 6.5588, time 1111.59ms, mfu 0.05%
+iter 1074: loss 5.8951, time 974.16ms, mfu 0.05%
+iter 1075: loss 6.2370, time 977.01ms, mfu 0.05%
+iter 1076: loss 5.8667, time 759.91ms, mfu 0.06%
+iter 1077: loss 5.7038, time 1101.22ms, mfu 0.06%
+iter 1078: loss 6.4475, time 1162.90ms, mfu 0.05%
+iter 1079: loss 5.9536, time 1179.93ms, mfu 0.05%
+iter 1080: loss 5.4334, time 1450.78ms, mfu 0.05%
+iter 1081: loss 6.0262, time 928.58ms, mfu 0.05%
+iter 1082: loss 6.3086, time 1666.25ms, mfu 0.05%
+iter 1083: loss 6.2208, time 1996.85ms, mfu 0.05%
+iter 1084: loss 5.9045, time 910.39ms, mfu 0.05%
+iter 1085: loss 6.0754, time 1063.41ms, mfu 0.05%
+iter 1086: loss 6.0714, time 1568.74ms, mfu 0.05%
+iter 1087: loss 6.0818, time 1216.38ms, mfu 0.05%
+iter 1088: loss 5.8591, time 1075.91ms, mfu 0.05%
+iter 1089: loss 6.4375, time 938.09ms, mfu 0.05%
+iter 1090: loss 6.2836, time 1190.79ms, mfu 0.05%
+iter 1091: loss 6.5055, time 1077.63ms, mfu 0.05%
+iter 1092: loss 6.3279, time 930.11ms, mfu 0.05%
+iter 1093: loss 5.8168, time 885.77ms, mfu 0.05%
+iter 1094: loss 6.3143, time 1107.43ms, mfu 0.05%
+iter 1095: loss 6.2142, time 801.60ms, mfu 0.05%
+iter 1096: loss 6.1738, time 854.36ms, mfu 0.05%
+iter 1097: loss 6.2105, time 951.86ms, mfu 0.05%
+iter 1098: loss 6.2011, time 1138.44ms, mfu 0.05%
+iter 1099: loss 6.1306, time 848.92ms, mfu 0.05%
+iter 1100: loss 6.0738, time 967.24ms, mfu 0.05%
+iter 1101: loss 6.1862, time 896.01ms, mfu 0.05%
+iter 1102: loss 5.9227, time 1314.73ms, mfu 0.05%
+iter 1103: loss 6.2068, time 902.91ms, mfu 0.05%
+iter 1104: loss 6.1150, time 962.61ms, mfu 0.05%
+iter 1105: loss 6.1273, time 965.72ms, mfu 0.05%
+iter 1106: loss 5.9464, time 1093.56ms, mfu 0.05%
+iter 1107: loss 6.0810, time 902.20ms, mfu 0.05%
+iter 1108: loss 5.8433, time 898.21ms, mfu 0.05%
+iter 1109: loss 6.4571, time 1084.53ms, mfu 0.05%
+iter 1110: loss 6.5456, time 1592.18ms, mfu 0.05%
+iter 1111: loss 6.3703, time 1229.71ms, mfu 0.05%
+iter 1112: loss 5.9358, time 1412.57ms, mfu 0.05%
+iter 1113: loss 6.0549, time 1165.50ms, mfu 0.05%
+iter 1114: loss 6.1910, time 1032.12ms, mfu 0.05%
+iter 1115: loss 6.1279, time 923.05ms, mfu 0.05%
+iter 1116: loss 6.1283, time 916.49ms, mfu 0.05%
+iter 1117: loss 5.9919, time 1112.19ms, mfu 0.05%
+iter 1118: loss 6.2717, time 1071.75ms, mfu 0.05%
+iter 1119: loss 6.3028, time 922.17ms, mfu 0.05%
+iter 1120: loss 6.3980, time 1020.35ms, mfu 0.05%
+iter 1121: loss 6.1918, time 1152.85ms, mfu 0.05%
+iter 1122: loss 5.8872, time 906.51ms, mfu 0.05%
+iter 1123: loss 6.2866, time 936.69ms, mfu 0.05%
+iter 1124: loss 5.9361, time 946.72ms, mfu 0.05%
+iter 1125: loss 6.1556, time 1208.44ms, mfu 0.05%
+iter 1126: loss 5.9242, time 870.91ms, mfu 0.05%
+iter 1127: loss 6.3159, time 742.03ms, mfu 0.06%
+iter 1128: loss 6.2187, time 970.04ms, mfu 0.06%
+iter 1129: loss 6.2097, time 1475.12ms, mfu 0.05%
+iter 1130: loss 5.8990, time 1046.21ms, mfu 0.05%
+iter 1131: loss 5.7994, time 1356.54ms, mfu 0.05%
+iter 1132: loss 5.8987, time 1375.69ms, mfu 0.05%
+iter 1133: loss 6.0546, time 1005.30ms, mfu 0.05%
+iter 1134: loss 5.9747, time 983.00ms, mfu 0.05%
+iter 1135: loss 5.8460, time 952.86ms, mfu 0.05%
+iter 1136: loss 5.9005, time 1034.06ms, mfu 0.05%
+iter 1137: loss 6.3043, time 882.79ms, mfu 0.05%
+iter 1138: loss 5.8991, time 1081.19ms, mfu 0.05%
+iter 1139: loss 5.6708, time 920.27ms, mfu 0.05%
+iter 1140: loss 5.9329, time 1072.36ms, mfu 0.05%
+iter 1141: loss 5.6742, time 1052.25ms, mfu 0.05%
+iter 1142: loss 6.1189, time 979.64ms, mfu 0.05%
+iter 1143: loss 5.8159, time 860.21ms, mfu 0.05%
+iter 1144: loss 6.2056, time 1132.74ms, mfu 0.05%
+iter 1145: loss 5.9191, time 926.30ms, mfu 0.05%
+iter 1146: loss 6.4383, time 897.95ms, mfu 0.05%
+iter 1147: loss 5.9007, time 911.81ms, mfu 0.05%
+iter 1148: loss 6.0294, time 1137.00ms, mfu 0.05%
+iter 1149: loss 6.1576, time 864.35ms, mfu 0.05%
+iter 1150: loss 6.4441, time 1080.32ms, mfu 0.05%
+iter 1151: loss 5.7861, time 803.44ms, mfu 0.06%
+iter 1152: loss 5.9083, time 1133.83ms, mfu 0.05%
+iter 1153: loss 5.9489, time 817.23ms, mfu 0.06%
+iter 1154: loss 6.0929, time 863.03ms, mfu 0.06%
+iter 1155: loss 5.9747, time 931.53ms, mfu 0.06%
+iter 1156: loss 6.2198, time 1209.71ms, mfu 0.06%
+iter 1157: loss 5.9789, time 860.05ms, mfu 0.06%
+iter 1158: loss 6.3158, time 842.92ms, mfu 0.06%
+iter 1159: loss 5.9132, time 836.42ms, mfu 0.06%
+iter 1160: loss 6.0850, time 860.99ms, mfu 0.06%
+iter 1161: loss 5.7865, time 1285.67ms, mfu 0.06%
+iter 1162: loss 6.2855, time 792.67ms, mfu 0.06%
+iter 1163: loss 6.1815, time 948.74ms, mfu 0.06%
+iter 1164: loss 6.0514, time 888.83ms, mfu 0.06%
+iter 1165: loss 6.1822, time 1151.64ms, mfu 0.06%
+iter 1166: loss 6.1813, time 907.46ms, mfu 0.06%
+iter 1167: loss 6.2538, time 930.38ms, mfu 0.06%
+iter 1168: loss 6.0601, time 880.13ms, mfu 0.06%
+iter 1169: loss 6.1694, time 1101.99ms, mfu 0.06%
+iter 1170: loss 5.5440, time 842.51ms, mfu 0.06%
+iter 1171: loss 6.1021, time 823.70ms, mfu 0.06%
+iter 1172: loss 5.7372, time 1037.01ms, mfu 0.06%
+iter 1173: loss 5.8156, time 1012.01ms, mfu 0.06%
+iter 1174: loss 5.9994, time 937.45ms, mfu 0.06%
+iter 1175: loss 6.0597, time 1008.24ms, mfu 0.06%
+iter 1176: loss 6.1170, time 892.28ms, mfu 0.06%
+iter 1177: loss 6.0196, time 1350.10ms, mfu 0.06%
+iter 1178: loss 5.5625, time 825.70ms, mfu 0.06%
+iter 1179: loss 5.7486, time 829.52ms, mfu 0.06%
+iter 1180: loss 6.2747, time 956.49ms, mfu 0.06%
+iter 1181: loss 5.9871, time 1086.68ms, mfu 0.06%
+iter 1182: loss 6.3290, time 945.42ms, mfu 0.06%
+iter 1183: loss 5.8115, time 905.26ms, mfu 0.06%
+iter 1184: loss 6.1170, time 974.93ms, mfu 0.06%
+iter 1185: loss 5.8361, time 798.17ms, mfu 0.06%
+iter 1186: loss 5.8268, time 1333.32ms, mfu 0.06%
+iter 1187: loss 5.7325, time 1079.03ms, mfu 0.06%
+iter 1188: loss 6.2967, time 1958.99ms, mfu 0.05%
+iter 1189: loss 5.9607, time 916.85ms, mfu 0.05%
+iter 1190: loss 6.0388, time 1417.71ms, mfu 0.05%
+iter 1191: loss 5.5320, time 1750.72ms, mfu 0.05%
+iter 1192: loss 5.8684, time 837.53ms, mfu 0.05%
+iter 1193: loss 6.1897, time 844.78ms, mfu 0.05%
+iter 1194: loss 5.9359, time 859.07ms, mfu 0.05%
+iter 1195: loss 6.0218, time 1020.32ms, mfu 0.05%
+iter 1196: loss 6.0490, time 1057.86ms, mfu 0.05%
+iter 1197: loss 6.0748, time 798.17ms, mfu 0.05%
+iter 1198: loss 5.9805, time 957.51ms, mfu 0.05%
+iter 1199: loss 6.1708, time 835.41ms, mfu 0.06%
+iter 1200: loss 6.1712, time 1337.85ms, mfu 0.05%
+iter 1201: loss 5.7549, time 746.66ms, mfu 0.06%
+iter 1202: loss 5.9011, time 862.95ms, mfu 0.06%
+iter 1203: loss 6.0667, time 894.48ms, mfu 0.06%
+iter 1204: loss 6.0476, time 1064.08ms, mfu 0.06%
+iter 1205: loss 5.8967, time 826.68ms, mfu 0.06%
+iter 1206: loss 6.1421, time 1005.82ms, mfu 0.06%
+iter 1207: loss 5.8819, time 812.46ms, mfu 0.06%
+iter 1208: loss 5.9748, time 1109.39ms, mfu 0.06%
+iter 1209: loss 5.9886, time 934.40ms, mfu 0.06%
+iter 1210: loss 6.1896, time 868.91ms, mfu 0.06%
+iter 1211: loss 6.4118, time 976.23ms, mfu 0.06%
+iter 1212: loss 6.0007, time 1088.96ms, mfu 0.06%
+iter 1213: loss 5.8762, time 977.87ms, mfu 0.06%
+iter 1214: loss 5.4647, time 946.35ms, mfu 0.06%
+iter 1215: loss 5.8753, time 881.98ms, mfu 0.06%
+iter 1216: loss 5.7564, time 1857.85ms, mfu 0.05%
+iter 1217: loss 5.9462, time 923.94ms, mfu 0.05%
+iter 1218: loss 5.9261, time 977.71ms, mfu 0.05%
+iter 1219: loss 5.9347, time 937.68ms, mfu 0.05%
+iter 1220: loss 6.0464, time 1502.86ms, mfu 0.05%
+iter 1221: loss 5.8212, time 978.30ms, mfu 0.05%
+iter 1222: loss 5.8039, time 1055.80ms, mfu 0.05%
+iter 1223: loss 5.9626, time 1243.23ms, mfu 0.05%
+iter 1224: loss 6.0981, time 976.41ms, mfu 0.05%
+iter 1225: loss 6.0352, time 1170.44ms, mfu 0.05%
+iter 1226: loss 5.9160, time 1933.16ms, mfu 0.05%
+iter 1227: loss 5.8279, time 924.83ms, mfu 0.05%
+iter 1228: loss 6.0519, time 989.40ms, mfu 0.05%
+iter 1229: loss 5.7666, time 1009.42ms, mfu 0.05%
+iter 1230: loss 5.8129, time 1188.13ms, mfu 0.05%
+iter 1231: loss 5.9655, time 804.45ms, mfu 0.05%
+iter 1232: loss 6.1319, time 842.66ms, mfu 0.05%
+iter 1233: loss 6.2135, time 984.22ms, mfu 0.05%
+iter 1234: loss 5.7367, time 1359.80ms, mfu 0.05%
+iter 1235: loss 5.5671, time 819.86ms, mfu 0.05%
+iter 1236: loss 5.9133, time 950.18ms, mfu 0.05%
+iter 1237: loss 6.0056, time 912.83ms, mfu 0.05%
+iter 1238: loss 5.8966, time 1104.73ms, mfu 0.05%
+iter 1239: loss 6.0123, time 962.87ms, mfu 0.05%
+iter 1240: loss 6.1509, time 865.41ms, mfu 0.05%
+iter 1241: loss 6.0535, time 1181.20ms, mfu 0.05%
+iter 1242: loss 6.4451, time 1384.63ms, mfu 0.05%
+iter 1243: loss 5.9131, time 1049.92ms, mfu 0.05%
+iter 1244: loss 5.6843, time 1269.82ms, mfu 0.05%
+iter 1245: loss 5.6316, time 1268.96ms, mfu 0.05%
+iter 1246: loss 6.0203, time 916.66ms, mfu 0.05%
+iter 1247: loss 5.9285, time 946.28ms, mfu 0.05%
+iter 1248: loss 5.9315, time 904.66ms, mfu 0.05%
+iter 1249: loss 5.8101, time 1310.10ms, mfu 0.05%
+iter 1250: loss 5.7972, time 817.77ms, mfu 0.05%
+iter 1251: loss 5.9073, time 1120.56ms, mfu 0.05%
+iter 1252: loss 5.6162, time 1236.80ms, mfu 0.05%
+iter 1253: loss 5.7287, time 1602.57ms, mfu 0.05%
+iter 1254: loss 5.9619, time 1057.88ms, mfu 0.05%
+iter 1255: loss 6.0167, time 955.19ms, mfu 0.05%
+iter 1256: loss 6.0032, time 1320.44ms, mfu 0.05%
+iter 1257: loss 5.7669, time 1051.18ms, mfu 0.05%
+iter 1258: loss 5.9639, time 1032.31ms, mfu 0.05%
+iter 1259: loss 6.2312, time 894.81ms, mfu 0.05%
+iter 1260: loss 5.6671, time 1107.73ms, mfu 0.05%
+iter 1261: loss 6.0553, time 930.29ms, mfu 0.05%
+iter 1262: loss 5.7466, time 940.72ms, mfu 0.05%
+iter 1263: loss 5.9105, time 871.75ms, mfu 0.05%
+iter 1264: loss 5.9876, time 1135.20ms, mfu 0.05%
+iter 1265: loss 5.9248, time 849.06ms, mfu 0.05%
+iter 1266: loss 5.8750, time 965.40ms, mfu 0.05%
+iter 1267: loss 5.9019, time 938.36ms, mfu 0.05%
+iter 1268: loss 5.8045, time 1173.74ms, mfu 0.05%
+iter 1269: loss 5.9848, time 799.66ms, mfu 0.05%
+iter 1270: loss 5.9226, time 992.50ms, mfu 0.05%
+iter 1271: loss 5.5571, time 792.86ms, mfu 0.06%
+iter 1272: loss 6.2198, time 1147.37ms, mfu 0.06%
+iter 1273: loss 5.9298, time 900.63ms, mfu 0.06%
+iter 1274: loss 6.1948, time 850.57ms, mfu 0.06%
+iter 1275: loss 5.9872, time 1022.90ms, mfu 0.06%
+iter 1276: loss 5.8047, time 882.16ms, mfu 0.06%
+iter 1277: loss 5.8972, time 1103.29ms, mfu 0.06%
+iter 1278: loss 5.9988, time 996.15ms, mfu 0.06%
+iter 1279: loss 5.9969, time 952.18ms, mfu 0.06%
+iter 1280: loss 6.0447, time 948.83ms, mfu 0.06%
+iter 1281: loss 5.8478, time 1036.86ms, mfu 0.06%
+iter 1282: loss 5.7660, time 820.24ms, mfu 0.06%
+iter 1283: loss 5.7801, time 989.94ms, mfu 0.06%
+iter 1284: loss 5.8558, time 884.39ms, mfu 0.06%
+iter 1285: loss 6.1956, time 1213.41ms, mfu 0.06%
+iter 1286: loss 6.0641, time 1032.68ms, mfu 0.06%
+iter 1287: loss 5.3996, time 944.29ms, mfu 0.06%
+iter 1288: loss 6.0080, time 874.34ms, mfu 0.06%
+iter 1289: loss 6.2171, time 1122.73ms, mfu 0.06%
+iter 1290: loss 5.8672, time 961.33ms, mfu 0.06%
+iter 1291: loss 5.9095, time 1707.53ms, mfu 0.05%
+iter 1292: loss 5.9697, time 1753.44ms, mfu 0.05%
+iter 1293: loss 5.7717, time 1574.64ms, mfu 0.05%
+iter 1294: loss 5.8349, time 1134.44ms, mfu 0.05%
+iter 1295: loss 6.0791, time 1228.02ms, mfu 0.05%
+iter 1296: loss 5.7506, time 972.94ms, mfu 0.05%
+iter 1297: loss 5.9448, time 895.87ms, mfu 0.05%
+iter 1298: loss 5.6272, time 924.43ms, mfu 0.05%
+iter 1299: loss 5.6646, time 1130.56ms, mfu 0.05%
+iter 1300: loss 5.8383, time 1083.83ms, mfu 0.05%
+iter 1301: loss 5.7134, time 921.48ms, mfu 0.05%
+iter 1302: loss 5.9970, time 1384.39ms, mfu 0.05%
+iter 1303: loss 5.9928, time 1070.73ms, mfu 0.05%
+iter 1304: loss 5.9243, time 1399.58ms, mfu 0.05%
+iter 1305: loss 5.4475, time 1349.02ms, mfu 0.05%
+iter 1306: loss 6.1862, time 866.43ms, mfu 0.05%
+iter 1307: loss 5.8395, time 947.03ms, mfu 0.05%
+iter 1308: loss 5.8491, time 962.74ms, mfu 0.05%
+iter 1309: loss 6.1316, time 1256.94ms, mfu 0.05%
+iter 1310: loss 6.1437, time 1105.22ms, mfu 0.05%
+iter 1311: loss 5.9411, time 906.58ms, mfu 0.05%
+iter 1312: loss 6.0019, time 944.50ms, mfu 0.05%
+iter 1313: loss 5.6973, time 1173.08ms, mfu 0.05%
+iter 1314: loss 6.1016, time 910.35ms, mfu 0.05%
+iter 1315: loss 6.0091, time 1043.57ms, mfu 0.05%
+iter 1316: loss 5.9632, time 1002.72ms, mfu 0.05%
+iter 1317: loss 5.7918, time 1147.06ms, mfu 0.05%
+iter 1318: loss 5.5278, time 845.10ms, mfu 0.05%
+iter 1319: loss 5.7967, time 945.46ms, mfu 0.05%
+iter 1320: loss 6.0849, time 939.40ms, mfu 0.05%
+iter 1321: loss 5.6555, time 1227.61ms, mfu 0.05%
+iter 1322: loss 6.1287, time 843.42ms, mfu 0.05%
+iter 1323: loss 6.3148, time 798.70ms, mfu 0.06%
+iter 1324: loss 5.7075, time 851.99ms, mfu 0.06%
+iter 1325: loss 5.6642, time 1207.29ms, mfu 0.05%
+iter 1326: loss 5.9072, time 923.09ms, mfu 0.06%
+iter 1327: loss 5.7939, time 842.63ms, mfu 0.06%
+iter 1328: loss 5.9440, time 926.76ms, mfu 0.06%
+iter 1329: loss 5.8924, time 802.93ms, mfu 0.06%
+iter 1330: loss 6.0234, time 1196.31ms, mfu 0.06%
+iter 1331: loss 5.9783, time 969.57ms, mfu 0.06%
+iter 1332: loss 6.1018, time 794.63ms, mfu 0.06%
+iter 1333: loss 5.9363, time 964.47ms, mfu 0.06%
+iter 1334: loss 6.0672, time 1035.00ms, mfu 0.06%
+iter 1335: loss 5.9803, time 801.44ms, mfu 0.06%
+iter 1336: loss 5.6774, time 958.29ms, mfu 0.06%
+iter 1337: loss 5.8935, time 885.75ms, mfu 0.06%
+iter 1338: loss 5.8484, time 1048.78ms, mfu 0.06%
+iter 1339: loss 5.7214, time 867.90ms, mfu 0.06%
+iter 1340: loss 5.8930, time 748.17ms, mfu 0.06%
+iter 1341: loss 5.9661, time 867.54ms, mfu 0.06%
+iter 1342: loss 5.6570, time 762.66ms, mfu 0.06%
+iter 1343: loss 6.0841, time 1038.57ms, mfu 0.06%
+iter 1344: loss 5.6185, time 756.63ms, mfu 0.06%
+iter 1345: loss 5.7193, time 791.64ms, mfu 0.06%
+iter 1346: loss 5.8143, time 787.66ms, mfu 0.06%
+iter 1347: loss 5.8858, time 794.56ms, mfu 0.06%
+iter 1348: loss 6.0204, time 1131.80ms, mfu 0.06%
+iter 1349: loss 5.7999, time 1010.19ms, mfu 0.06%
+iter 1350: loss 5.7170, time 1335.95ms, mfu 0.06%
+iter 1351: loss 6.0740, time 2076.35ms, mfu 0.06%
+iter 1352: loss 5.9944, time 2106.44ms, mfu 0.05%
+iter 1353: loss 5.9185, time 1515.05ms, mfu 0.05%
+iter 1354: loss 5.8023, time 1227.33ms, mfu 0.05%
+iter 1355: loss 6.0865, time 926.08ms, mfu 0.05%
+iter 1356: loss 5.7299, time 861.69ms, mfu 0.05%
+iter 1357: loss 5.7972, time 1194.19ms, mfu 0.05%
+iter 1358: loss 6.0087, time 914.59ms, mfu 0.05%
+iter 1359: loss 5.9507, time 743.61ms, mfu 0.05%
+iter 1360: loss 5.6440, time 908.17ms, mfu 0.05%
+iter 1361: loss 5.8956, time 1055.82ms, mfu 0.05%
+iter 1362: loss 5.8320, time 946.16ms, mfu 0.05%
+iter 1363: loss 5.7814, time 1160.66ms, mfu 0.05%
+iter 1364: loss 5.6368, time 1399.02ms, mfu 0.05%
+iter 1365: loss 5.9541, time 947.96ms, mfu 0.05%
+iter 1366: loss 6.0400, time 991.89ms, mfu 0.05%
+iter 1367: loss 5.6920, time 937.93ms, mfu 0.05%
+iter 1368: loss 5.3241, time 1095.38ms, mfu 0.05%
+iter 1369: loss 5.5383, time 978.22ms, mfu 0.05%
+iter 1370: loss 5.6946, time 1020.27ms, mfu 0.05%
+iter 1371: loss 6.1571, time 855.06ms, mfu 0.05%
+iter 1372: loss 5.7828, time 877.94ms, mfu 0.05%
+iter 1373: loss 6.0247, time 999.25ms, mfu 0.05%
+iter 1374: loss 5.4905, time 979.35ms, mfu 0.05%
+iter 1375: loss 5.7963, time 1071.81ms, mfu 0.05%
+iter 1376: loss 5.2488, time 920.51ms, mfu 0.05%
+iter 1377: loss 5.9930, time 1195.74ms, mfu 0.05%
+iter 1378: loss 5.6229, time 1371.53ms, mfu 0.05%
+iter 1379: loss 6.2061, time 2245.38ms, mfu 0.05%
+iter 1380: loss 5.8308, time 1204.24ms, mfu 0.05%
+iter 1381: loss 5.5083, time 1148.55ms, mfu 0.05%
+iter 1382: loss 6.1746, time 2036.32ms, mfu 0.05%
+iter 1383: loss 5.9652, time 767.42ms, mfu 0.05%
+iter 1384: loss 5.8993, time 909.97ms, mfu 0.05%
+iter 1385: loss 5.8538, time 835.45ms, mfu 0.05%
+iter 1386: loss 5.6256, time 1069.93ms, mfu 0.05%
+iter 1387: loss 5.7586, time 912.94ms, mfu 0.05%
+iter 1388: loss 6.0437, time 837.33ms, mfu 0.05%
+iter 1389: loss 5.8297, time 955.21ms, mfu 0.05%
+iter 1390: loss 5.6409, time 1030.73ms, mfu 0.05%
+iter 1391: loss 5.6854, time 817.51ms, mfu 0.05%
+iter 1392: loss 5.6659, time 825.87ms, mfu 0.06%
+iter 1393: loss 5.6235, time 1006.01ms, mfu 0.06%
+iter 1394: loss 5.7297, time 927.96ms, mfu 0.06%
+iter 1395: loss 5.1814, time 1171.87ms, mfu 0.05%
+iter 1396: loss 5.8895, time 943.12ms, mfu 0.06%
+iter 1397: loss 5.4871, time 1038.13ms, mfu 0.05%
+iter 1398: loss 6.0193, time 1170.07ms, mfu 0.05%
+iter 1399: loss 5.5863, time 790.84ms, mfu 0.06%
+iter 1400: loss 5.6106, time 823.86ms, mfu 0.06%
+iter 1401: loss 5.8420, time 921.57ms, mfu 0.06%
+iter 1402: loss 5.9130, time 810.31ms, mfu 0.06%
+iter 1403: loss 5.7788, time 1178.81ms, mfu 0.06%
+iter 1404: loss 5.7243, time 772.35ms, mfu 0.06%
+iter 1405: loss 5.7269, time 924.04ms, mfu 0.06%
+iter 1406: loss 5.6498, time 862.77ms, mfu 0.06%
+iter 1407: loss 5.9085, time 1261.73ms, mfu 0.06%
+iter 1408: loss 5.8163, time 1002.18ms, mfu 0.06%
+iter 1409: loss 6.0900, time 1569.82ms, mfu 0.05%
+iter 1410: loss 5.8872, time 1252.98ms, mfu 0.05%
+iter 1411: loss 6.0452, time 944.05ms, mfu 0.05%
+iter 1412: loss 5.8363, time 928.80ms, mfu 0.05%
+iter 1413: loss 5.8092, time 886.76ms, mfu 0.05%
+iter 1414: loss 6.1817, time 1248.10ms, mfu 0.05%
+iter 1415: loss 5.8745, time 873.45ms, mfu 0.05%
+iter 1416: loss 5.6640, time 888.57ms, mfu 0.05%
+iter 1417: loss 5.6083, time 908.04ms, mfu 0.06%
+iter 1418: loss 5.4474, time 1176.35ms, mfu 0.05%
+iter 1419: loss 5.9116, time 783.87ms, mfu 0.06%
+iter 1420: loss 5.4882, time 797.07ms, mfu 0.06%
+iter 1421: loss 5.6828, time 893.92ms, mfu 0.06%
+iter 1422: loss 5.8426, time 748.91ms, mfu 0.06%
+iter 1423: loss 5.6962, time 1117.49ms, mfu 0.06%
+iter 1424: loss 5.5623, time 936.40ms, mfu 0.06%
+iter 1425: loss 6.0059, time 1485.25ms, mfu 0.06%
+iter 1426: loss 5.4434, time 1493.01ms, mfu 0.05%
+iter 1427: loss 5.5507, time 1230.04ms, mfu 0.05%
+iter 1428: loss 5.2908, time 1253.94ms, mfu 0.05%
+iter 1429: loss 5.8756, time 1248.95ms, mfu 0.05%
+iter 1430: loss 5.5176, time 860.68ms, mfu 0.05%
+iter 1431: loss 6.0052, time 987.35ms, mfu 0.05%
+iter 1432: loss 5.7417, time 1037.73ms, mfu 0.05%
+iter 1433: loss 5.9635, time 1040.12ms, mfu 0.05%
+iter 1434: loss 5.7128, time 813.49ms, mfu 0.05%
+iter 1435: loss 5.7150, time 905.29ms, mfu 0.05%
+iter 1436: loss 5.7722, time 928.95ms, mfu 0.05%
+iter 1437: loss 5.8541, time 933.98ms, mfu 0.05%
+iter 1438: loss 5.7229, time 1098.38ms, mfu 0.05%
+iter 1439: loss 5.6047, time 885.19ms, mfu 0.05%
+iter 1440: loss 5.8186, time 840.28ms, mfu 0.06%
+iter 1441: loss 5.5399, time 869.54ms, mfu 0.06%
+iter 1442: loss 5.7426, time 1330.65ms, mfu 0.05%
+iter 1443: loss 5.7393, time 798.26ms, mfu 0.06%
+iter 1444: loss 5.7561, time 845.99ms, mfu 0.06%
+iter 1445: loss 5.8368, time 955.90ms, mfu 0.06%
+iter 1446: loss 5.6221, time 1067.99ms, mfu 0.06%
+iter 1447: loss 6.0773, time 868.69ms, mfu 0.06%
+iter 1448: loss 5.6868, time 858.39ms, mfu 0.06%
+iter 1449: loss 5.8867, time 814.98ms, mfu 0.06%
+iter 1450: loss 5.9614, time 887.20ms, mfu 0.06%
+iter 1451: loss 5.5810, time 1074.49ms, mfu 0.06%
+iter 1452: loss 5.8299, time 910.14ms, mfu 0.06%
+iter 1453: loss 6.1537, time 933.47ms, mfu 0.06%
+iter 1454: loss 5.4399, time 900.53ms, mfu 0.06%
+iter 1455: loss 5.6333, time 1220.21ms, mfu 0.06%
+iter 1456: loss 5.9503, time 817.34ms, mfu 0.06%
+iter 1457: loss 5.5910, time 926.04ms, mfu 0.06%
+iter 1458: loss 5.8247, time 1241.31ms, mfu 0.06%
+iter 1459: loss 5.1978, time 1074.06ms, mfu 0.06%
+iter 1460: loss 5.7153, time 934.66ms, mfu 0.06%
+iter 1461: loss 5.5556, time 880.16ms, mfu 0.06%
+iter 1462: loss 5.2045, time 991.79ms, mfu 0.06%
+iter 1463: loss 5.7200, time 1283.16ms, mfu 0.05%
+iter 1464: loss 5.6674, time 864.00ms, mfu 0.06%
+iter 1465: loss 5.4402, time 782.24ms, mfu 0.06%
+iter 1466: loss 5.7505, time 870.17ms, mfu 0.06%
+iter 1467: loss 6.0107, time 1070.79ms, mfu 0.06%
+iter 1468: loss 5.9016, time 867.37ms, mfu 0.06%
+iter 1469: loss 5.7237, time 967.77ms, mfu 0.06%
+iter 1470: loss 5.3209, time 805.73ms, mfu 0.06%
+iter 1471: loss 6.1096, time 1106.56ms, mfu 0.06%
+iter 1472: loss 5.8918, time 963.87ms, mfu 0.06%
+iter 1473: loss 5.6034, time 919.30ms, mfu 0.06%
+iter 1474: loss 5.6572, time 1120.15ms, mfu 0.06%
+iter 1475: loss 5.9392, time 1180.18ms, mfu 0.06%
+iter 1476: loss 5.6562, time 1025.56ms, mfu 0.05%
+iter 1477: loss 5.6585, time 878.37ms, mfu 0.06%
+iter 1478: loss 5.8247, time 790.31ms, mfu 0.06%
+iter 1479: loss 5.7493, time 1232.53ms, mfu 0.06%
+iter 1480: loss 5.8350, time 829.43ms, mfu 0.06%
+iter 1481: loss 5.5654, time 920.96ms, mfu 0.06%
+iter 1482: loss 5.9117, time 786.52ms, mfu 0.06%
+iter 1483: loss 6.1449, time 889.81ms, mfu 0.06%
+iter 1484: loss 5.6563, time 1325.43ms, mfu 0.06%
+iter 1485: loss 6.2648, time 820.85ms, mfu 0.06%
+iter 1486: loss 5.5407, time 1176.21ms, mfu 0.06%
+iter 1487: loss 5.7193, time 1451.74ms, mfu 0.05%
+iter 1488: loss 5.8103, time 1022.47ms, mfu 0.05%
+iter 1489: loss 5.9728, time 1925.57ms, mfu 0.05%
+iter 1490: loss 5.6609, time 1200.74ms, mfu 0.05%
+iter 1491: loss 5.9566, time 896.04ms, mfu 0.05%
+iter 1492: loss 5.9069, time 855.73ms, mfu 0.05%
+iter 1493: loss 5.5849, time 1143.26ms, mfu 0.05%
+iter 1494: loss 6.0030, time 1116.93ms, mfu 0.05%
+iter 1495: loss 5.8555, time 908.36ms, mfu 0.05%
+iter 1496: loss 5.4769, time 792.54ms, mfu 0.05%
+iter 1497: loss 5.8118, time 801.80ms, mfu 0.06%
+iter 1498: loss 5.2262, time 1252.20ms, mfu 0.05%
+iter 1499: loss 5.7489, time 756.90ms, mfu 0.06%
+iter 1500: loss 5.6335, time 1047.35ms, mfu 0.06%
+iter 1501: loss 5.5867, time 838.98ms, mfu 0.06%
+iter 1502: loss 5.9440, time 1150.04ms, mfu 0.06%
+iter 1503: loss 5.6928, time 1060.06ms, mfu 0.05%
+iter 1504: loss 5.7697, time 952.04ms, mfu 0.06%
+iter 1505: loss 5.4684, time 860.29ms, mfu 0.06%
+iter 1506: loss 5.8341, time 1087.61ms, mfu 0.06%
+iter 1507: loss 5.6389, time 815.82ms, mfu 0.06%
+iter 1508: loss 6.3338, time 864.49ms, mfu 0.06%
+iter 1509: loss 5.6139, time 774.61ms, mfu 0.06%
+iter 1510: loss 5.7194, time 888.22ms, mfu 0.06%
+iter 1511: loss 5.7911, time 1053.95ms, mfu 0.06%
+iter 1512: loss 6.1168, time 877.36ms, mfu 0.06%
+iter 1513: loss 5.6491, time 919.38ms, mfu 0.06%
+iter 1514: loss 5.9159, time 893.76ms, mfu 0.06%
+iter 1515: loss 5.7081, time 1164.48ms, mfu 0.06%
+iter 1516: loss 5.6506, time 797.50ms, mfu 0.06%
+iter 1517: loss 5.5861, time 963.72ms, mfu 0.06%
+iter 1518: loss 5.2503, time 904.26ms, mfu 0.06%
+iter 1519: loss 5.7057, time 1260.94ms, mfu 0.06%
+iter 1520: loss 5.9376, time 888.59ms, mfu 0.06%
+iter 1521: loss 5.7865, time 946.26ms, mfu 0.06%
+iter 1522: loss 6.0472, time 774.86ms, mfu 0.06%
+iter 1523: loss 5.5254, time 1119.74ms, mfu 0.06%
+iter 1524: loss 5.6755, time 916.38ms, mfu 0.06%
+iter 1525: loss 5.8543, time 980.87ms, mfu 0.06%
+iter 1526: loss 6.0468, time 807.89ms, mfu 0.06%
+iter 1527: loss 5.5267, time 878.00ms, mfu 0.06%
+iter 1528: loss 5.2288, time 1096.67ms, mfu 0.06%
+iter 1529: loss 5.5425, time 789.58ms, mfu 0.06%
+iter 1530: loss 6.0209, time 959.77ms, mfu 0.06%
+iter 1531: loss 5.6077, time 853.58ms, mfu 0.06%
+iter 1532: loss 5.8650, time 983.39ms, mfu 0.06%
+iter 1533: loss 5.4973, time 912.53ms, mfu 0.06%
+iter 1534: loss 5.8134, time 800.31ms, mfu 0.06%
+iter 1535: loss 5.8344, time 834.33ms, mfu 0.06%
+iter 1536: loss 5.7568, time 1460.79ms, mfu 0.06%
+iter 1537: loss 5.4072, time 996.85ms, mfu 0.06%
+iter 1538: loss 5.7464, time 1663.93ms, mfu 0.05%
+iter 1539: loss 5.9362, time 1629.85ms, mfu 0.05%
+iter 1540: loss 5.6155, time 1165.80ms, mfu 0.05%
+iter 1541: loss 6.0873, time 1323.88ms, mfu 0.05%
+iter 1542: loss 5.5200, time 1373.53ms, mfu 0.05%
+iter 1543: loss 5.5909, time 1075.68ms, mfu 0.05%
+iter 1544: loss 5.5781, time 872.54ms, mfu 0.05%
+iter 1545: loss 5.4558, time 919.19ms, mfu 0.05%
+iter 1546: loss 5.7499, time 1170.13ms, mfu 0.05%
+iter 1547: loss 5.8638, time 784.30ms, mfu 0.05%
+iter 1548: loss 5.6686, time 838.82ms, mfu 0.05%
+iter 1549: loss 5.7944, time 926.52ms, mfu 0.05%
+iter 1550: loss 5.9232, time 1110.70ms, mfu 0.05%
+iter 1551: loss 5.6868, time 913.12ms, mfu 0.05%
+iter 1552: loss 5.8912, time 882.78ms, mfu 0.05%
+iter 1553: loss 5.8854, time 740.34ms, mfu 0.06%
+iter 1554: loss 5.4618, time 919.85ms, mfu 0.06%
+iter 1555: loss 5.9127, time 1136.04ms, mfu 0.06%
+iter 1556: loss 5.5463, time 866.79ms, mfu 0.06%
+iter 1557: loss 5.7360, time 791.22ms, mfu 0.06%
+iter 1558: loss 5.5417, time 854.22ms, mfu 0.06%
+iter 1559: loss 5.6084, time 1156.68ms, mfu 0.06%
+iter 1560: loss 5.9941, time 906.50ms, mfu 0.06%
+iter 1561: loss 5.8302, time 911.04ms, mfu 0.06%
+iter 1562: loss 5.4830, time 903.39ms, mfu 0.06%
+iter 1563: loss 5.7798, time 1219.75ms, mfu 0.06%
+iter 1564: loss 5.3985, time 765.26ms, mfu 0.06%
+iter 1565: loss 5.9429, time 1040.25ms, mfu 0.06%
+iter 1566: loss 5.7659, time 734.96ms, mfu 0.06%
+iter 1567: loss 5.5905, time 1049.84ms, mfu 0.06%
+iter 1568: loss 5.6918, time 769.44ms, mfu 0.06%
+iter 1569: loss 5.6519, time 775.43ms, mfu 0.06%
+iter 1570: loss 5.9556, time 823.70ms, mfu 0.06%
+iter 1571: loss 5.8902, time 949.35ms, mfu 0.06%
+iter 1572: loss 5.6364, time 1029.54ms, mfu 0.06%
+iter 1573: loss 5.6902, time 879.14ms, mfu 0.06%
+iter 1574: loss 5.8582, time 870.43ms, mfu 0.06%
+iter 1575: loss 5.8574, time 841.76ms, mfu 0.06%
+iter 1576: loss 5.8714, time 1239.33ms, mfu 0.06%
+iter 1577: loss 5.4996, time 844.66ms, mfu 0.06%
+iter 1578: loss 5.7911, time 882.85ms, mfu 0.06%
+iter 1579: loss 5.8697, time 935.66ms, mfu 0.06%
+iter 1580: loss 5.5393, time 1566.98ms, mfu 0.06%
+iter 1581: loss 5.5415, time 995.74ms, mfu 0.06%
+iter 1582: loss 5.2737, time 844.18ms, mfu 0.06%
+iter 1583: loss 5.6071, time 786.73ms, mfu 0.06%
+iter 1584: loss 5.8866, time 997.24ms, mfu 0.06%
+iter 1585: loss 5.8332, time 781.43ms, mfu 0.06%
+iter 1586: loss 5.6349, time 1002.76ms, mfu 0.06%
+iter 1587: loss 5.6590, time 926.50ms, mfu 0.06%
+iter 1588: loss 5.3978, time 854.87ms, mfu 0.06%
+iter 1589: loss 5.3163, time 1026.26ms, mfu 0.06%
+iter 1590: loss 5.6567, time 923.41ms, mfu 0.06%
+iter 1591: loss 5.6894, time 890.11ms, mfu 0.06%
+iter 1592: loss 5.4376, time 794.53ms, mfu 0.06%
+iter 1593: loss 5.7780, time 1011.15ms, mfu 0.06%
+iter 1594: loss 5.9400, time 995.43ms, mfu 0.06%
+iter 1595: loss 5.6808, time 1567.47ms, mfu 0.06%
+iter 1596: loss 5.7349, time 2281.72ms, mfu 0.05%
+iter 1597: loss 5.3054, time 1582.00ms, mfu 0.05%
+iter 1598: loss 5.5586, time 992.52ms, mfu 0.05%
+iter 1599: loss 5.7949, time 1136.16ms, mfu 0.05%
+iter 1600: loss 5.7900, time 979.53ms, mfu 0.05%
+iter 1601: loss 5.6302, time 826.24ms, mfu 0.05%
+iter 1602: loss 5.9359, time 842.49ms, mfu 0.05%
+iter 1603: loss 5.4451, time 1088.14ms, mfu 0.05%
+iter 1604: loss 5.8542, time 978.34ms, mfu 0.05%
+iter 1605: loss 5.9265, time 981.85ms, mfu 0.05%
+iter 1606: loss 5.3097, time 892.65ms, mfu 0.05%
+iter 1607: loss 5.6851, time 1230.60ms, mfu 0.05%
+iter 1608: loss 5.2123, time 876.44ms, mfu 0.05%
+iter 1609: loss 5.6743, time 998.78ms, mfu 0.05%
+iter 1610: loss 5.3439, time 1108.12ms, mfu 0.05%
+iter 1611: loss 5.8190, time 1243.90ms, mfu 0.05%
+iter 1612: loss 6.0100, time 816.20ms, mfu 0.05%
+iter 1613: loss 5.8259, time 962.93ms, mfu 0.05%
+iter 1614: loss 5.7748, time 896.69ms, mfu 0.05%
+iter 1615: loss 5.1648, time 1456.82ms, mfu 0.05%
+iter 1616: loss 5.3984, time 925.61ms, mfu 0.05%
+iter 1617: loss 5.4123, time 919.60ms, mfu 0.05%
+iter 1618: loss 5.8725, time 834.63ms, mfu 0.05%
+iter 1619: loss 5.3395, time 1080.18ms, mfu 0.05%
+iter 1620: loss 5.8558, time 951.98ms, mfu 0.05%
+iter 1621: loss 5.7741, time 833.84ms, mfu 0.06%
+iter 1622: loss 5.3244, time 928.32ms, mfu 0.06%
+iter 1623: loss 5.4347, time 930.29ms, mfu 0.06%
+iter 1624: loss 5.6646, time 883.33ms, mfu 0.06%
+iter 1625: loss 5.5577, time 1004.84ms, mfu 0.06%
+iter 1626: loss 5.6230, time 717.77ms, mfu 0.06%
+iter 1627: loss 5.5523, time 1077.58ms, mfu 0.06%
+iter 1628: loss 5.5299, time 789.89ms, mfu 0.06%
+iter 1629: loss 5.4688, time 923.86ms, mfu 0.06%
+iter 1630: loss 5.8283, time 1046.71ms, mfu 0.06%
+iter 1631: loss 5.6166, time 1155.78ms, mfu 0.06%
+iter 1632: loss 6.1033, time 731.32ms, mfu 0.06%
+iter 1633: loss 5.7765, time 860.51ms, mfu 0.06%
+iter 1634: loss 5.6166, time 829.95ms, mfu 0.06%
+iter 1635: loss 5.4829, time 941.35ms, mfu 0.06%
+iter 1636: loss 5.4239, time 1290.72ms, mfu 0.06%
+iter 1637: loss 5.4434, time 952.61ms, mfu 0.06%
+iter 1638: loss 5.5310, time 841.87ms, mfu 0.06%
+iter 1639: loss 5.9128, time 964.20ms, mfu 0.06%
+iter 1640: loss 5.6847, time 1070.04ms, mfu 0.06%
+iter 1641: loss 5.5055, time 1198.40ms, mfu 0.06%
+iter 1642: loss 5.6707, time 897.40ms, mfu 0.06%
+iter 1643: loss 5.3619, time 906.56ms, mfu 0.06%
+iter 1644: loss 5.8775, time 1116.41ms, mfu 0.06%
+iter 1645: loss 5.6045, time 1037.20ms, mfu 0.06%
+iter 1646: loss 5.4425, time 1293.34ms, mfu 0.05%
+iter 1647: loss 5.6189, time 1288.98ms, mfu 0.05%
+iter 1648: loss 5.4007, time 792.42ms, mfu 0.05%
+iter 1649: loss 5.5062, time 868.31ms, mfu 0.06%
+iter 1650: loss 5.4418, time 878.96ms, mfu 0.06%
+iter 1651: loss 5.8740, time 991.96ms, mfu 0.06%
+iter 1652: loss 5.6024, time 995.16ms, mfu 0.06%
+iter 1653: loss 5.4736, time 721.85ms, mfu 0.06%
+iter 1654: loss 5.4329, time 925.20ms, mfu 0.06%
+iter 1655: loss 5.9569, time 1783.70ms, mfu 0.05%
+iter 1656: loss 5.6700, time 1785.56ms, mfu 0.05%
+iter 1657: loss 5.3756, time 1510.68ms, mfu 0.05%
+iter 1658: loss 5.7029, time 1147.63ms, mfu 0.05%
+iter 1659: loss 5.4651, time 1409.70ms, mfu 0.05%
+iter 1660: loss 5.9682, time 887.20ms, mfu 0.05%
+iter 1661: loss 5.6714, time 1234.03ms, mfu 0.05%
+iter 1662: loss 5.9154, time 928.53ms, mfu 0.05%
+iter 1663: loss 5.5380, time 852.71ms, mfu 0.05%
+iter 1664: loss 5.7831, time 1023.95ms, mfu 0.05%
+iter 1665: loss 5.3005, time 1179.02ms, mfu 0.05%
+iter 1666: loss 5.6579, time 855.31ms, mfu 0.05%
+iter 1667: loss 5.5986, time 849.97ms, mfu 0.05%
+iter 1668: loss 5.8821, time 920.98ms, mfu 0.05%
+iter 1669: loss 5.4639, time 1705.02ms, mfu 0.05%
+iter 1670: loss 5.5502, time 1012.92ms, mfu 0.05%
+iter 1671: loss 5.3150, time 797.41ms, mfu 0.05%
+iter 1672: loss 5.4948, time 1082.05ms, mfu 0.05%
+iter 1673: loss 5.4380, time 1367.09ms, mfu 0.05%
+iter 1674: loss 5.5931, time 940.04ms, mfu 0.05%
+iter 1675: loss 5.6609, time 1001.68ms, mfu 0.05%
+iter 1676: loss 5.0895, time 900.57ms, mfu 0.05%
+iter 1677: loss 5.7123, time 1325.29ms, mfu 0.05%
+iter 1678: loss 5.7315, time 838.40ms, mfu 0.05%
+iter 1679: loss 5.8436, time 902.59ms, mfu 0.05%
+iter 1680: loss 5.6352, time 866.73ms, mfu 0.05%
+iter 1681: loss 5.6787, time 1211.61ms, mfu 0.05%
+iter 1682: loss 5.6712, time 919.70ms, mfu 0.05%
+iter 1683: loss 6.0667, time 1563.50ms, mfu 0.05%
+iter 1684: loss 5.5299, time 1885.68ms, mfu 0.05%
+iter 1685: loss 5.8354, time 1014.59ms, mfu 0.05%
+iter 1686: loss 5.9175, time 2139.39ms, mfu 0.05%
+iter 1687: loss 5.5544, time 955.83ms, mfu 0.05%
+iter 1688: loss 5.2876, time 1015.21ms, mfu 0.05%
+iter 1689: loss 5.4513, time 969.68ms, mfu 0.05%
+iter 1690: loss 5.6825, time 1050.60ms, mfu 0.05%
+iter 1691: loss 5.8004, time 1237.55ms, mfu 0.05%
+iter 1692: loss 5.5808, time 833.77ms, mfu 0.05%
+iter 1693: loss 5.6634, time 896.00ms, mfu 0.05%
+iter 1694: loss 5.6857, time 1069.24ms, mfu 0.05%
+iter 1695: loss 5.8061, time 794.91ms, mfu 0.05%
+iter 1696: loss 5.7072, time 896.57ms, mfu 0.05%
+iter 1697: loss 5.6940, time 1060.68ms, mfu 0.05%
+iter 1698: loss 5.6982, time 1164.78ms, mfu 0.05%
+iter 1699: loss 5.6331, time 866.28ms, mfu 0.05%
+iter 1700: loss 5.6850, time 816.33ms, mfu 0.05%
+iter 1701: loss 5.5150, time 1007.04ms, mfu 0.05%
+iter 1702: loss 5.6276, time 935.23ms, mfu 0.06%
+iter 1703: loss 5.4334, time 1160.06ms, mfu 0.05%
+iter 1704: loss 5.8823, time 1057.88ms, mfu 0.05%
+iter 1705: loss 5.3753, time 966.40ms, mfu 0.05%
+iter 1706: loss 5.4721, time 814.11ms, mfu 0.06%
+iter 1707: loss 5.7064, time 1202.83ms, mfu 0.05%
+iter 1708: loss 5.3804, time 860.79ms, mfu 0.06%
+iter 1709: loss 5.2723, time 909.04ms, mfu 0.06%
+iter 1710: loss 5.3742, time 834.83ms, mfu 0.06%
+iter 1711: loss 5.5238, time 1538.28ms, mfu 0.05%
+iter 1712: loss 5.3647, time 929.09ms, mfu 0.05%
+iter 1713: loss 5.1901, time 1194.94ms, mfu 0.05%
+iter 1714: loss 5.3053, time 1172.65ms, mfu 0.05%
+iter 1715: loss 5.4794, time 965.73ms, mfu 0.05%
+iter 1716: loss 5.4716, time 888.79ms, mfu 0.05%
+iter 1717: loss 5.1841, time 959.75ms, mfu 0.05%
+iter 1718: loss 5.7321, time 1249.37ms, mfu 0.05%
+iter 1719: loss 5.7959, time 874.41ms, mfu 0.05%
+iter 1720: loss 5.7548, time 957.80ms, mfu 0.05%
+iter 1721: loss 5.5604, time 986.06ms, mfu 0.05%
+iter 1722: loss 5.9046, time 1244.16ms, mfu 0.05%
+iter 1723: loss 5.7171, time 968.56ms, mfu 0.05%
+iter 1724: loss 5.5116, time 1046.12ms, mfu 0.05%
+iter 1725: loss 5.3979, time 905.87ms, mfu 0.05%
+iter 1726: loss 5.7216, time 1411.42ms, mfu 0.05%
+iter 1727: loss 5.7823, time 831.93ms, mfu 0.05%
+iter 1728: loss 5.7325, time 878.21ms, mfu 0.05%
+iter 1729: loss 5.9455, time 819.24ms, mfu 0.06%
+iter 1730: loss 5.1977, time 1090.50ms, mfu 0.05%
+iter 1731: loss 5.6808, time 737.56ms, mfu 0.06%
+iter 1732: loss 5.5855, time 880.29ms, mfu 0.06%
+iter 1733: loss 5.4796, time 736.24ms, mfu 0.06%
+iter 1734: loss 6.1852, time 841.49ms, mfu 0.06%
+iter 1735: loss 5.8043, time 1125.44ms, mfu 0.06%
+iter 1736: loss 5.7267, time 859.37ms, mfu 0.06%
+iter 1737: loss 5.8690, time 766.73ms, mfu 0.06%
+iter 1738: loss 5.3751, time 717.56ms, mfu 0.06%
+iter 1739: loss 5.5718, time 1119.63ms, mfu 0.06%
+iter 1740: loss 5.2706, time 929.24ms, mfu 0.06%
+iter 1741: loss 5.5633, time 1407.17ms, mfu 0.06%
+iter 1742: loss 5.5102, time 1517.62ms, mfu 0.06%
+iter 1743: loss 5.7315, time 1269.75ms, mfu 0.05%
+iter 1744: loss 5.9980, time 1190.26ms, mfu 0.05%
+iter 1745: loss 5.3998, time 825.83ms, mfu 0.05%
+iter 1746: loss 5.5521, time 1469.41ms, mfu 0.05%
+iter 1747: loss 5.5166, time 905.77ms, mfu 0.05%
+iter 1748: loss 5.6953, time 881.27ms, mfu 0.05%
+iter 1749: loss 5.3181, time 861.33ms, mfu 0.05%
+iter 1750: loss 5.3433, time 1022.39ms, mfu 0.05%
+iter 1751: loss 5.8886, time 833.00ms, mfu 0.06%
+iter 1752: loss 5.5458, time 910.92ms, mfu 0.06%
+iter 1753: loss 5.1224, time 894.57ms, mfu 0.06%
+iter 1754: loss 5.3875, time 1114.78ms, mfu 0.06%
+iter 1755: loss 5.1315, time 729.69ms, mfu 0.06%
+iter 1756: loss 5.8256, time 903.38ms, mfu 0.06%
+iter 1757: loss 5.7077, time 890.93ms, mfu 0.06%
+iter 1758: loss 5.3253, time 943.62ms, mfu 0.06%
+iter 1759: loss 5.1582, time 1039.72ms, mfu 0.06%
+iter 1760: loss 5.9801, time 882.55ms, mfu 0.06%
+iter 1761: loss 5.6036, time 971.57ms, mfu 0.06%
+iter 1762: loss 5.3202, time 1522.28ms, mfu 0.06%
+iter 1763: loss 5.6636, time 1023.74ms, mfu 0.05%
+iter 1764: loss 5.8592, time 884.24ms, mfu 0.06%
+iter 1765: loss 5.5720, time 754.96ms, mfu 0.06%
+iter 1766: loss 5.3416, time 2784.93ms, mfu 0.05%
+iter 1767: loss 5.6278, time 1077.72ms, mfu 0.05%
+iter 1768: loss 5.9122, time 911.76ms, mfu 0.05%
+iter 1769: loss 5.7395, time 1106.89ms, mfu 0.05%
+iter 1770: loss 5.4638, time 995.07ms, mfu 0.05%
+iter 1771: loss 5.7997, time 985.57ms, mfu 0.05%
+iter 1772: loss 5.4596, time 859.84ms, mfu 0.05%
+iter 1773: loss 5.5340, time 1215.29ms, mfu 0.05%
+iter 1774: loss 5.5731, time 763.06ms, mfu 0.06%
+iter 1775: loss 5.5602, time 886.08ms, mfu 0.06%
+iter 1776: loss 5.3459, time 841.16ms, mfu 0.06%
+iter 1777: loss 5.4379, time 1010.95ms, mfu 0.06%
+iter 1778: loss 5.0535, time 767.24ms, mfu 0.06%
+iter 1779: loss 5.9316, time 790.87ms, mfu 0.06%
+iter 1780: loss 5.9213, time 811.51ms, mfu 0.06%
+iter 1781: loss 5.6158, time 2295.26ms, mfu 0.06%
+iter 1782: loss 5.3916, time 866.33ms, mfu 0.06%
+iter 1783: loss 5.8167, time 903.08ms, mfu 0.06%
+iter 1784: loss 5.6558, time 923.75ms, mfu 0.06%
+iter 1785: loss 5.6150, time 1371.23ms, mfu 0.06%
+iter 1786: loss 5.4252, time 966.34ms, mfu 0.06%
+iter 1787: loss 5.9362, time 1235.65ms, mfu 0.05%
+iter 1788: loss 5.6238, time 1291.98ms, mfu 0.05%
+iter 1789: loss 5.5077, time 904.74ms, mfu 0.05%
+iter 1790: loss 5.7454, time 1191.34ms, mfu 0.05%
+iter 1791: loss 5.3289, time 1044.34ms, mfu 0.05%
+iter 1792: loss 5.5644, time 1160.73ms, mfu 0.05%
+iter 1793: loss 5.5304, time 855.73ms, mfu 0.05%
+iter 1794: loss 5.6350, time 1130.33ms, mfu 0.05%
+iter 1795: loss 5.6685, time 923.38ms, mfu 0.05%
+iter 1796: loss 5.5313, time 1119.59ms, mfu 0.05%
+iter 1797: loss 5.4240, time 1046.24ms, mfu 0.05%
+iter 1798: loss 5.8015, time 1067.96ms, mfu 0.05%
+iter 1799: loss 5.4423, time 847.80ms, mfu 0.05%
+iter 1800: loss 5.4740, time 1176.83ms, mfu 0.05%
+iter 1801: loss 5.2403, time 842.54ms, mfu 0.05%
+iter 1802: loss 5.8148, time 824.97ms, mfu 0.05%
+iter 1803: loss 5.4795, time 988.09ms, mfu 0.05%
+iter 1804: loss 6.0261, time 1089.97ms, mfu 0.05%
+iter 1805: loss 5.5722, time 843.34ms, mfu 0.06%
+iter 1806: loss 5.7620, time 751.71ms, mfu 0.06%
+iter 1807: loss 5.7478, time 915.74ms, mfu 0.06%
+iter 1808: loss 5.5962, time 1119.08ms, mfu 0.06%
+iter 1809: loss 5.5636, time 1047.23ms, mfu 0.06%
+iter 1810: loss 5.8210, time 865.74ms, mfu 0.06%
+iter 1811: loss 5.2657, time 841.81ms, mfu 0.06%
+iter 1812: loss 5.5493, time 1234.00ms, mfu 0.06%
+iter 1813: loss 5.5639, time 908.29ms, mfu 0.06%
+iter 1814: loss 5.4980, time 1036.02ms, mfu 0.06%
+iter 1815: loss 5.3946, time 891.66ms, mfu 0.06%
+iter 1816: loss 5.9794, time 1050.26ms, mfu 0.06%
+iter 1817: loss 5.6678, time 880.19ms, mfu 0.06%
+iter 1818: loss 5.5535, time 801.76ms, mfu 0.06%
+iter 1819: loss 5.6634, time 847.91ms, mfu 0.06%
+iter 1820: loss 5.3017, time 840.87ms, mfu 0.06%
+iter 1821: loss 5.1902, time 1066.08ms, mfu 0.06%
+iter 1822: loss 5.6103, time 936.26ms, mfu 0.06%
+iter 1823: loss 5.4703, time 949.21ms, mfu 0.06%
+iter 1824: loss 5.4385, time 847.69ms, mfu 0.06%
+iter 1825: loss 5.8552, time 1415.94ms, mfu 0.06%
+iter 1826: loss 5.4179, time 957.63ms, mfu 0.06%
+iter 1827: loss 5.3242, time 865.76ms, mfu 0.06%
+iter 1828: loss 5.2879, time 962.58ms, mfu 0.06%
+iter 1829: loss 5.4769, time 1064.16ms, mfu 0.06%
+iter 1830: loss 5.5584, time 1032.48ms, mfu 0.06%
+iter 1831: loss 5.6570, time 838.94ms, mfu 0.06%
+iter 1832: loss 5.5883, time 849.96ms, mfu 0.06%
+iter 1833: loss 5.6775, time 1037.20ms, mfu 0.06%
+iter 1834: loss 5.7747, time 862.12ms, mfu 0.06%
+iter 1835: loss 5.4627, time 821.34ms, mfu 0.06%
+iter 1836: loss 5.1269, time 815.25ms, mfu 0.06%
+iter 1837: loss 5.2687, time 1163.99ms, mfu 0.06%
+iter 1838: loss 5.7448, time 875.68ms, mfu 0.06%
+iter 1839: loss 5.9820, time 834.84ms, mfu 0.06%
+iter 1840: loss 5.6054, time 801.82ms, mfu 0.06%
+iter 1841: loss 5.7491, time 1208.82ms, mfu 0.06%
+iter 1842: loss 5.6437, time 1110.61ms, mfu 0.06%
+iter 1843: loss 5.4855, time 1051.20ms, mfu 0.06%
+iter 1844: loss 5.7733, time 1740.77ms, mfu 0.05%
+iter 1845: loss 5.4935, time 1771.19ms, mfu 0.05%
+iter 1846: loss 5.5960, time 1144.72ms, mfu 0.05%
+iter 1847: loss 5.6876, time 1019.16ms, mfu 0.05%
+iter 1848: loss 5.2662, time 1139.45ms, mfu 0.05%
+iter 1849: loss 5.2422, time 983.94ms, mfu 0.05%
+iter 1850: loss 5.6064, time 1025.09ms, mfu 0.05%
+iter 1851: loss 5.5642, time 787.05ms, mfu 0.05%
+iter 1852: loss 5.4216, time 1096.19ms, mfu 0.05%
+iter 1853: loss 5.2018, time 803.15ms, mfu 0.05%
+iter 1854: loss 5.3759, time 920.08ms, mfu 0.05%
+iter 1855: loss 5.5914, time 952.71ms, mfu 0.05%
+iter 1856: loss 5.4614, time 1323.60ms, mfu 0.05%
+iter 1857: loss 5.6256, time 927.79ms, mfu 0.05%
+iter 1858: loss 5.5611, time 902.94ms, mfu 0.05%
+iter 1859: loss 5.4028, time 1259.06ms, mfu 0.05%
+iter 1860: loss 5.8344, time 1241.52ms, mfu 0.05%
+iter 1861: loss 5.2612, time 1043.95ms, mfu 0.05%
+iter 1862: loss 5.7175, time 894.19ms, mfu 0.05%
+iter 1863: loss 5.3192, time 875.48ms, mfu 0.05%
+iter 1864: loss 5.1539, time 1222.94ms, mfu 0.05%
+iter 1865: loss 5.5914, time 883.32ms, mfu 0.05%
+iter 1866: loss 5.4773, time 801.60ms, mfu 0.06%
+iter 1867: loss 5.5432, time 849.32ms, mfu 0.06%
+iter 1868: loss 5.6636, time 1080.04ms, mfu 0.06%
+iter 1869: loss 5.4321, time 720.88ms, mfu 0.06%
+iter 1870: loss 5.3914, time 979.75ms, mfu 0.06%
+iter 1871: loss 5.5351, time 862.97ms, mfu 0.06%
+iter 1872: loss 5.2101, time 1120.40ms, mfu 0.06%
+iter 1873: loss 5.8354, time 880.61ms, mfu 0.06%
+iter 1874: loss 5.5184, time 1001.76ms, mfu 0.06%
+iter 1875: loss 5.5381, time 902.81ms, mfu 0.06%
+iter 1876: loss 5.6210, time 1041.23ms, mfu 0.06%
+iter 1877: loss 5.6061, time 854.33ms, mfu 0.06%
+iter 1878: loss 5.5897, time 812.19ms, mfu 0.06%
+iter 1879: loss 6.0274, time 810.54ms, mfu 0.06%
+iter 1880: loss 5.6737, time 1069.84ms, mfu 0.06%
+iter 1881: loss 5.4416, time 1227.45ms, mfu 0.06%
+iter 1882: loss 5.6982, time 865.23ms, mfu 0.06%
+iter 1883: loss 5.4624, time 827.22ms, mfu 0.06%
+iter 1884: loss 5.4009, time 803.37ms, mfu 0.06%
+iter 1885: loss 5.6736, time 1101.50ms, mfu 0.06%
+iter 1886: loss 5.3424, time 940.75ms, mfu 0.06%
+iter 1887: loss 5.3958, time 866.98ms, mfu 0.06%
+iter 1888: loss 5.7225, time 862.14ms, mfu 0.06%
+iter 1889: loss 5.7720, time 1193.53ms, mfu 0.06%
+iter 1890: loss 5.8711, time 810.22ms, mfu 0.06%
+iter 1891: loss 5.3417, time 844.17ms, mfu 0.06%
+iter 1892: loss 5.6501, time 955.54ms, mfu 0.06%
+iter 1893: loss 5.4480, time 1518.83ms, mfu 0.06%
+iter 1894: loss 5.4672, time 1069.26ms, mfu 0.06%
+iter 1895: loss 5.7881, time 1254.24ms, mfu 0.05%
+iter 1896: loss 5.9201, time 1176.28ms, mfu 0.05%
+iter 1897: loss 5.4885, time 1059.59ms, mfu 0.05%
+iter 1898: loss 5.5680, time 1004.08ms, mfu 0.05%
+iter 1899: loss 5.1323, time 1246.43ms, mfu 0.05%
+iter 1900: loss 5.4657, time 1598.94ms, mfu 0.05%
+iter 1901: loss 5.6697, time 933.15ms, mfu 0.05%
+iter 1902: loss 5.5272, time 851.81ms, mfu 0.05%
+iter 1903: loss 5.7419, time 807.34ms, mfu 0.05%
+iter 1904: loss 5.7270, time 990.54ms, mfu 0.05%
+iter 1905: loss 5.5786, time 752.78ms, mfu 0.06%
+iter 1906: loss 5.6593, time 930.14ms, mfu 0.06%
+iter 1907: loss 5.3792, time 853.38ms, mfu 0.06%
+iter 1908: loss 5.7755, time 942.85ms, mfu 0.06%
+iter 1909: loss 5.0247, time 1066.77ms, mfu 0.06%
+iter 1910: loss 5.1364, time 822.73ms, mfu 0.06%
+iter 1911: loss 5.6446, time 907.82ms, mfu 0.06%
+iter 1912: loss 5.6006, time 882.84ms, mfu 0.06%
+iter 1913: loss 5.7710, time 1223.38ms, mfu 0.06%
+iter 1914: loss 5.8480, time 911.24ms, mfu 0.06%
+iter 1915: loss 5.5454, time 946.91ms, mfu 0.06%
+iter 1916: loss 5.5630, time 793.30ms, mfu 0.06%
+iter 1917: loss 5.6536, time 1086.70ms, mfu 0.06%
+iter 1918: loss 5.3509, time 878.61ms, mfu 0.06%
+iter 1919: loss 5.3394, time 840.94ms, mfu 0.06%
+iter 1920: loss 5.4273, time 880.05ms, mfu 0.06%
+iter 1921: loss 5.4047, time 929.55ms, mfu 0.06%
+iter 1922: loss 5.7583, time 915.80ms, mfu 0.06%
+iter 1923: loss 5.0565, time 855.66ms, mfu 0.06%
+iter 1924: loss 5.7343, time 752.48ms, mfu 0.06%
+iter 1925: loss 5.5896, time 766.73ms, mfu 0.06%
+iter 1926: loss 5.7216, time 1008.36ms, mfu 0.06%
+iter 1927: loss 5.4637, time 764.89ms, mfu 0.06%
+iter 1928: loss 5.3851, time 978.62ms, mfu 0.06%
+iter 1929: loss 5.3346, time 764.39ms, mfu 0.06%
+iter 1930: loss 5.7725, time 1129.17ms, mfu 0.06%
+iter 1931: loss 5.5417, time 782.84ms, mfu 0.06%
+iter 1932: loss 5.6157, time 1044.84ms, mfu 0.06%
+iter 1933: loss 5.4723, time 805.71ms, mfu 0.06%
+iter 1934: loss 5.5518, time 819.84ms, mfu 0.06%
+iter 1935: loss 5.7646, time 1193.89ms, mfu 0.06%
+iter 1936: loss 5.3113, time 810.89ms, mfu 0.06%
+iter 1937: loss 5.2694, time 902.98ms, mfu 0.06%
+iter 1938: loss 5.4123, time 1263.66ms, mfu 0.06%
+iter 1939: loss 5.4538, time 1461.59ms, mfu 0.06%
+iter 1940: loss 5.3476, time 1108.14ms, mfu 0.06%
+iter 1941: loss 5.4360, time 887.24ms, mfu 0.06%
+iter 1942: loss 5.8928, time 1281.56ms, mfu 0.05%
+iter 1943: loss 5.3117, time 820.37ms, mfu 0.06%
+iter 1944: loss 5.5875, time 928.47ms, mfu 0.06%
+iter 1945: loss 5.3179, time 811.22ms, mfu 0.06%
+iter 1946: loss 5.4175, time 821.50ms, mfu 0.06%
+iter 1947: loss 5.4545, time 1027.77ms, mfu 0.06%
+iter 1948: loss 5.4055, time 848.15ms, mfu 0.06%
+iter 1949: loss 5.7571, time 1016.27ms, mfu 0.06%
+iter 1950: loss 5.4668, time 853.62ms, mfu 0.06%
+iter 1951: loss 5.2128, time 959.39ms, mfu 0.06%
+iter 1952: loss 5.3245, time 768.49ms, mfu 0.06%
+iter 1953: loss 5.4377, time 1148.44ms, mfu 0.06%
+iter 1954: loss 5.3778, time 764.04ms, mfu 0.06%
+iter 1955: loss 5.6383, time 1112.32ms, mfu 0.06%
+iter 1956: loss 5.4822, time 1613.31ms, mfu 0.06%
+iter 1957: loss 5.3589, time 2347.47ms, mfu 0.05%
+iter 1958: loss 5.1248, time 983.65ms, mfu 0.05%
+iter 1959: loss 5.1534, time 858.93ms, mfu 0.05%
+iter 1960: loss 5.0698, time 934.38ms, mfu 0.05%
+iter 1961: loss 5.4725, time 1241.63ms, mfu 0.05%
+iter 1962: loss 5.5376, time 805.60ms, mfu 0.05%
+iter 1963: loss 5.2857, time 815.09ms, mfu 0.06%
+iter 1964: loss 5.8679, time 772.54ms, mfu 0.06%
+iter 1965: loss 5.4596, time 780.90ms, mfu 0.06%
+iter 1966: loss 5.9083, time 1047.33ms, mfu 0.06%
+iter 1967: loss 5.7275, time 796.17ms, mfu 0.06%
+iter 1968: loss 5.5650, time 751.67ms, mfu 0.06%
+iter 1969: loss 5.2248, time 831.17ms, mfu 0.06%
+iter 1970: loss 5.4313, time 720.71ms, mfu 0.06%
+iter 1971: loss 5.2683, time 956.53ms, mfu 0.06%
+iter 1972: loss 5.4864, time 813.79ms, mfu 0.06%
+iter 1973: loss 5.5124, time 1006.18ms, mfu 0.06%
+iter 1974: loss 5.3956, time 813.74ms, mfu 0.06%
+iter 1975: loss 5.5267, time 1161.30ms, mfu 0.06%
+iter 1976: loss 5.7388, time 862.74ms, mfu 0.06%
+iter 1977: loss 5.2822, time 1197.32ms, mfu 0.06%
+iter 1978: loss 5.4981, time 1284.42ms, mfu 0.06%
+iter 1979: loss 5.5781, time 1041.51ms, mfu 0.06%
+iter 1980: loss 5.8575, time 942.64ms, mfu 0.06%
+iter 1981: loss 5.4870, time 967.39ms, mfu 0.06%
+iter 1982: loss 5.4579, time 1121.17ms, mfu 0.06%
+iter 1983: loss 5.4783, time 1176.67ms, mfu 0.05%
+iter 1984: loss 5.3803, time 918.87ms, mfu 0.05%
+iter 1985: loss 5.3760, time 1218.35ms, mfu 0.05%
+iter 1986: loss 5.2211, time 1575.98ms, mfu 0.05%
+iter 1987: loss 5.4091, time 969.02ms, mfu 0.05%
+iter 1988: loss 5.3989, time 1069.09ms, mfu 0.05%
+iter 1989: loss 5.3546, time 862.33ms, mfu 0.05%
+iter 1990: loss 5.6546, time 1158.27ms, mfu 0.05%
+iter 1991: loss 5.3580, time 833.81ms, mfu 0.05%
+iter 1992: loss 5.3300, time 980.27ms, mfu 0.05%
+iter 1993: loss 5.6029, time 994.55ms, mfu 0.05%
+iter 1994: loss 5.8007, time 1148.16ms, mfu 0.05%
+iter 1995: loss 5.2988, time 964.77ms, mfu 0.05%
+iter 1996: loss 5.3805, time 990.87ms, mfu 0.05%
+iter 1997: loss 5.4075, time 946.09ms, mfu 0.05%
+iter 1998: loss 5.2802, time 1290.93ms, mfu 0.05%
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+Traceback (most recent call last):
+iter 1999: loss 5.6034, time 854.40ms, mfu 0.05%  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+
+Traceback (most recent call last):
+      File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+lr = get_lr(iter_num) if decay_lr else learning_rate
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+    lr = get_lr(iter_num) if decay_lr else learning_rate    
+lr = get_lr(iter_num) if decay_lr else learning_rate  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+Traceback (most recent call last):
+      File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+    ZeroDivisionErrorlr = get_lr(iter_num) if decay_lr else learning_rate: 
+    division by zero  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+    lr = get_lr(iter_num) if decay_lr else learning_rate
+    decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+
+ZeroDivisionErrorZeroDivisionError:     : division by zerodecay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)division by zero
+
+
+    ZeroDivisionErrordecay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters): 
+division by zero
+ZeroDivisionError: division by zero
+    lr = get_lr(iter_num) if decay_lr else learning_rate
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+    decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+ZeroDivisionError: division by zero
+    Traceback (most recent call last):
+lr = get_lr(iter_num) if decay_lr else learning_rate  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 253, in <module>
+
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+    decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+ZeroDivisionError: division by zero
+    lr = get_lr(iter_num) if decay_lr else learning_rate
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 234, in get_lr
+    decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+ZeroDivisionError: division by zero
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 56717) of binary: /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin/python
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.0.0', 'console_scripts', 'torchrun')())
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 56718)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 56719)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 56720)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[4]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 4 (local_rank: 4)
+  exitcode  : 1 (pid: 56721)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[5]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 5 (local_rank: 5)
+  exitcode  : 1 (pid: 56722)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[6]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 6 (local_rank: 6)
+  exitcode  : 1 (pid: 56723)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[7]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 7 (local_rank: 7)
+  exitcode  : 1 (pid: 56724)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-05-04_18:11:36
+  host      : v013.ib.bridges2.psc.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 56717)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
++ python sample.py --out_dir=out-shakespeare
+Overriding: out_dir = out-shakespeare
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 38, in <module>
+    checkpoint = torch.load(ckpt_path, map_location=device)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'out-shakespeare/ckpt.pt'
++ python sample.py --init_from=gpt2 '--start=What is the answer to life, the universe, and everything?' --num_samples=5 --max_new_tokens=100
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+Downloading pytorch_model.bin:   0%|          | 0.00/548M [00:00<?, ?B/s]Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 49, in <module>
+    model = GPT.from_pretrained(init_from, dict(dropout=0.0))
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/model.py", line 245, in from_pretrained
+    model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2450, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/utils/hub.py", line 409, in cached_file
+    resolved_file = hf_hub_download(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 120, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1364, in hf_hub_download
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 544, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+Downloading pytorch_model.bin:   4%|▍         | 21.0M/548M [00:00<00:09, 53.7MB/s]

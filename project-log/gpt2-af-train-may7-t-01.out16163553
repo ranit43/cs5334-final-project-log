@@ -1,0 +1,580 @@
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ export HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ module load cuda
+++ /usr/share/lmod/lmod/libexec/lmod bash load cuda
++ eval '__LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_CPATH;' 'CPATH=/opt/packages/cuda/v11.7.1/include;' export 'CPATH;' 'CUDA_HOME=/opt/packages/cuda/v11.7.1;' export 'CUDA_HOME;' 'CUDA_PATH=/opt/packages/cuda/v11.7.1;' export 'CUDA_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' 'LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LD_LIBRARY_PATH;' '__LMOD_REF_COUNT_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LIBRARY_PATH;' 'LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LIBRARY_PATH;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h;' export '_ModuleTable001_;' '_ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs;' export '_ModuleTable002_;' '_ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi;' export '_ModuleTable003_;' '_ModuleTable004_=LH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;'
+++ __LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_CPATH
+++ CPATH=/opt/packages/cuda/v11.7.1/include
+++ export CPATH
+++ CUDA_HOME=/opt/packages/cuda/v11.7.1
+++ export CUDA_HOME
+++ CUDA_PATH=/opt/packages/cuda/v11.7.1
+++ export CUDA_PATH
+++ __LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LD_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LD_LIBRARY_PATH
+++ LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LD_LIBRARY_PATH
+++ __LMOD_REF_COUNT_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LIBRARY_PATH
+++ LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LIBRARY_PATH
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h
+++ export _ModuleTable001_
+++ _ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs
+++ export _ModuleTable002_
+++ _ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi
+++ export _ModuleTable003_
+++ _ModuleTable004_=LH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load cuda
++ return 0
++ module load anaconda3
+++ /usr/share/lmod/lmod/libexec/lmod bash load anaconda3
++ eval '__LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1;' export '__LMOD_REF_COUNT_ACLOCAL_PATH;' 'ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal;' export 'ACLOCAL_PATH;' '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1;' export '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH;' 'CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10;' export 'CMAKE_PREFIX_PATH;' 'CONDA_PKGS_DIRS=\$HOME/.conda/pkgs/;' export 'CONDA_PKGS_DIRS;' '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH;' 'CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'CPLUS_INCLUDE_PATH;' '__LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_C_INCLUDE_PATH;' 'C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'C_INCLUDE_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1\;/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1\;anaconda3/2022.10:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1\;/opt/packages/anaconda3-2022.10/man:1\;/opt/packages/anaconda3-2022.10/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/anaconda3-2022.10/bin:1\;/opt/packages/anaconda3-2022.10/condabin:1\;/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1\;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1\;/opt/modulefiles/production/anaconda3/2022.10.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k;' export '_ModuleTable001_;' '_ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs;' export '_ModuleTable002_;' '_ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp;' export '_ModuleTable003_;' '_ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;' '__LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv;' export '__LMOD_STACK_CONDA_PKGS_DIRS;' source '/opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh;' conda 'activate;'
+++ __LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1
+++ export __LMOD_REF_COUNT_ACLOCAL_PATH
+++ ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal
+++ export ACLOCAL_PATH
+++ __LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1
+++ export __LMOD_REF_COUNT_CMAKE_PREFIX_PATH
+++ CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10
+++ export CMAKE_PREFIX_PATH
+++ CONDA_PKGS_DIRS='$HOME/.conda/pkgs/'
+++ export CONDA_PKGS_DIRS
+++ __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH
+++ CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export CPLUS_INCLUDE_PATH
+++ __LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_C_INCLUDE_PATH
+++ C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export C_INCLUDE_PATH
+++ __LMOD_REF_COUNT_INCLUDE='/opt/packages/cuda/v11.7.1/include:1;/opt/packages/anaconda3-2022.10/include:1'
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1;anaconda3/2022.10:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1;/opt/packages/anaconda3-2022.10/man:1;/opt/packages/anaconda3-2022.10/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/anaconda3-2022.10/bin:1;/opt/packages/anaconda3-2022.10/condabin:1;/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH='/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1'
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1;/opt/modulefiles/production/anaconda3/2022.10.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k
+++ export _ModuleTable001_
+++ _ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs
+++ export _ModuleTable002_
+++ _ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp
+++ export _ModuleTable003_
+++ _ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ __LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv
+++ export __LMOD_STACK_CONDA_PKGS_DIRS
+++ source /opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ '[' -z '' ']'
++++ export CONDA_SHLVL=0
++++ CONDA_SHLVL=0
++++ '[' -n '' ']'
++++++ dirname /opt/packages/anaconda3-2022.10/bin/conda
+++++ dirname /opt/packages/anaconda3-2022.10/bin
++++ PATH=/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export PATH
++++ '[' -z '' ']'
++++ PS1=
+++ conda activate
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate
++++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate
+++ ask_conda='PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
+++ eval 'PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
++++ PS1='(base) '
++++ export PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=base
++++ CONDA_DEFAULT_ENV=base
++++ export 'CONDA_PROMPT_MODIFIER=(base) '
++++ CONDA_PROMPT_MODIFIER='(base) '
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh
+++++ '[' -n '' ']'
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/proj ']'
+++++ export PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ '[' -f /opt/packages/anaconda3-2022.10/share/proj/copyright_and_licenses.csv ']'
+++++ export PROJ_NETWORK=ON
+++++ PROJ_NETWORK=ON
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh
+++++ [[ -n '' ]]
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/udunits ']'
+++++ export UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++++ UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load anaconda3
++ return 0
++ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ '[' -n '' ']'
++ local ask_conda
+++ PS1='(base) '
+++ __conda_exe shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ ask_conda='. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
++ eval '. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh
++++ unset UDUNITS2_XML_PATH
++++ [[ -n '' ]]
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh
++++ unset PROJ_LIB
++++ unset PROJ_NETWORK
++++ '[' -n '' ']'
+++ PS1='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export CONDA_SHLVL=2
+++ CONDA_SHLVL=2
+++ export CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export 'CONDA_PROMPT_MODIFIER=(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ CONDA_PROMPT_MODIFIER='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
+++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ python sample.py
+number of parameters: 7.23M
+No meta.pkl found, assuming GPT-2 encodings...
+
+
+The 10-year-old was in the age of his family in the house. He was still a full-world contract. He was also an individual, who was aware of the amount of her. He was still known as he had been coming from a few hours before.
+
+"If he didn't support the way, I couldn't happen. I'd sometimes take the job," said Chris she wrote. "I'm a lot better with me," he said.
+
+'You don't like to bring to say. I's not like to see if more. I'm not going to be a better! ... they feel like because I like this.
+
+It's the game to find it now. I'm not like to see, though at the next week. I felt like something like that they are in this. I'm going, that I'm thinking that you can't ask, because we're not just my use.
+
+I'm glad I say I want to be one, I'm just my time. I don't. I started this for your time, though. There are my kind of kind of way, I have since I am a boy and I go to a woman who is telling me it, the boy thought of being sitting here. I was just very interesting. But I am, I think I just think there's kind of things. It's really a laugh and be a girl worth of my life. I think of the human life to get to all they're. I am more worried like it. It's some dangerous. I'm not doing everything. But I go when I do do time here. I've seen a couple of friends. I can look at what they will do. But I think you would do!
+
+I ever think what I thought on when I tell me I'm. I was to mean, I think you can say, I think we want enough to have this. I think I know we also have to see why.
+
+I don't make it a lot of place. I feel an extra time…
+
+
+I think I would have been “they think I don’t have seen a couple can know if I’m not that for me. I think there’s that I am very good. I don’t want to know when it comes from the truth’s world. I have to act on the threat. I
+---------------
+
+
+"We are more up for me."
+
+"The third world has a good set to produce and we're the same, but we could make sure that if we're so hard to do what we're doing?"
+
+"If the United Kingdom is going to happen."
+
+"This is the right thing I don't, look like that we're doing."<|endoftext|>Bott was the first time…and we were back to be wrong with a successful and my life. But a one is much easier than the one, but I can expect to be a great, but we've returned to. I didn't know that back."
+
+The “I think we're telling me how much we were, and we feel outside.”
+
+But we think they are thinking about the story.
+
+“He was the most important thing we're happy to do this,” said the one that year. “I didn’t have to take my name in so if it?” Trump.
+
+–
+
+I’m because I don’t have to give one-century, I’ve got to do the best. (“I've really got the moment for the most recent years. What is the one I’s for now being the right reason when it’s quite one.”<|endoftext|>This is now in the University of our country and the nation, but the best of the country’s future, and it’s not the risk of an hour.
+
+The nation is where we keep the people and the greatest history of our military and the future has not been allowed to be a common piece of going home, and another because they’re a very great good man that doesn’t fit. I think I’m too. I think the people were there to be how much people have with my own friends. But I told you, I didn’t want to think what really’s the guy. I’m there. I’m sure. I’m not sure to pick up to watch for some of the work. Now, I see the only way I want to sign up in the season and the first time I’m not just ever going to do with a group. I’m sure, I’d like it.
+
+And in this morning I�
+---------------
+
+
+A second-year-old boy was named a house of “a man” to hospital after the island of the war in the hospital.<|endoftext|>Stills had one of the members of the men, and the father’s death of the army and forced to put others, and, are the greatest in the night, but a man, is accused of being a religious crime.
+
+When the incident were unable to join with a girl who had a dark man who had said his face was a look at the time and he would take a very special. The other woman (the most needed) was a man who remained a Muslim, a woman and they reached it and in his father, and said.
+
+“I don’t know their as much as a white. I think she was the same time in his father. And I don’t have to be one day. I would seem so we were just if the players were not good.”
+
+“So that’s a girl, I’ve got his children,” one said. “It’s not not like a son about the woman.”
+
+“I don’t think we’ve been doing as a book,” he said. But there’s a song that feels like the first things, but I think that’s very little. I really want to get the story being living across the country. We’re in an unvention. H.A., the fact, that the most famous-lows just to learn that if you don’t know, it’s just a little bit like,, only that’s just a little p.m.. I’m not a bunch of people. And I’ll be this clear. I’m going to have a problem. I’m just another going to see I am at actually. I’m not and I think the least to work and I want, but I’ll go to the same. One, I first was a man and I’m going to say, but I'm on this process.
+
+“It’s not good thing,” he said. “I need to say that.”
+
+That’s our first job. I’ve been
+---------------
+
+
+The second-year-old had been completed on a 14-year-old son of a resident of the Republican campaign in the United States. At the time where all of the leaders had been being known as the chairman of the British World War.
+
+"He was the first-week, we said that that we had to become there. "I feel, but he’s not to see something that we got right," he added. "I am aware of this,' who says people were good and more of my colleague-belose, and then, on the party, then it is it not like that. I didn’t do what they have been to get. They went around to go. I wanted to move to me, so you would never call a man in a woman on the head, and with her life “the couple of my family.”
+
+But of course, I can get a little or really difficult.
+
+He’s not never noticed my family as she is a little great, and it’s a little surprise in the time.
+
+New York Times: The word “I am so hard to do it.” But if it was a great “There was the most good one of my work.”
+
+The B-R-N-S-F-based device is being able to have to deal with the next time.
+
+The UK are also right and is now on the game with the following year after one afternoon, which consists of three-year-old teams in the world, and when it seems to be that the majority of the last 10,000-income players would never have been.
+
+Goy can be available on the project and in the face of the first-yard team.
+
+The one-year-old family is saying that the team has been doing so fast on to pay a shot in the fight in the base of the car. The team has ever been the right to have a walk and the game is set and will already be a full-to-and-looking job for having a full-night shot.
+
+The former president, said in which Trump and has never done the case of himself. He is in his own last quarter. She is only a "sastent" – she was for the first-round break.
+
+He'd never already been found that as a
+---------------
+
+
+The company that the current of the O’S administration are more expensive, and that it’s a very common thing.
+
+So, as the US-based network is happening, is used for a general House, and the largest state of the US, the state of the South Korea, and the European Council of Justice, are extremely great and big.
+
+O-A. I’m a similar part of the US.
+
+One of the global warming provides the case of the Russia’s economic process that ultimately, we have a a lot of the party. The government is generally active in the end of a period. It’s a third-year-old to the country’s future, it’s a complete level of politics. The Chinese has been killed.
+
+This is a very rare half of the United Kingdom for the UK. The latest amount of our people around the country and the school of the US with the United Nations.
+
+Vaki have been able to see the beginning of the West’s last week, for a time here, as the federal government, the US government’s political community.
+
+Most of the US, the Supreme Court might have come with the North Dakota Government.
+
+It is also a real-time Democratic presidential player in Britain.
+
+While a university in the region, the country can have been able to make tax power, the government would be now.
+
+Some people are not in the world, according to the Supreme Court’s senior presidential nominee.
+
+The Congress has been a set of information, and we need to approve of whether the government is all the vote … to help us believe in Syria has still been the biggest issue of a new ruling as Barack Obama has an address.
+
+While I will now, that’s as a global economy, I’ve also completed the U.S. — and that government will go for a group.”
+
+Curgi’s campaign attorney, in the southern Union of Health and North Carolina. But there are two income and over the past year, and the government has conducted the federal economy in the world.
+
+“It’s made,” said Choyner, a professor, said, “I’m at every way." The bill would lead to Mr. al-F
+---------------
+
+
+Meret. S. K-A.
+
+F.b. — - - A.g., but it is as the most most of the people who are a lot.
+
+"The great thing we do it," she said. "I actually had a lot. I was going to be even the right, he said. "I'm so. I I had a lot of people.
+
+He said, is the only list of a lot, so I'm not a bit."
+
+"I, I know I was doing that I could do feel my most people," said. "I don't all have the only great things he was going to try and look pretty much like I. I did back, but I don't know I would remember this, but my money I can do not know that.
+
+"I think you have. I have heard my long time," Schm, but the show was missing," it said. "What I understand is all" with what I need, or what would be an extremely special part.
+
+"All you have a little good: "I think we’re going to feel in my life," said. "You think I need to be thinking about myself. I don't know they?" I said. "When I try to say, I don't get out of my music. It’s a person who don’t do anything, but I don’t know. I really have time for me to use the time to solve this. I like one of those over my opponents, I think I had a bad thing... and I see, I’m not going to see my really,” he says.
+
+But when I had to make me, it, I know, I'm all there on my own.
+
+If I had been a good idea to see. I think it was a good thing. There would say that I would get my idea. I will like that, but I wasn’t to do a world. I also feel like I want to be in the wrong… I would give them a really good thing to you.
+
+“And I don’t make it a person and I’m not happening in other hand, I know that I’ve seen their players? The team is still hard,” he says.
+
+"But so that I
+---------------
+
+
+The first campaign was reported that this, and in the 2014 campaign, it seemed to be the only example of the national security.
+
+The US may have been held up at the past 25 to the month after a Senate campaign to a few years ago, according to the House.
+
+The issue also was expected to vote the state from the state that state is often on with the federal law.
+
+The second dollar in Paris is a new committee that will allow Russia to launch a court court from the United States. The United States to the federal government is in the agreement between 2014 and November 16, 2015.
+
+The US-backed Secretary of State (in one of the European government, Australia, 2010, 2015, with more the rise in the United States. This week, the National Party of Illinois, 2004, 2015 and three years ago, in the United States. This year, the European government is told the South-S&T, which has already described as part of a meeting in a “Carkous A-A,” which would take a point to the general economic crisis that would add a new security, has been allowed to be a result to vote.
+
+An on the Institute of Science and India, has been published on Twitter, and has set him against "defosed" to follow him on Twitter. But the one of the 'Pose' has ever been working with the potential to meet with the political and power.
+
+"We don't matter how, we get a major, and it is a former president being a key of a community."
+
+Arkey said the United States would not change the best-time deal. The federal-term fund is not far more than than a number of things. But they're in a vote with, the tax program's service in this country is going to be likely that. You may use legal scrutiny for others.
+
+The decision is where the government is committed in the House of Americans has done over for an additional rate as it must will be.
+
+L.C.R. Trump is working on this this week. But the company has always already done an eye on a record business in 2005 while a federal majority of a relatively valuable growth over the year.
+
+W.C.S. economy has been to be in the area.
+
+The former major time of the country is now the need for a minimum income for the U
+---------------
+
+Sart are just as a matter of a lot of life.
+
+Paul will play a little bit like a day he's one of the number of those on the days. It is a world that it can be an evil he is, and he's a lot of things. A few hundred of him is in the last half of the age of others. She’s a person who are in the best of what is. Maybe there’s a new person who can’t have to play one.
+
+But why I don’t think she’s quite the day. But I don’t yet know what they did. Maybe I knew the day for the age of it. I had a ever so long enough, but when you show the first I had the right now, I’m so my life I was all. I’m you not in too. I think that.”
+
+I was going to have been reading. I haven’t even been taken in the time.
+
+If I did my. I had my favorite and I started my life with this one. I can see the sort of time. I decided to say, and I can walk my own. I may have ever heard about. I get with me and I was in the point I will see. And I should all get my mind, you'd like I don't know. Here, I appreciate that I did me so I ever actually understand. I'm just the person who would be saying?
+
+I got it so soon. I'm not just in the right time. The fact was so I was really successful, and I think it's having to do that of life was to be excited. He is who was in the very much time in my way. I mean that we have to know what I'm now. But I'm not in my life. I am it more like that, I will do all with the fact that the people had the responsibility of my life. I often have to make me a way. I've mentioned that in the end of the work, I'm going to get rid of the experience as well. I am very happy. I am still going to see this.
+
+My favorite, and I think before I can be talking when I came on to go forward and then I have to go with, and I know that I know. I’m quite
+---------------
+
+
+As a single official ‘Tink’ is a good way I love to know why he can lead to a personal,” the 'A said: “Yes, I think of all time you, I also don’t know that if you're doing in the world. But I don’t know what is going. I’m sorry if you’ve been going to be an incredible game because I’m moving to everyone. I’m a bit more like to get this.
+
+It’s always a great game in the first season, it’s a pretty stupid thing. I’m going to pass again. When I put the player’s performance, I was so done. I got my full-age with a third-year-old, and her friends have been in a minute. I had never be too home at the night evening. I said in my election “I”.” [I�I’m afraid I really wanted to die or for time to make the problem, because I love this, I’m not sure what all is it. There is no step no longer than it. There is a lot of time to go to do you, and you’re that’s being sick is to be much. And I’m just a little better. I’ll want to see something so is about it,” said Chris Zan. “It’s a much so far more than the time, I’ll have to read from that when I am when I’m not a funny black. It was surprised if I said he was a little positive, and big. I’ve really been working right. I got the best time to start a lot. And I don’t have a lot of people who will have no way and I mean, that’s that it’s going to it.
+
+“It’s still seeing about the political process. I think I'm going for you,” he was not a one who did not want to put the same way.
+
+“My favourite is one in order to prove I should only do,” said Jeff D.K. “I think I would try to ask that everything I can be wearing my father,” said.
+---------------
+
+
+The same day, the time was only nine months of one-cost, a Republican presidential election.
+
+He passed a second-year-old person.
+
+“He was a man,” the a member of the World.
+
+“He was not afraid I have been told me that when she’d had looked like a good partner. But I’m really surprised that I believe he was just the time and I talked about his parents’ because I don’t have been in the world.”[23]
+
+He’s just just just thought she’s done with her own.
+
+“This is a ‘the game,” as they don’t just make the one. He’s going to be some some of her — no people don’t.”
+
+“Because he knows why he’s not the ever-point this country – she’s not the right, and he’s so much the state. And he knows what the two-time people don’t matter isn’t being considered as many years. But it is afraid that’s the right and the number of thousands of years. They think they’ve just built a very good race: but yes, what’s the man is. It’s not a good thing.
+
+As I’m not a boy I also couldn’t be a simple, “Will you get to their family.”
+
+The other would be out to go when the more women say when the man was an interview.<|endoftext|>Dur’s manager said this was not the claim that the police had been moving to the country, and the most the people have been placed and not into them in Afghanistan.)
+
+An anti-born is not that such as a whole person, the chief of the director, said the policy is not a lot.
+
+This is not too sad, as a way to have been a potential to pay the human. In which we have the same thing, it should be on what we do.
+
+For more about 16-year-old, I used a full-to-spiting video in a different way that we, because we should want to make this kind. No wonder, we’re really likely to go.
+---------------
++ cd cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/data/shakespeare
+/var/spool/slurm/d/job16163553/slurm_script: line 40: cd: too many arguments
++ python prepare.py
+python: can't open file '/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/prepare.py': [Errno 2] No such file or directory
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ python train.py config/finetune_shakespeare_gpt2.py
+Overriding config with config/finetune_shakespeare_gpt2.py:
+import time
+
+out_dir = 'out-shakespeare'
+eval_interval = 5
+eval_iters = 40
+wandb_log = False  # feel free to turn on
+wandb_project = 'shakespeare'
+wandb_run_name = 'ft-' + str(time.time())
+
+dataset = 'shakespeare'
+init_from = 'gpt2'  # this is the largest GPT-2 model
+
+# only save checkpoints if the validation loss improves
+always_save_checkpoint = False
+
+# the number of examples per iter:
+# 1 batch_size * 32 grad_accum * 1024 tokens = 32,768 tokens/iter
+# shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
+batch_size = 1
+gradient_accumulation_steps = 32
+max_iters = 20
+
+# finetune at constant LR
+learning_rate = 3e-5
+decay_lr = False
+
+tokens per iteration will be: 32,768
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 114, in <module>
+    train_data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/numpy/core/memmap.py", line 228, in __new__
+    f_ctx = open(os_fspath(filename), ('r' if mode == 'c' else mode)+'b')
+FileNotFoundError: [Errno 2] No such file or directory: 'data/shakespeare/train.bin'
++ python sample.py --out_dir=out-shakespeare
+Overriding: out_dir = out-shakespeare
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 38, in <module>
+    checkpoint = torch.load(ckpt_path, map_location=device)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'out-shakespeare/ckpt.pt'
++ python sample.py --init_from=gpt2 '--start=What is the answer to life, the universe, and everything?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+Downloading pytorch_model.bin:   0%|          | 0.00/548M [00:00<?, ?B/s]Downloading pytorch_model.bin:   4%|▍         | 21.0M/548M [00:00<00:02, 176MB/s]Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 49, in <module>
+    model = GPT.from_pretrained(init_from, dict(dropout=0.0))
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/model.py", line 245, in from_pretrained
+    model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2450, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/utils/hub.py", line 409, in cached_file
+    resolved_file = hf_hub_download(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 120, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1364, in hf_hub_download
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 544, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+Downloading pytorch_model.bin:   8%|▊         | 41.9M/548M [00:00<00:04, 109MB/s]

@@ -1,0 +1,729 @@
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ export HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ module load cuda
+++ /usr/share/lmod/lmod/libexec/lmod bash load cuda
++ eval '__LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_CPATH;' 'CPATH=/opt/packages/cuda/v11.7.1/include;' export 'CPATH;' 'CUDA_HOME=/opt/packages/cuda/v11.7.1;' export 'CUDA_HOME;' 'CUDA_PATH=/opt/packages/cuda/v11.7.1;' export 'CUDA_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' 'LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LD_LIBRARY_PATH;' '__LMOD_REF_COUNT_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LIBRARY_PATH;' 'LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LIBRARY_PATH;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h;' export '_ModuleTable001_;' '_ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs;' export '_ModuleTable002_;' '_ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi;' export '_ModuleTable003_;' '_ModuleTable004_=LH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;'
+++ __LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_CPATH
+++ CPATH=/opt/packages/cuda/v11.7.1/include
+++ export CPATH
+++ CUDA_HOME=/opt/packages/cuda/v11.7.1
+++ export CUDA_HOME
+++ CUDA_PATH=/opt/packages/cuda/v11.7.1
+++ export CUDA_PATH
+++ __LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LD_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LD_LIBRARY_PATH
+++ LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LD_LIBRARY_PATH
+++ __LMOD_REF_COUNT_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LIBRARY_PATH
+++ LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LIBRARY_PATH
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h
+++ export _ModuleTable001_
+++ _ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs
+++ export _ModuleTable002_
+++ _ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi
+++ export _ModuleTable003_
+++ _ModuleTable004_=LH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load cuda
++ return 0
++ module load anaconda3
+++ /usr/share/lmod/lmod/libexec/lmod bash load anaconda3
++ eval '__LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1;' export '__LMOD_REF_COUNT_ACLOCAL_PATH;' 'ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal;' export 'ACLOCAL_PATH;' '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1;' export '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH;' 'CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10;' export 'CMAKE_PREFIX_PATH;' 'CONDA_PKGS_DIRS=\$HOME/.conda/pkgs/;' export 'CONDA_PKGS_DIRS;' '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH;' 'CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'CPLUS_INCLUDE_PATH;' '__LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_C_INCLUDE_PATH;' 'C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'C_INCLUDE_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1\;/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1\;anaconda3/2022.10:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1\;/opt/packages/anaconda3-2022.10/man:1\;/opt/packages/anaconda3-2022.10/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/anaconda3-2022.10/bin:1\;/opt/packages/anaconda3-2022.10/condabin:1\;/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1\;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1\;/opt/modulefiles/production/anaconda3/2022.10.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k;' export '_ModuleTable001_;' '_ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs;' export '_ModuleTable002_;' '_ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp;' export '_ModuleTable003_;' '_ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;' '__LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv;' export '__LMOD_STACK_CONDA_PKGS_DIRS;' source '/opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh;' conda 'activate;'
+++ __LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1
+++ export __LMOD_REF_COUNT_ACLOCAL_PATH
+++ ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal
+++ export ACLOCAL_PATH
+++ __LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1
+++ export __LMOD_REF_COUNT_CMAKE_PREFIX_PATH
+++ CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10
+++ export CMAKE_PREFIX_PATH
+++ CONDA_PKGS_DIRS='$HOME/.conda/pkgs/'
+++ export CONDA_PKGS_DIRS
+++ __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH
+++ CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export CPLUS_INCLUDE_PATH
+++ __LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_C_INCLUDE_PATH
+++ C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export C_INCLUDE_PATH
+++ __LMOD_REF_COUNT_INCLUDE='/opt/packages/cuda/v11.7.1/include:1;/opt/packages/anaconda3-2022.10/include:1'
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1;anaconda3/2022.10:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1;/opt/packages/anaconda3-2022.10/man:1;/opt/packages/anaconda3-2022.10/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/anaconda3-2022.10/bin:1;/opt/packages/anaconda3-2022.10/condabin:1;/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH='/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1'
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1;/opt/modulefiles/production/anaconda3/2022.10.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k
+++ export _ModuleTable001_
+++ _ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs
+++ export _ModuleTable002_
+++ _ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp
+++ export _ModuleTable003_
+++ _ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ __LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv
+++ export __LMOD_STACK_CONDA_PKGS_DIRS
+++ source /opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ '[' -z '' ']'
++++ export CONDA_SHLVL=0
++++ CONDA_SHLVL=0
++++ '[' -n '' ']'
++++++ dirname /opt/packages/anaconda3-2022.10/bin/conda
+++++ dirname /opt/packages/anaconda3-2022.10/bin
++++ PATH=/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export PATH
++++ '[' -z '' ']'
++++ PS1=
+++ conda activate
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate
++++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate
+++ ask_conda='PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
+++ eval 'PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
++++ PS1='(base) '
++++ export PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=base
++++ CONDA_DEFAULT_ENV=base
++++ export 'CONDA_PROMPT_MODIFIER=(base) '
++++ CONDA_PROMPT_MODIFIER='(base) '
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh
+++++ '[' -n '' ']'
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/proj ']'
+++++ export PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ '[' -f /opt/packages/anaconda3-2022.10/share/proj/copyright_and_licenses.csv ']'
+++++ export PROJ_NETWORK=ON
+++++ PROJ_NETWORK=ON
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh
+++++ [[ -n '' ]]
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/udunits ']'
+++++ export UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++++ UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load anaconda3
++ return 0
++ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ '[' -n '' ']'
++ local ask_conda
+++ PS1='(base) '
+++ __conda_exe shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ ask_conda='. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
++ eval '. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh
++++ unset UDUNITS2_XML_PATH
++++ [[ -n '' ]]
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh
++++ unset PROJ_LIB
++++ unset PROJ_NETWORK
++++ '[' -n '' ']'
+++ PS1='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export CONDA_SHLVL=2
+++ CONDA_SHLVL=2
+++ export CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export 'CONDA_PROMPT_MODIFIER=(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ CONDA_PROMPT_MODIFIER='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
+++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ python sample.py --init_from=gpt2 '--start=What is the answer to life, the universe, and everything?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+What is the answer to life, the universe, and everything?
+
+One of the most important questions we need to answer is:
+
+What is the answer to life?
+
+The answer to life is an individual, a theory, an idea. Someone who can answer that question is the answer to life. A theory who can answer that question is a theory whose identity is the answer to life.
+
+The idea is an idea; the theory is actually the idea involved. On the other hand, the universe is just a theory, but it is
+---------------
+What is the answer to life, the universe, and everything? Probably not. Try explaining to somebody why life is such a convenient answer to an obvious question. Try asking the question "Why do we have to feel this way?" Try saying "Mmmm, my god, I'm so glad you're here." Try saying "This is all due to me." Try saying "I'm not satisfied with this. I'm not satisfied with that." Try thinking that death can't be a good thing, but it can be a great thing. Try asking "Why
+---------------
+What is the answer to life, the universe, and everything?
+
+
+Can's you, I'm just telling you that if there is any question of this I have some knowledge, so let's face it, if you say, "Oh, I don't know precisely what you're talking about." Well, that's because the answer to it is, you don't want to talk about reality, you want to talk about something that is not real. And the only way to do that is through self-examination. You need to make it clear to yourself
+---------------
+What is the answer to life, the universe, and everything? In short, the answer is that all things and all beings are created and the universe is created and the universe is created. If we believe in God, then all beings will be created.
+
+The original Hebrew word for "God" is Lehi — the Old Testament word for "creator." The Bible literally says that God is the creator on all things in every part of creation, including the universe, and according to Noah, the Adam and Eve as well as the creation of all creatures on
+---------------
+What is the answer to life, the universe, and everything? This question has been asked many times before, by people who believe that there is a God, a supreme being, and that all things are created equal, and in a way that has no subject. In fact, this question has been asked on many occasions, and what I will try to look at in relation to this question is that there is no God.
+
+Think about our own physical and spiritual bodies. We are all built up of all sorts of very complex configurations and devices; and all
+---------------
++ python sample.py --init_from=gpt2 '--start=Please give me a popular recipe?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = Please give me a popular recipe?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+Please give me a popular recipe? Have any suggestions?
+
+Thanks in advance!<|endoftext|>After his defeat in the 2016 Olympics in London, Michael Phelps took his place in the headlines this week, giving a hearty apology and taking to social media to highlight his victory.
+
+Not surprisingly, he admitted that it was "his dream" to win at the Olympics but could not afford to believe it.
+
+Phelps, who has actually always believed in himself and the importance of the Games, commented on his statement on Twitter.
+
+---------------
+Please give me a popular recipe? Probably not. Try my other recipes. I'm glad you asked.
+
+This is my first time making chocolate cake, and I think this is a pretty fabulous recipe and a way to begin my DIY journey to make chocolate cake. I love how simple it is, and how difficult it is to learn all of the spices required to make this.
+
+I'm pretty sure you're already familiar with the old recipe, so I'm going to explain how I made the vanilla chocolate cake. For
+---------------
+Please give me a popular recipe?
+
+
+Can's
+
+Add a few servings to your daily keto meal. Would this make your food more satisfying?
+
+
+Chicken
+
+Add a few servings to your typical chicken meal. Would this make your food more satisfying?
+
+
+Steak
+
+Add 1 serving to your typical steak meal. Would this make your food more satisfying?
+
+
+Avocado
+
+Add 1 serving to your typical avocado meal. Would this make your food more satisfying?
+
+
+Sweet Potato
+
+
+---------------
+Please give me a popular recipe? Just like the restaurant, Donato's will be there to bring you the best of the Italian food. I recommend making the spaghetti in a glaze sauce to make it more uniform.
+
+When you are ready to make the spaghetti, add enough water to the pan and cover with water. Cook until the water is thickened and smooth. Do not remove the spaghetti from its boiling point. Let the spaghetti soak in the water and make a tasty flatbread.
+
+When you are done,
+---------------
+Please give me a popular recipe? Thanks!
+
+And then why not just start with my favorite? My husband loves Toasted Greek yogurt (well, yeah…we like it but it's too much). So here's a recipe for one that he recommends for a typical Toasted Greek yogurt craving. I found that this recipe seems pretty to work best for me…but I don't have the time or patience. I can make quite a few batches at a time but I just don't have the time for this… I really
+---------------
++ python sample.py --init_from=gpt2 '--start=How to complement your partner?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = How to complement your partner?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+How to complement your partner? Have any questions? Get in touch!
+
+Want to learn how to love and lose weight with a partner? Check out this tutorial that covers how to really love a partner.
+
+Want to help your partner recover from weight loss? Have any questions about how to recover from weight loss? Call us at 615-253-4522
+
+Related Content:
+
+Why Weight Loss Makes You Inferior to a Good Relationship
+
+How to Lose Weight in a Good Relationship
+
+
+---------------
+How to complement your partner?
+
+We started our partnership to help you find an awesome partner for your project more readily. Plus, we used Google's Partner Finder, to find partners for your projects and help you find a partner who's available to you now.
+
+The Free Partner Finder
+
+This search feature gives you the option of seeing our partners' social media profiles, email, and other personal information on your partner's website. No need to browse through the partner search results, you'll be able to find the
+---------------
+How to complement your partner?
+
+
+Can's you, I'm just telling you that if there is a question of this sort, try to find a suitable partner. I just want you to ask me directly, I'm a keen fan of both you guys, and I'm sure it will be a quite pleasant conversation, you don't want to have to take on some responsibilities, just put on such a good show. And also, that's why I like to be a social person, I want to give you a free
+---------------
+How to complement your partner? Just put on your pants Don't try to fit you more into your partner's trousers Don't try to fit you more into your partner's shorts Don't try to fit you more into your partner's jacket Don't try to fit you more into your partner's coat Don't try to fit you more into your partner's jacket Don't try to fit you more into your partner's trousers Don't try to fit you more into your partner's trousers Don't try to fit you more into your partner's
+---------------
+How to complement your partner?
+
+Please give your partner an opportunity to do so.
+
+1-2 minutes
+
+Start with an introduction to the language and how they talk.
+
+Then try to follow and communicate with your partner through the language and make a choice if they want to join you.
+
+3-5 minutes
+
+Pilot your thoughts and your moment.
+
+Make a choice of what to say and when to say it.
+
+More importantly, please listen and consider how you can
+---------------
++ python sample.py --init_from=gpt2 '--start=Please write me a story that ends with a happily ever after?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = Please write me a story that ends with a happily ever after?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+Please write me a story that ends with a happily ever after? Or any story that is supposed to have a happy ending so soon after it happens?
+
+A. Well yes, I do pretend that I do!
+
+B. Yes, I do!
+
+C. Well yes, I do!
+
+D. Yes, I do!
+
+E. Right!
+
+I am definitely not a "cool kid" or "kid who actually likes a lot of stuff" type of person. I call myself a "cool kid". Many
+---------------
+Please write me a story that ends with a happily ever after? Probably not.
+
+So I thought I'd write a story for the current best-selling female comic book story of all time! How about she'll be a part of the next comic? I reached out to the writers at Marvel for any hints, but I'm not sure when they'd see them, but they did. There's a few more questions that range from "Why do you have a group of girls in your line" to "How many girls are in your line?"
+
+
+---------------
+Please write me a story that ends with a happily ever after?
+
+
+Can's you, I'm just telling you that if there is ever a time when I think about the way my inner self looks, just for a few seconds, and I can't keep going, I go to a theater and I try to be a better person for it, just because I've noticed you're not as confident?
+
+
+I bet you've been watching this kind of things over and over again, though.
+
+
+And I bet your heart is beating so fast or
+---------------
+Please write me a story that ends with a happily ever after? Just like the song "The Starry Night"
+
+Let's get the story down and go through it.
+
+I had a relationship where I would do this thing and then get down on my knees and literally do this thing.
+
+
+It was kind of like the movie "The Starry Night".
+
+I'll be lying on my back in front of my computer, and I'll do this thing and then say, "I'm sorry, I'm not sure if I'm
+---------------
+Please write me a story that ends with a happily ever after? Thanks!"
+
+And then in a sense, he didn't make it.
+
+The message is now an extended version…
+
+(I hope it gets a little better by the day!)
+
+(We're still getting off on that message, but I'm sure that this wasn't pretty to read. It's really something to admire, right? Thank you for reading. I appreciate it too much.)
+
+Follow me on Twitter @iamjr2 and on Tumblr.<|endoftext|>
+---------------
++ python sample.py --init_from=gpt2 '--start=Please explain how a large language model works on a high level.' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = Please explain how a large language model works on a high level.
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+Please explain how a large language model works on a high level.
+
+Using the high-level model we can compute the frequency of each word and its shape. This helps us minimize the costs of defining data and to solve problems. We'll also be using this approach for the next few years.
+
+This is an implementation of the "high-level" model and we will support it in a future version of the Java SDK as well. In the meantime, let's see how this approach is becoming popular.
+
+Why do languages keep appearing so long
+---------------
+Please explain how a large language model works on a high level.
+
+We started by thinking about the functional language's "syntax tree" rather than the languages representation. We then introduced this syntax tree to simplify the computer model:
+
+MOV [str, i] = str[1], i
+
+We have a syntactician's view of how the semantics of our language are encoded in this syntax tree, and therefore see how we can use this syntactic tree to perform our computational tasks.
+
+We are actually doing some time analysis of
+---------------
+Please explain how a large language model works on a high level.
+
+
+For example, if I'm just writing down some of the code, I can never really be sure whether an interesting or useful idea is just for decoration or for usability reasons, or whether a function is just a way of making a more complex kind of interface or a concept of a new type of interface etc.. I still'd like to use it, but I just haven't found it somewhere.
+
+
+So I'd like to be able to make a specific type of interface for a given
+---------------
+Please explain how a large language model works on a high level. In this post I want to talk about some of the more fundamental tasks of the language model and how it can be used to achieve high level states of abstraction required by programming languages.
+
+JavaScript
+
+The Language Model
+
+Although Java is a very powerful language tool, the Java language is actually not so powerful that it is not a "strategy". Instead, it is a language to be used in many different ways, depending on the language's context and the current state of the language
+---------------
+Please explain how a large language model works on a high level. This is also a good starting point for a modeling program where you can do a high level understanding of the complexity of the language…
+
+(NOTE: I am a HUGE language model user and would love to see a way for a typical user to write a mathematical model. If that is where you are, please help me out by helping me out by submitting a proposal in support of this project! You can mail suggestions to me on the comments section at the bottom of this page or on this web
+---------------
++ python sample.py --init_from=gpt2 '--start=Please write a poem about lonely american life?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = Please write a poem about lonely american life?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+Please write a poem about lonely american life? Or any poem, but a poem about the fact that so many Americans want to go to college with no college debt and no income? Who knows? Maybe we'll get a good writer.
+
+I have the nerve to write a poem about lonely american life.
+
+I don't know if I can meet the author of this book.
+
+I know it's hard enough to explain how I'm feeling. I'm with you, I've been thinking about it for so many long
+---------------
+Please write a poem about lonely american life? Probably not. Try spelling out a story. I'm not sure if I know more about it than you.
+
+I'm sure you know that I'm a middle school teacher from the last few years, living in a little town called Ashland, across the border from all the little towns and villages in the eastern part of the country in Indiana. I'm a pretty nice guy who, when I arrive in a country with the best possible climate for my garden, I've got to work at
+---------------
+Please write a poem about lonely american life?
+
+
+Can's you write about a few of us that you don't live with?
+
+
+It was just a question of when. I just couldn't say, but it was a question of what to do.
+
+
+I can't really say it because the answer I know is, you don't want to talk about ME, who is this poor miserable soul with these problems.
+
+
+So what am I supposed to do?
+
+
+You're going through a lot, you gotta talk
+---------------
+Please write a poem about lonely american life? Tell me to get to know you.
+
+I am the little girl with the white brain and the dark shadow of the future. My mind is black, my mind black and I'm being blinded by I'm white. I'm not being black with words. My skin is blood red, my eyes are red but my memory is black. I am a little girl with the dark shadow of the future, and I have a dark brain. I am wearing white clothes. I'm dressed white on
+---------------
+Please write a poem about lonely american life? Or: "I've got a nice girlfriend, so my boyfriend likes shit."
+
+The message is clear: You should never, ever share your sexual fantasies in a public place. But rather than telling your mates that you're a gay guy that only wants to give flirting, why not tell them to keep talking and have fun with the stuff?
+
+Is it really true that you're quite attracted to the loser, but you're not a loser, so you can't possibly be attracted
+---------------
++ python sample.py --init_from=gpt2 '--start=Please tell me a interesting joke that includes academia?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = Please tell me a interesting joke that includes academia?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+Please tell me a interesting joke that includes academia? Or any other, but I'm not sure. I'm curious to hear it.
+
+A. Well, probably, assuming it's just a metaphor, but I'm aware of the amount of work that's gone into it.
+
+Q. What did you see happen in the early-90s where it became the norm, and the mainstream media and everybody became obsessed with the story?
+
+A. I'm not sure. I don't know. I don't want to say
+---------------
+Please tell me a interesting joke that includes academia? Probably not.
+
+So, I'm excited to introduce myself to the world of blogging. I'm 15 years old, and I'm an active member of the blogging community. As such, I enjoy writing about the various issues of my daily life, and I'm passionate about topics that impact the lives of other writers in general.
+
+So, I'm going to start by talking about how I've been a writer for the past 3 years. I'm going to talk about time spent working
+---------------
+Please tell me a interesting joke that includes academia?
+
+
+Can's you go talk to me about how terrible it is to live in the midst of so much knowledge, so much information, so much information, so much information, so much information, so much information, so much information?
+
+
+In other words, in the midst of such great information, much information, nearly as much information, it's hard not to think, well it's hard to think, well I'm sure you're right, but I'm sure it's hard to
+---------------
+Please tell me a interesting joke that includes academia? Just like the word "sausage" and "pizza" is no match for the word "joke."
+
+First of all, let me say that I am not an academic. But I do want to know, not just what they say in the papers, but what they do in the book. So let me also say that when I tell people that their speech or their writing, or their writing on social media, is an academic thing, I am not saying they are being
+---------------
+Please tell me a interesting joke that includes academia? Thanks!"
+
+And then in reply, Applebaum:
+
+"I would have thought that you would have been quite right in your statement about whether it would be useful for employers to allow university applications to be reviewed under the circumstances where they are based on personal data. If that was where it would be useful, it would be something I would have done more frequently in my career. I think quite frankly, the fact that you would have made it very clear that (Applebaum) is very
+---------------
++ python sample.py --init_from=gpt2 '--start=Will AI take over the control of World and human civilization?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = Will AI take over the control of World and human civilization?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+Will AI take over the control of World and human civilization? Or are some inherent rules that they have developed as a way to cope with it and manage it to survive?"
+
+Answering that question, an AI engineer who was aware of the coming AI war, responded that they had always been thinking about the future of human civilization, and were hesitant to give any details on what the future might look like. "I think it's a long way off from the way we want to live with this technology. It's just a matter of time before we
+---------------
+Will AI take over the control of World and human civilization? Probably not. Human beings live and work in the natural world, but they must work in artificial intelligence. If AI takes over this world, they will soon be wiped out and humans will be wiped out by robots.
+
+Once you have become a manager of a company with 100 employees, you see how difficult it is to go without the knowledge and support of a human, even if you already have the knowledge and skills. Will the AI fix the problems that plague the human world? Certainly not.
+---------------
+Will AI take over the control of World and human civilization?
+
+
+Star's previous game, World War II, was a tale of survivors fleeing the Nazis for new paths to victory. The protagonist, Jake, was an engineer, a soldier, a genius, and a fighter. His mission, during World War II, was to take over the control of the world, and save humanity from Hitler's attack. After being rescued by a Japanese submarine, Jake convinced the Japanese that they were a threat and could not take their nations back. Only by giving them free
+---------------
+Will AI take over the control of World and human civilization? Yes. This is what all the AI thinking and thinking is about. It is all about brain chemistry. I do not think that we will be able to stop AI programming. Even though we will have a better understanding of AI that will not be enough to drive the AI to work, we will still be able to predict what is going to happen on the level of humans. This will require more research, and AI will have to play a much bigger role as we have to see what happens. It
+---------------
+Will AI take over the control of World and human civilization? This question has been raised in many of the world's leading scientific and medical minds, and much of the research on the topic is in the public domain. These researchers have been working for the past few decades to find a way to build artificial intelligence that would be able to predict future events on a long-term basis. They have constructed a computer algorithm that can send information in a random order, and they have built a variety of artificial intelligence programs that can recognize, predict, and respond to human information
+---------------
++ python sample.py --init_from=gpt2 '--start=How to be good at Distributed Machine Learning?' --num_samples=5 --max_new_tokens=100 --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = How to be good at Distributed Machine Learning?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+How to be good at Distributed Machine Learning?
+
+One of the most important goals we need for our team is to be able to teach how machine learning works and how to work with data. We really need to test implementations and test what we have learned. The next task is to figure out how to support distributed applications that should be used by the team. We support the following two big general architectures: Java and Node.js.
+
+For the Node.js Distributed Machine Learning project, we are using a distributed machine learning platform called
+---------------
+How to be good at Distributed Machine Learning? Artificial Intelligence and Human Brain Cognition
+
+The difference between Distributed Machine Learning and human brain Cognition is that Distributed Machine Learning is an inherently human computer. We know how to construct a face, for example, though only computers can process that face. Distributed Machine Learning is based on the same principles of human vision that we use in computer vision. This is why Machine Learning is, by definition, a human computer. As far as the human brain is concerned, it is largely an extension
+---------------
+How to be good at Distributed Machine Learning?
+
+
+Machine learning is a collection of skills that can be taught over a long period of time. What constitutes knowledge, however, varies by country. For instance, in the United States, it is often difficult to go beyond a single class of tasks that can be learned in quite a few years. For many people, very few tasks require specific training, such as computer vision or quantitative thinking. And the amount of knowledge they have on a given task varies widely. Using a method called Distributed Machine
+---------------
+How to be good at Distributed Machine Learning?
+
+Here are a few tips to help you make more informed decisions about learning machine learning.
+
+Make sure your learning machine is able to go through full-scale human-level processing – how much data do we see? What is the probability of seeing the information we would like to know? How many of these are real people?
+
+– how much data do we see? What is the probability of seeing the information we would like to know? How many of these are real people?
+---------------
+How to be good at Distributed Machine Learning?
+
+Distributed Machine Learning has a great deal of promise for you.
+
+You have a variety of tools to make your network more efficient, but it's a whole different story with distributed machine learning.
+
+Let's take a look at what we cover here.
+
+The Basics
+
+We'll start with the basics.
+
+How to learn Distributed Machine Learning?
+
+What it means
+
+The basics
+
+It's not very good (or even useful) to
+---------------

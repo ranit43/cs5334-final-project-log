@@ -1,0 +1,327 @@
+(base) ➜  ~ ssh rakash@bridges2.psc.edu                         
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br013.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Thu Apr 27 12:38:59 2023 from nat17220240.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,982 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 11.85G used of 1.953T
+
+[rakash@bridges2-login013 ~]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 15987362
+salloc: job 15987362 queued and waiting for resources
+salloc: job 15987362 has been allocated resources
+salloc: Granted job allocation 15987362
+salloc: Waiting for resource configuration
+salloc: Nodes v034 are ready for job
+[rakash@v034 ~]$ module load cuda
+[rakash@v034 ~]$ module load anaconda3
+(base) [rakash@v034 ~]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 ~]$ python data/openwebtext/prepare.py
+python: can't open file '/jet/home/rakash/data/openwebtext/prepare.py': [Errno 2] No such file or directory
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 ~]$ ls
+class-mar28-nv100  project
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 ~]$ cd project/nano-gpt-git-v0/nanoGPT/
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 nanoGPT]$ ls
+assets           out-shakespeare-char
+bench.py         __pycache__
+config           README.md
+configurator.py  sample.py
+data             scaling_laws.ipynb
+LICENSE          train.py
+model.py         transformer_sizing.ipynb
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 nanoGPT]$ python data/openwebtext/prepare.py
+Downloading and preparing dataset openwebtext/plain_text to /jet/home/rakash/.cache/huggingface/datasets/openwebtext/plain_text/1.0.0/6f68e85c16ccc770c0dd489f4008852ea9633604995addd0cd76e293aed9e521...
+Downloading data: 100%|█████| 624M/624M [00:06<00:00, 101MB/s]
+Downloading data: 100%|█████| 629M/629M [00:06<00:00, 101MB/s]
+Downloading data: 100%|████| 627M/627M [00:06<00:00, 99.8MB/s]
+Downloading data: 100%|█████| 621M/621M [00:03<00:00, 157MB/s]
+Downloading data:  24%|█▏   | 147M/619M [00:00<00:03, 151MB/s]
+Traceback (most recent call last):/619M [00:00<00:03, 157MB/s]
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 611, in get_from_cache
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 405, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/data/openwebtext/prepare.py", line 15, in <module>
+    dataset = load_dataset("openwebtext")
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/load.py", line 1791, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/builder.py", line 891, in download_and_prepare
+    self._download_and_prepare(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/builder.py", line 1651, in _download_and_prepare
+    super()._download_and_prepare(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/builder.py", line 964, in _download_and_prepare
+    split_generators = self._split_generators(dl_manager, **split_generators_kwargs)
+  File "/jet/home/rakash/.cache/huggingface/modules/datasets_modules/datasets/openwebtext/6f68e85c16ccc770c0dd489f4008852ea9633604995addd0cd76e293aed9e521/openwebtext.py", line 59, in _split_generators
+    archives = dl_manager.download(_DATA_FILES)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/download/download_manager.py", line 427, in download
+    downloaded_path_or_paths = map_nested(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/py_utils.py", line 443, in map_nested
+    mapped = [
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/py_utils.py", line 444, in <listcomp>
+    _single_map_nested((function, obj, types, None, True, None))
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/py_utils.py", line 346, in _single_map_nested
+    return function(data_struct)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/download/download_manager.py", line 453, in _download
+    return cached_path(url_or_filename, download_config=download_config)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 183, in cached_path
+    output_path = get_from_cache(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 602, in get_from_cache
+    with temp_file_manager() as temp_file:
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 501, in __exit__
+    result = self.file.__exit__(exc, value, tb)
+OSError: [Errno 122] Disk quota exceeded
+Downloading data files:  76%|▊| 16/21 [00:25<00:08,  1.61s/it]
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 nanoGPT]$ my_quota
+bash: my_quota: command not found
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 nanoGPT]$ my_quotas
+The quota for home directory /jet/home/rakash
+Storage quota: 25.00GiB
+ Storage used: 25.00GiB
+  Inode quota: 0
+  Inodes used: 62,731
+
+The quota for project directory /ocean/projects/cis230018p
+Storage quota: 1.95TiB
+ Storage used: 11.85GiB
+  Inode quota: 12,140,000
+  Inodes used: 80,365
+
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v034 nanoGPT]$ exit
+salloc: Relinquishing job allocation 15987362
+[rakash@bridges2-login013 ~]$ ls
+class-mar28-nv100  project
+[rakash@bridges2-login013 ~]$ pwd
+/jet/home/rakash
+[rakash@bridges2-login013 ~]$ cd ..
+[rakash@bridges2-login013 home]$ pwd
+/jet/home
+[rakash@bridges2-login013 home]$ cd rak
+rakash/   rakgad/   rakula01/ 
+[rakash@bridges2-login013 home]$ cd rak
+rakash/   rakgad/   rakula01/ 
+[rakash@bridges2-login013 home]$ cd rakash/
+[rakash@bridges2-login013 ~]$ ls
+class-mar28-nv100  project
+[rakash@bridges2-login013 ~]$ pwd
+/jet/home/rakash
+[rakash@bridges2-login013 ~]$ my_quotas
+The quota for home directory /jet/home/rakash
+Storage quota: 25.00GiB
+ Storage used: 25.00GiB
+  Inode quota: 0
+  Inodes used: 62,731
+
+The quota for project directory /ocean/projects/cis230018p
+Storage quota: 1.95TiB
+ Storage used: 11.85GiB
+  Inode quota: 12,140,000
+  Inodes used: 80,365
+
+[rakash@bridges2-login013 ~]$ cd /ocean/projects/cis230018p/ra 
+rakash/   ralvarez/ 
+[rakash@bridges2-login013 ~]$ cd /ocean/projects/cis230018p/ra 
+rakash/   ralvarez/ 
+[rakash@bridges2-login013 ~]$ cd /ocean/projects/cis230018p/rakash/
+[rakash@bridges2-login013 rakash]$ pwd
+/ocean/projects/cis230018p/rakash
+[rakash@bridges2-login013 rakash]$ ls
+rda-ngpt-env-v1
+[rakash@bridges2-login013 rakash]$ logout
+Connection to bridges2.psc.edu closed.
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br011.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Tue Apr 25 13:20:35 2023 from nat17220240.utep.edu
+ 
+Projects
+--------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,982 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 11.85G used of 1.953T
+
+[rakash@bridges2-login011 ~]$ cd /ocean/projects/cis230018p/rakash/
+[rakash@bridges2-login011 rakash]$ cp /jet/home/rakash/
+.bash_history      class-mar28-nv100/ .nv/
+.bash_logout       .conda/            project/
+.bash_profile      .emacs             .ssh/
+.bashrc            .kshrc             .zshrc
+.cache/            .local/            
+[rakash@bridges2-login011 rakash]$ pwd
+/ocean/projects/cis230018p/rakash
+[rakash@bridges2-login011 rakash]$ ls
+rda-ngpt-env-v1
+[rakash@bridges2-login011 rakash]$ mkdir projects
+[rakash@bridges2-login011 rakash]$ ls
+projects  rda-ngpt-env-v1
+[rakash@bridges2-login011 rakash]$ cp -r /jet/home/rakash/project/nano-gpt-git-v0/ projects/ 
+[rakash@bridges2-login011 rakash]$ ls
+projects  rda-ngpt-env-v1
+[rakash@bridges2-login011 rakash]$ cd projects/
+[rakash@bridges2-login011 projects]$ ls
+nano-gpt-git-v0
+[rakash@bridges2-login011 projects]$ cd nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets           out-shakespeare-char
+bench.py         __pycache__
+config           README.md
+configurator.py  sample.py
+data             scaling_laws.ipynb
+LICENSE          train.py
+model.py         transformer_sizing.ipynb
+[rakash@bridges2-login011 nanoGPT]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 2:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=2:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=2:00:00
+salloc: Pending job allocation 15987403
+salloc: job 15987403 queued and waiting for resources
+salloc: job 15987403 has been allocated resources
+salloc: Granted job allocation 15987403
+salloc: Waiting for resource configuration
+salloc: Nodes v007 are ready for job
+[rakash@v007 nanoGPT]$ pwd
+/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT
+[rakash@v007 nanoGPT]$ module load cuda
+[rakash@v007 nanoGPT]$ module load anaconda
+Lmod has detected the following error:  The
+following module(s) are unknown: "anaconda"
+
+Please check the spelling or version number. Also try "module
+spider ..."
+It is also possible your cache file is out-of-date; it may
+help to try:
+  $ module --ignore-cache load "anaconda"
+
+Also make sure that all modulefiles written in TCL start with
+the string #%Module
+
+
+
+[rakash@v007 nanoGPT]$ module load anaconda3
+(base) [rakash@v007 nanoGPT]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v007 nanoGPT]$ 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v007 nanoGPT]$ python data/openwebtext/prepare.py
+Downloading and preparing dataset openwebtext/plain_text to /jet/home/rakash/.cache/huggingface/datasets/openwebtext/plain_text/1.0.0/6f68e85c16ccc770c0dd489f4008852ea9633604995addd0cd76e293aed9e521...
+Downloading data:   1%|   | 8.39M/619M [00:00<00:21, 28.7MB/s]
+Traceback (most recent call last):619M [00:00<00:27, 22.7MB/s]
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 611, in get_from_cache
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 405, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/data/openwebtext/prepare.py", line 15, in <module>
+    dataset = load_dataset("openwebtext")
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/load.py", line 1791, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/builder.py", line 891, in download_and_prepare
+    self._download_and_prepare(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/builder.py", line 1651, in _download_and_prepare
+    super()._download_and_prepare(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/builder.py", line 964, in _download_and_prepare
+    split_generators = self._split_generators(dl_manager, **split_generators_kwargs)
+  File "/jet/home/rakash/.cache/huggingface/modules/datasets_modules/datasets/openwebtext/6f68e85c16ccc770c0dd489f4008852ea9633604995addd0cd76e293aed9e521/openwebtext.py", line 59, in _split_generators
+    archives = dl_manager.download(_DATA_FILES)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/download/download_manager.py", line 427, in download
+    downloaded_path_or_paths = map_nested(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/py_utils.py", line 443, in map_nested
+    mapped = [
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/py_utils.py", line 444, in <listcomp>
+    _single_map_nested((function, obj, types, None, True, None))
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/py_utils.py", line 346, in _single_map_nested
+    return function(data_struct)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/download/download_manager.py", line 453, in _download
+    return cached_path(url_or_filename, download_config=download_config)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 183, in cached_path
+    output_path = get_from_cache(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/datasets/utils/file_utils.py", line 602, in get_from_cache
+    with temp_file_manager() as temp_file:
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 501, in __exit__
+    result = self.file.__exit__(exc, value, tb)
+OSError: [Errno 122] Disk quota exceeded
+Downloading data files:  76%|▊| 16/21 [00:00<00:00, 18.54it/s]
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v007 nanoGPT]$ ls
+assets           out-shakespeare-char
+bench.py         __pycache__
+config           README.md
+configurator.py  sample.py
+data             scaling_laws.ipynb
+LICENSE          train.py
+model.py         transformer_sizing.ipynb
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v007 nanoGPT]$ pwd
+/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v007 nanoGPT]$ exit
+salloc: Relinquishing job allocation 15987403
+[rakash@bridges2-login011 nanoGPT]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 2:00:00^C
+[rakash@bridges2-login011 nanoGPT]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 2:00:00ls^C
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets           out-shakespeare-char
+bench.py         __pycache__
+config           README.md
+configurator.py  sample.py
+data             scaling_laws.ipynb
+LICENSE          train.py
+model.py         transformer_sizing.ipynb
+[rakash@bridges2-login011 nanoGPT]$ pwd
+/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT
+[rakash@bridges2-login011 nanoGPT]$ logout
+Connection to bridges2.psc.edu closed.

@@ -1,0 +1,229 @@
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+Collecting package metadata (current_repodata.json): done
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+Solving environment: failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /jet/home/rakash/.conda/envs/rda-ngpt-env-v0
+
+  added / updated specs:
+    - pytorch
+    - pytorch-cuda=11.7
+    - torchaudio
+    - torchvision
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    _libgcc_mutex-0.1          |             main           3 KB
+    _openmp_mutex-5.1          |            1_gnu          21 KB
+    blas-1.0                   |              mkl           6 KB
+    brotlipy-0.7.0             |py310h7f8727e_1002         712 KB
+    bzip2-1.0.8                |       h7b6447c_0          78 KB
+    ca-certificates-2023.01.10 |       h06a4308_0         120 KB
+    certifi-2022.12.7          |  py310h06a4308_0         150 KB
+    cffi-1.15.1                |  py310h5eee18b_3         243 KB
+    charset-normalizer-2.0.4   |     pyhd3eb1b0_0          35 KB
+    cryptography-39.0.1        |  py310h9ce1e76_0         1.4 MB
+    cuda-cudart-11.7.99        |                0         194 KB  nvidia
+    cuda-cupti-11.7.101        |                0        22.9 MB  nvidia
+    cuda-libraries-11.7.1      |                0           1 KB  nvidia
+    cuda-nvrtc-11.7.99         |                0        17.3 MB  nvidia
+    cuda-nvtx-11.7.91          |                0          57 KB  nvidia
+    cuda-runtime-11.7.1        |                0           1 KB  nvidia
+    ffmpeg-4.3                 |       hf484d3e_0         9.9 MB  pytorch
+    filelock-3.9.0             |  py310h06a4308_0          18 KB
+    freetype-2.12.1            |       h4a9f257_0         626 KB
+    giflib-5.2.1               |       h5eee18b_3          80 KB
+    gmp-6.2.1                  |       h295c915_3         544 KB
+    gmpy2-2.1.2                |  py310heeb90bb_0         517 KB
+    gnutls-3.6.15              |       he1e5248_0         1.0 MB
+    idna-3.4                   |  py310h06a4308_0          97 KB
+    intel-openmp-2021.4.0      |    h06a4308_3561         4.2 MB
+    jinja2-3.1.2               |  py310h06a4308_0         215 KB
+    jpeg-9e                    |       h5eee18b_1         262 KB
+    lame-3.100                 |       h7b6447c_0         323 KB
+    lcms2-2.12                 |       h3be6417_0         312 KB
+    ld_impl_linux-64-2.38      |       h1181459_1         654 KB
+    lerc-3.0                   |       h295c915_0         196 KB
+    libcublas-11.10.3.66       |                0       286.1 MB  nvidia
+    libcufft-10.7.2.124        |       h4fbf590_0        93.6 MB  nvidia
+    libcufile-1.6.1.9          |                0         764 KB  nvidia
+    libcurand-10.3.2.106       |                0        51.7 MB  nvidia
+    libcusolver-11.4.0.1       |                0        78.7 MB  nvidia
+    libcusparse-11.7.4.91      |                0       151.1 MB  nvidia
+    libdeflate-1.17            |       h5eee18b_0          69 KB
+    libffi-3.4.2               |       h6a678d5_6         136 KB
+    libgcc-ng-11.2.0           |       h1234567_1         5.3 MB
+    libgomp-11.2.0             |       h1234567_1         474 KB
+    libiconv-1.16              |       h7f8727e_2         736 KB
+    libidn2-2.3.2              |       h7f8727e_0          81 KB
+    libnpp-11.7.4.75           |                0       129.3 MB  nvidia
+    libnvjpeg-11.8.0.2         |                0         2.2 MB  nvidia
+    libpng-1.6.39              |       h5eee18b_0         304 KB
+    libstdcxx-ng-11.2.0        |       h1234567_1         4.7 MB
+    libtasn1-4.19.0            |       h5eee18b_0          63 KB
+    libtiff-4.5.0              |       h6a678d5_2         479 KB
+    libunistring-0.9.10        |       h27cfd23_0         536 KB
+    libuuid-1.41.5             |       h5eee18b_0          27 KB
+    libwebp-1.2.4              |       h11a3e52_1          86 KB
+    libwebp-base-1.2.4         |       h5eee18b_1         376 KB
+    lz4-c-1.9.4                |       h6a678d5_0         154 KB
+    markupsafe-2.1.1           |  py310h7f8727e_0          34 KB
+    mkl-2021.4.0               |     h06a4308_640       142.6 MB
+    mkl-service-2.4.0          |  py310h7f8727e_0         177 KB
+    mkl_fft-1.3.1              |  py310hd6ae3a3_0         567 KB
+    mkl_random-1.2.2           |  py310h00e6091_0        1009 KB
+    mpc-1.1.0                  |       h10f8cd9_1          90 KB
+    mpfr-4.0.2                 |       hb69a4c5_1         487 KB
+    mpmath-1.2.1               |  py310h06a4308_0         769 KB
+    ncurses-6.4                |       h6a678d5_0         914 KB
+    nettle-3.7.3               |       hbbd107a_1         809 KB
+    networkx-2.8.4             |  py310h06a4308_1         2.7 MB
+    numpy-1.24.3               |  py310hd5efca6_0          11 KB
+    numpy-base-1.24.3          |  py310h8e6c178_0         6.9 MB
+    openh264-2.1.1             |       h4ff587b_0         711 KB
+    openssl-1.1.1t             |       h7f8727e_0         3.7 MB
+    pillow-9.4.0               |  py310h6a678d5_0         730 KB
+    pip-23.0.1                 |  py310h06a4308_0         2.6 MB
+    pycparser-2.21             |     pyhd3eb1b0_0          94 KB
+    pyopenssl-23.0.0           |  py310h06a4308_0          97 KB
+    pysocks-1.7.1              |  py310h06a4308_0          28 KB
+    python-3.10.11             |       h7a1cb2a_2        26.8 MB
+    pytorch-2.0.0              |py3.10_cuda11.7_cudnn8.5.0_0        1.19 GB  pytorch
+    pytorch-cuda-11.7          |       h778d358_3           7 KB  pytorch
+    pytorch-mutex-1.0          |             cuda           3 KB  pytorch
+    readline-8.2               |       h5eee18b_0         357 KB
+    requests-2.28.1            |  py310h06a4308_1         100 KB
+    setuptools-66.0.0          |  py310h06a4308_0         1.2 MB
+    six-1.16.0                 |     pyhd3eb1b0_1          18 KB
+    sqlite-3.41.2              |       h5eee18b_0         1.2 MB
+    sympy-1.11.1               |  py310h06a4308_0        11.8 MB
+    tk-8.6.12                  |       h1ccaba5_0         3.0 MB
+    torchaudio-2.0.0           |      py310_cu117         7.5 MB  pytorch
+    torchtriton-2.0.0          |            py310        62.6 MB  pytorch
+    torchvision-0.15.0         |      py310_cu117         8.0 MB  pytorch
+    typing_extensions-4.5.0    |  py310h06a4308_0          48 KB
+    tzdata-2023c               |       h04d1e81_0         116 KB
+    urllib3-1.26.15            |  py310h06a4308_0         199 KB
+    wheel-0.38.4               |  py310h06a4308_0          64 KB
+    xz-5.2.10                  |       h5eee18b_1         429 KB
+    zlib-1.2.13                |       h5eee18b_0         103 KB
+    zstd-1.5.5                 |       hc292b87_0         647 KB
+    ------------------------------------------------------------
+                                           Total:        2.32 GB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main 
+  _openmp_mutex      pkgs/main/linux-64::_openmp_mutex-5.1-1_gnu 
+  blas               pkgs/main/linux-64::blas-1.0-mkl 
+  brotlipy           pkgs/main/linux-64::brotlipy-0.7.0-py310h7f8727e_1002 
+  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h7b6447c_0 
+  ca-certificates    pkgs/main/linux-64::ca-certificates-2023.01.10-h06a4308_0 
+  certifi            pkgs/main/linux-64::certifi-2022.12.7-py310h06a4308_0 
+  cffi               pkgs/main/linux-64::cffi-1.15.1-py310h5eee18b_3 
+  charset-normalizer pkgs/main/noarch::charset-normalizer-2.0.4-pyhd3eb1b0_0 
+  cryptography       pkgs/main/linux-64::cryptography-39.0.1-py310h9ce1e76_0 
+  cuda-cudart        nvidia/linux-64::cuda-cudart-11.7.99-0 
+  cuda-cupti         nvidia/linux-64::cuda-cupti-11.7.101-0 
+  cuda-libraries     nvidia/linux-64::cuda-libraries-11.7.1-0 
+  cuda-nvrtc         nvidia/linux-64::cuda-nvrtc-11.7.99-0 
+  cuda-nvtx          nvidia/linux-64::cuda-nvtx-11.7.91-0 
+  cuda-runtime       nvidia/linux-64::cuda-runtime-11.7.1-0 
+  ffmpeg             pytorch/linux-64::ffmpeg-4.3-hf484d3e_0 
+  filelock           pkgs/main/linux-64::filelock-3.9.0-py310h06a4308_0 
+  freetype           pkgs/main/linux-64::freetype-2.12.1-h4a9f257_0 
+  giflib             pkgs/main/linux-64::giflib-5.2.1-h5eee18b_3 
+  gmp                pkgs/main/linux-64::gmp-6.2.1-h295c915_3 
+  gmpy2              pkgs/main/linux-64::gmpy2-2.1.2-py310heeb90bb_0 
+  gnutls             pkgs/main/linux-64::gnutls-3.6.15-he1e5248_0 
+  idna               pkgs/main/linux-64::idna-3.4-py310h06a4308_0 
+  intel-openmp       pkgs/main/linux-64::intel-openmp-2021.4.0-h06a4308_3561 
+  jinja2             pkgs/main/linux-64::jinja2-3.1.2-py310h06a4308_0 
+  jpeg               pkgs/main/linux-64::jpeg-9e-h5eee18b_1 
+  lame               pkgs/main/linux-64::lame-3.100-h7b6447c_0 
+  lcms2              pkgs/main/linux-64::lcms2-2.12-h3be6417_0 
+  ld_impl_linux-64   pkgs/main/linux-64::ld_impl_linux-64-2.38-h1181459_1 
+  lerc               pkgs/main/linux-64::lerc-3.0-h295c915_0 
+  libcublas          nvidia/linux-64::libcublas-11.10.3.66-0 
+  libcufft           nvidia/linux-64::libcufft-10.7.2.124-h4fbf590_0 
+  libcufile          nvidia/linux-64::libcufile-1.6.1.9-0 
+  libcurand          nvidia/linux-64::libcurand-10.3.2.106-0 
+  libcusolver        nvidia/linux-64::libcusolver-11.4.0.1-0 
+  libcusparse        nvidia/linux-64::libcusparse-11.7.4.91-0 
+  libdeflate         pkgs/main/linux-64::libdeflate-1.17-h5eee18b_0 
+  libffi             pkgs/main/linux-64::libffi-3.4.2-h6a678d5_6 
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-11.2.0-h1234567_1 
+  libgomp            pkgs/main/linux-64::libgomp-11.2.0-h1234567_1 
+  libiconv           pkgs/main/linux-64::libiconv-1.16-h7f8727e_2 
+  libidn2            pkgs/main/linux-64::libidn2-2.3.2-h7f8727e_0 
+  libnpp             nvidia/linux-64::libnpp-11.7.4.75-0 
+  libnvjpeg          nvidia/linux-64::libnvjpeg-11.8.0.2-0 
+  libpng             pkgs/main/linux-64::libpng-1.6.39-h5eee18b_0 
+  libstdcxx-ng       pkgs/main/linux-64::libstdcxx-ng-11.2.0-h1234567_1 
+  libtasn1           pkgs/main/linux-64::libtasn1-4.19.0-h5eee18b_0 
+  libtiff            pkgs/main/linux-64::libtiff-4.5.0-h6a678d5_2 
+  libunistring       pkgs/main/linux-64::libunistring-0.9.10-h27cfd23_0 
+  libuuid            pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0 
+  libwebp            pkgs/main/linux-64::libwebp-1.2.4-h11a3e52_1 
+  libwebp-base       pkgs/main/linux-64::libwebp-base-1.2.4-h5eee18b_1 
+  lz4-c              pkgs/main/linux-64::lz4-c-1.9.4-h6a678d5_0 
+  markupsafe         pkgs/main/linux-64::markupsafe-2.1.1-py310h7f8727e_0 
+  mkl                pkgs/main/linux-64::mkl-2021.4.0-h06a4308_640 
+  mkl-service        pkgs/main/linux-64::mkl-service-2.4.0-py310h7f8727e_0 
+  mkl_fft            pkgs/main/linux-64::mkl_fft-1.3.1-py310hd6ae3a3_0 
+  mkl_random         pkgs/main/linux-64::mkl_random-1.2.2-py310h00e6091_0 
+  mpc                pkgs/main/linux-64::mpc-1.1.0-h10f8cd9_1 
+  mpfr               pkgs/main/linux-64::mpfr-4.0.2-hb69a4c5_1 
+  mpmath             pkgs/main/linux-64::mpmath-1.2.1-py310h06a4308_0 
+  ncurses            pkgs/main/linux-64::ncurses-6.4-h6a678d5_0 
+  nettle             pkgs/main/linux-64::nettle-3.7.3-hbbd107a_1 
+  networkx           pkgs/main/linux-64::networkx-2.8.4-py310h06a4308_1 
+  numpy              pkgs/main/linux-64::numpy-1.24.3-py310hd5efca6_0 
+  numpy-base         pkgs/main/linux-64::numpy-base-1.24.3-py310h8e6c178_0 
+  openh264           pkgs/main/linux-64::openh264-2.1.1-h4ff587b_0 
+  openssl            pkgs/main/linux-64::openssl-1.1.1t-h7f8727e_0 
+  pillow             pkgs/main/linux-64::pillow-9.4.0-py310h6a678d5_0 
+  pip                pkgs/main/linux-64::pip-23.0.1-py310h06a4308_0 
+  pycparser          pkgs/main/noarch::pycparser-2.21-pyhd3eb1b0_0 
+  pyopenssl          pkgs/main/linux-64::pyopenssl-23.0.0-py310h06a4308_0 
+  pysocks            pkgs/main/linux-64::pysocks-1.7.1-py310h06a4308_0 
+  python             pkgs/main/linux-64::python-3.10.11-h7a1cb2a_2 
+  pytorch            pytorch/linux-64::pytorch-2.0.0-py3.10_cuda11.7_cudnn8.5.0_0 
+  pytorch-cuda       pytorch/linux-64::pytorch-cuda-11.7-h778d358_3 
+  pytorch-mutex      pytorch/noarch::pytorch-mutex-1.0-cuda 
+  readline           pkgs/main/linux-64::readline-8.2-h5eee18b_0 
+  requests           pkgs/main/linux-64::requests-2.28.1-py310h06a4308_1 
+  setuptools         pkgs/main/linux-64::setuptools-66.0.0-py310h06a4308_0 
+  six                pkgs/main/noarch::six-1.16.0-pyhd3eb1b0_1 
+  sqlite             pkgs/main/linux-64::sqlite-3.41.2-h5eee18b_0 
+  sympy              pkgs/main/linux-64::sympy-1.11.1-py310h06a4308_0 
+  tk                 pkgs/main/linux-64::tk-8.6.12-h1ccaba5_0 
+  torchaudio         pytorch/linux-64::torchaudio-2.0.0-py310_cu117 
+  torchtriton        pytorch/linux-64::torchtriton-2.0.0-py310 
+  torchvision        pytorch/linux-64::torchvision-0.15.0-py310_cu117 
+  typing_extensions  pkgs/main/linux-64::typing_extensions-4.5.0-py310h06a4308_0 
+  tzdata             pkgs/main/noarch::tzdata-2023c-h04d1e81_0 
+  urllib3            pkgs/main/linux-64::urllib3-1.26.15-py310h06a4308_0 
+  wheel              pkgs/main/linux-64::wheel-0.38.4-py310h06a4308_0 
+  xz                 pkgs/main/linux-64::xz-5.2.10-h5eee18b_1 
+  zlib               pkgs/main/linux-64::zlib-1.2.13-h5eee18b_0 
+  zstd               pkgs/main/linux-64::zstd-1.5.5-hc292b87_0 
+
+
+Proceed ([y]/n)? y
+
+
+Downloading and Extracting Packages
+                                                                                                          
+Preparing transaction: done                                                                               
+Verifying transaction: done                                                                               
+Executing transaction: done                                                                               
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip freeze | grep tensorflow
+(rda-ngpt-env-v0) [rakash@bridges2-login013 ~]$ pip freeze | grep tensorflow

@@ -1,0 +1,359 @@
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br012.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Thu May  4 17:11:30 2023 from nat17220400.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,960 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 163.9G used of 1.953T
+
+[rakash@bridges2-login012 ~]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 16150592
+salloc: job 16150592 queued and waiting for resources
+salloc: job 16150592 has been allocated resources
+salloc: Granted job allocation 16150592
+salloc: Waiting for resource configuration
+salloc: Nodes v015 are ready for job
+[rakash@v015 ~]$ python train.py eval_gpt2cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/^C
+[rakash@v015 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@v015 nanoGPT]$ module load cuda
+[rakash@v015 nanoGPT]$ module load anaconda3
+(base) [rakash@v015 nanoGPT]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py eval_gpt2
+
+Overriding config with eval_gpt2:
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 77, in <module>
+    exec(open('configurator.py').read()) # overrides from command line or config file
+  File "<string>", line 26, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'eval_gpt2'
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ LS
+bash: LS: command not found
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ PWD
+bash: PWD: command not found
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ PWD
+bash: PWD: command not found
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ 
+Display all 3494 possibilities? (y or n)^C
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ pwd
+/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ ls
+assets
+bench.py
+config
+configurator.py
+data
+gpt2jobscript.sh
+gpt2-may4.out16072996
+gpt2-may4-r2.out16075208
+gpt2-may4-r3.out16078664
+LICENSE
+model.py
+out
+out-shakespeare-char
+__pycache__
+README.md
+sample.py
+scaling_laws.ipynb
+shakespere-13824.out16065196
+shakesperejobscript.sh
+slurm-16064969.out
+train.py
+transformer_sizing.ipynb
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py config/finetune_shakespeare.py
+Overriding config with config/finetune_shakespeare.py:
+import time
+
+out_dir = 'out-shakespeare'
+eval_interval = 5
+eval_iters = 40
+wandb_log = False # feel free to turn on
+wandb_project = 'shakespeare'
+wandb_run_name = 'ft-' + str(time.time())
+
+dataset = 'shakespeare'
+init_from = 'gpt2-xl' # this is the largest GPT-2 model
+
+# only save checkpoints if the validation loss improves
+always_save_checkpoint = False
+
+# the number of examples per iter:
+# 1 batch_size * 32 grad_accum * 1024 tokens = 32,768 tokens/iter
+# shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
+batch_size = 1
+gradient_accumulation_steps = 32
+max_iters = 20
+
+# finetune at constant LR
+learning_rate = 3e-5
+decay_lr = False
+
+tokens per iteration will be: 32,768
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 114, in <module>
+    train_data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/numpy/core/memmap.py", line 228, in __new__
+    f_ctx = open(os_fspath(filename), ('r' if mode == 'c' else mode)+'b')
+FileNotFoundError: [Errno 2] No such file or directory: 'data/shakespeare/train.bin'
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ ls data/
+openwebtext  shakespeare  shakespeare_char
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python sample.py
+number of parameters: 7.23M
+No meta.pkl found, assuming GPT-2 encodings...
+
+
+The 10-year-old was in the age of his family in the house. He was still a full-world contract. He was also an individual, who was aware of the amount of her. He was still known as he had been coming from a few hours before.
+
+"If he didn't support the way, I couldn't happen. I'd sometimes take the job," said Chris she wrote. "I'm a lot better with me," he said.
+
+'You don't like to bring to say. I's not like to see if more. I'm not going to be a better! ... they feel like because I like this.
+
+It's the game to find it now. I'm not like to see, though at the next week. I felt like something like that they are in this. I'm going, that I'm thinking that you can't ask, because we're not just my use.
+
+I'm glad I say I want to be one, I'm just my time. I don't. I started this for your time, though. There are my kind of kind of way, I have since I am a boy and I go to a woman who is telling me it, the boy thought of being sitting here. I was just very interesting. But I am, I think I just think there's kind of things. It's really a laugh and be a girl worth of my life. I think of the human life to get to all they're. I am more worried like it. It's some dangerous. I'm not doing everything. But I go when I do do time here. I've seen a couple of friends. I can look at what they will do. But I think you would do!
+
+I ever think what I thought on when I tell me I'm. I was to mean, I think you can say, I think we want enough to have this. I think I know we also have to see why.
+
+I don't make it a lot of place. I feel an extra time…
+
+
+I think I would have been “they think I don’t have seen a couple can know if I’m not that for me. I think there’s that I am very good. I don’t want to know when it comes from the truth’s world. I have to act on the threat. I
+---------------
+
+
+"We are more up for me."
+
+"The third world has a good set to produce and we're the same, but we could make sure that if we're so hard to do what we're doing?"
+
+"If the United Kingdom is going to happen."
+
+"This is the right thing I don't, look like that we're doing."<|endoftext|>Bott was the first time…and we were back to be wrong with a successful and my life. But a one is much easier than the one, but I can expect to be a great, but we've returned to. I didn't know that back."
+
+The “I think we're telling me how much we were, and we feel outside.”
+
+But we think they are thinking about the story.
+
+“He was the most important thing we're happy to do this,” said the one that year. “I didn’t have to take my name in so if it?” Trump.
+
+–
+
+I’m because I don’t have to give one-century, I’ve got to do the best. (“I've really got the moment for the most recent years. What is the one I’s for now being the right reason when it’s quite one.”<|endoftext|>This is now in the University of our country and the nation, but the best of the country’s future, and it’s not the risk of an hour.
+
+The nation is where we keep the people and the greatest history of our military and the future has not been allowed to be a common piece of going home, and another because they’re a very great good man that doesn’t fit. I think I’m too. I think the people were there to be how much people have with my own friends. But I told you, I didn’t want to think what really’s the guy. I’m there. I’m sure. I’m not sure to pick up to watch for some of the work. Now, I see the only way I want to sign up in the season and the first time I’m not just ever going to do with a group. I’m sure, I’d like it.
+
+And in this morning I�
+---------------
+
+
+A second-year-old boy was named a house of “a man” to hospital after the island of the war in the hospital.<|endoftext|>Stills had one of the members of the men, and the father’s death of the army and forced to put others, and, are the greatest in the night, but a man, is accused of being a religious crime.
+
+When the incident were unable to join with a girl who had a dark man who had said his face was a look at the time and he would take a very special. The other woman (the most needed) was a man who remained a Muslim, a woman and they reached it and in his father, and said.
+
+“I don’t know their as much as a white. I think she was the same time in his father. And I don’t have to be one day. I would seem so we were just if the players were not good.”
+
+“So that’s a girl, I’ve got his children,” one said. “It’s not not like a son about the woman.”
+
+“I don’t think we’ve been doing as a book,” he said. But there’s a song that feels like the first things, but I think that’s very little. I really want to get the story being living across the country. We’re in an unvention. H.A., the fact, that the most famous-lows just to learn that if you don’t know, it’s just a little bit like,, only that’s just a little p.m.. I’m not a bunch of people. And I’ll be this clear. I’m going to have a problem. I’m just another going to see I am at actually. I’m not and I think the least to work and I want, but I’ll go to the same. One, I first was a man and I’m going to say, but I'm on this process.
+
+“It’s not good thing,” he said. “I need to say that.”
+
+That’s our first job. I’ve been
+---------------
+
+
+The second-year-old had been completed on a 14-year-old son of a resident of the Republican campaign in the United States. At the time where all of the leaders had been being known as the chairman of the British World War.
+
+"He was the first-week, we said that that we had to become there. "I feel, but he’s not to see something that we got right," he added. "I am aware of this,' who says people were good and more of my colleague-belose, and then, on the party, then it is it not like that. I didn’t do what they have been to get. They went around to go. I wanted to move to me, so you would never call a man in a woman on the head, and with her life “the couple of my family.”
+
+But of course, I can get a little or really difficult.
+
+He’s not never noticed my family as she is a little great, and it’s a little surprise in the time.
+
+New York Times: The word “I am so hard to do it.” But if it was a great “There was the most good one of my work.”
+
+The B-R-N-S-F-based device is being able to have to deal with the next time.
+
+The UK are also right and is now on the game with the following year after one afternoon, which consists of three-year-old teams in the world, and when it seems to be that the majority of the last 10,000-income players would never have been.
+
+Goy can be available on the project and in the face of the first-yard team.
+
+The one-year-old family is saying that the team has been doing so fast on to pay a shot in the fight in the base of the car. The team has ever been the right to have a walk and the game is set and will already be a full-to-and-looking job for having a full-night shot.
+
+The former president, said in which Trump and has never done the case of himself. He is in his own last quarter. She is only a "sastent" – she was for the first-round break.
+
+He'd never already been found that as a
+---------------
+
+
+The company that the current of the O’S administration are more expensive, and that it’s a very common thing.
+
+So, as the US-based network is happening, is used for a general House, and the largest state of the US, the state of the South Korea, and the European Council of Justice, are extremely great and big.
+
+O-A. I’m a similar part of the US.
+
+One of the global warming provides the case of the Russia’s economic process that ultimately, we have a a lot of the party. The government is generally active in the end of a period. It’s a third-year-old to the country’s future, it’s a complete level of politics. The Chinese has been killed.
+
+This is a very rare half of the United Kingdom for the UK. The latest amount of our people around the country and the school of the US with the United Nations.
+
+Vaki have been able to see the beginning of the West’s last week, for a time here, as the federal government, the US government’s political community.
+
+Most of the US, the Supreme Court might have come with the North Dakota Government.
+
+It is also a real-time Democratic presidential player in Britain.
+
+While a university in the region, the country can have been able to make tax power, the government would be now.
+
+Some people are not in the world, according to the Supreme Court’s senior presidential nominee.
+
+The Congress has been a set of information, and we need to approve of whether the government is all the vote … to help us believe in Syria has still been the biggest issue of a new ruling as Barack Obama has an address.
+
+While I will now, that’s as a global economy, I’ve also completed the U.S. — and that government will go for a group.”
+
+Curgi’s campaign attorney, in the southern Union of Health and North Carolina. But there are two income and over the past year, and the government has conducted the federal economy in the world.
+
+“It’s made,” said Choyner, a professor, said, “I’m at every way." The bill would lead to Mr. al-F
+---------------
+
+
+Meret. S. K-A.
+
+F.b. — - - A.g., but it is as the most most of the people who are a lot.
+
+"The great thing we do it," she said. "I actually had a lot. I was going to be even the right, he said. "I'm so. I I had a lot of people.
+
+He said, is the only list of a lot, so I'm not a bit."
+
+"I, I know I was doing that I could do feel my most people," said. "I don't all have the only great things he was going to try and look pretty much like I. I did back, but I don't know I would remember this, but my money I can do not know that.
+
+"I think you have. I have heard my long time," Schm, but the show was missing," it said. "What I understand is all" with what I need, or what would be an extremely special part.
+
+"All you have a little good: "I think we’re going to feel in my life," said. "You think I need to be thinking about myself. I don't know they?" I said. "When I try to say, I don't get out of my music. It’s a person who don’t do anything, but I don’t know. I really have time for me to use the time to solve this. I like one of those over my opponents, I think I had a bad thing... and I see, I’m not going to see my really,” he says.
+
+But when I had to make me, it, I know, I'm all there on my own.
+
+If I had been a good idea to see. I think it was a good thing. There would say that I would get my idea. I will like that, but I wasn’t to do a world. I also feel like I want to be in the wrong… I would give them a really good thing to you.
+
+“And I don’t make it a person and I’m not happening in other hand, I know that I’ve seen their players? The team is still hard,” he says.
+
+"But so that I
+---------------
+
+
+The first campaign was reported that this, and in the 2014 campaign, it seemed to be the only example of the national security.
+
+The US may have been held up at the past 25 to the month after a Senate campaign to a few years ago, according to the House.
+
+The issue also was expected to vote the state from the state that state is often on with the federal law.
+
+The second dollar in Paris is a new committee that will allow Russia to launch a court court from the United States. The United States to the federal government is in the agreement between 2014 and November 16, 2015.
+
+The US-backed Secretary of State (in one of the European government, Australia, 2010, 2015, with more the rise in the United States. This week, the National Party of Illinois, 2004, 2015 and three years ago, in the United States. This year, the European government is told the South-S&T, which has already described as part of a meeting in a “Carkous A-A,” which would take a point to the general economic crisis that would add a new security, has been allowed to be a result to vote.
+
+An on the Institute of Science and India, has been published on Twitter, and has set him against "defosed" to follow him on Twitter. But the one of the 'Pose' has ever been working with the potential to meet with the political and power.
+
+"We don't matter how, we get a major, and it is a former president being a key of a community."
+
+Arkey said the United States would not change the best-time deal. The federal-term fund is not far more than than a number of things. But they're in a vote with, the tax program's service in this country is going to be likely that. You may use legal scrutiny for others.
+
+The decision is where the government is committed in the House of Americans has done over for an additional rate as it must will be.
+
+L.C.R. Trump is working on this this week. But the company has always already done an eye on a record business in 2005 while a federal majority of a relatively valuable growth over the year.
+
+W.C.S. economy has been to be in the area.
+
+The former major time of the country is now the need for a minimum income for the U
+---------------
+
+Sart are just as a matter of a lot of life.
+
+Paul will play a little bit like a day he's one of the number of those on the days. It is a world that it can be an evil he is, and he's a lot of things. A few hundred of him is in the last half of the age of others. She’s a person who are in the best of what is. Maybe there’s a new person who can’t have to play one.
+
+But why I don’t think she’s quite the day. But I don’t yet know what they did. Maybe I knew the day for the age of it. I had a ever so long enough, but when you show the first I had the right now, I’m so my life I was all. I’m you not in too. I think that.”
+
+I was going to have been reading. I haven’t even been taken in the time.
+
+If I did my. I had my favorite and I started my life with this one. I can see the sort of time. I decided to say, and I can walk my own. I may have ever heard about. I get with me and I was in the point I will see. And I should all get my mind, you'd like I don't know. Here, I appreciate that I did me so I ever actually understand. I'm just the person who would be saying?
+
+I got it so soon. I'm not just in the right time. The fact was so I was really successful, and I think it's having to do that of life was to be excited. He is who was in the very much time in my way. I mean that we have to know what I'm now. But I'm not in my life. I am it more like that, I will do all with the fact that the people had the responsibility of my life. I often have to make me a way. I've mentioned that in the end of the work, I'm going to get rid of the experience as well. I am very happy. I am still going to see this.
+
+My favorite, and I think before I can be talking when I came on to go forward and then I have to go with, and I know that I know. I’m quite
+---------------
+
+
+As a single official ‘Tink’ is a good way I love to know why he can lead to a personal,” the 'A said: “Yes, I think of all time you, I also don’t know that if you're doing in the world. But I don’t know what is going. I’m sorry if you’ve been going to be an incredible game because I’m moving to everyone. I’m a bit more like to get this.
+
+It’s always a great game in the first season, it’s a pretty stupid thing. I’m going to pass again. When I put the player’s performance, I was so done. I got my full-age with a third-year-old, and her friends have been in a minute. I had never be too home at the night evening. I said in my election “I”.” [I�I’m afraid I really wanted to die or for time to make the problem, because I love this, I’m not sure what all is it. There is no step no longer than it. There is a lot of time to go to do you, and you’re that’s being sick is to be much. And I’m just a little better. I’ll want to see something so is about it,” said Chris Zan. “It’s a much so far more than the time, I’ll have to read from that when I am when I’m not a funny black. It was surprised if I said he was a little positive, and big. I’ve really been working right. I got the best time to start a lot. And I don’t have a lot of people who will have no way and I mean, that’s that it’s going to it.
+
+“It’s still seeing about the political process. I think I'm going for you,” he was not a one who did not want to put the same way.
+
+“My favourite is one in order to prove I should only do,” said Jeff D.K. “I think I would try to ask that everything I can be wearing my father,” said.
+---------------
+
+
+The same day, the time was only nine months of one-cost, a Republican presidential election.
+
+He passed a second-year-old person.
+
+“He was a man,” the a member of the World.
+
+“He was not afraid I have been told me that when she’d had looked like a good partner. But I’m really surprised that I believe he was just the time and I talked about his parents’ because I don’t have been in the world.”[23]
+
+He’s just just just thought she’s done with her own.
+
+“This is a ‘the game,” as they don’t just make the one. He’s going to be some some of her — no people don’t.”
+
+“Because he knows why he’s not the ever-point this country – she’s not the right, and he’s so much the state. And he knows what the two-time people don’t matter isn’t being considered as many years. But it is afraid that’s the right and the number of thousands of years. They think they’ve just built a very good race: but yes, what’s the man is. It’s not a good thing.
+
+As I’m not a boy I also couldn’t be a simple, “Will you get to their family.”
+
+The other would be out to go when the more women say when the man was an interview.<|endoftext|>Dur’s manager said this was not the claim that the police had been moving to the country, and the most the people have been placed and not into them in Afghanistan.)
+
+An anti-born is not that such as a whole person, the chief of the director, said the policy is not a lot.
+
+This is not too sad, as a way to have been a potential to pay the human. In which we have the same thing, it should be on what we do.
+
+For more about 16-year-old, I used a full-to-spiting video in a different way that we, because we should want to make this kind. No wonder, we’re really likely to go.
+---------------
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ exit
+salloc: Relinquishing job allocation 16150592
+[rakash@bridges2-login012 ~]$ pwd
+/jet/home/rakash
+[rakash@bridges2-login012 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login012 nanoGPT]$ ls
+assets           gpt2jobscript-af-train.sh  LICENSE               __pycache__                   shakesperejobscript.sh
+bench.py         gpt2jobscript.sh           model.py              README.md                     slurm-16064969.out
+config           gpt2-may4.out16072996      out                   sample.py                     train.py
+configurator.py  gpt2-may4-r2.out16075208   out-shakespeare       scaling_laws.ipynb            transformer_sizing.ipynb
+data             gpt2-may4-r3.out16078664   out-shakespeare-char  shakespere-13824.out16065196
+[rakash@bridges2-login012 nanoGPT]$ sbatch gpt2jobscript-af-train.sh 
+sbatch: error: Allocation in partition GPU must request all resources, gpu count 4 is low
+sbatch: error: Batch job submission failed: Access/permission denied
+[rakash@bridges2-login012 nanoGPT]$ sbatch gpt2jobscript-af-train.sh 
+Submitted batch job 16163553

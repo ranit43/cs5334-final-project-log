@@ -1,0 +1,36 @@
+interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+module load anaconda3
+
+git clone https://github.com/karpathy/nanoGPT.git
+
+
+cd nanoGPT/
+
+interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+
+
+On intereact node:
+
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ 
+
+python data/shakespeare_char/prepare.py
+
+
+module load cuda
+
+
+module list
+
+
+module load anaconda3
+
+conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+
+python train.py config/train_shakespeare_char.py
+
+python sample.py --out_dir=out-shakespeare-char
+
+
+cd /ocean/projects/cis230018p/rakash/

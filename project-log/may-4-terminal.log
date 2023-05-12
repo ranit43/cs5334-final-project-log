@@ -1,0 +1,312 @@
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br011.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Tue May  2 12:27:22 2023 from nat17220240.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,975 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 159.1G used of 1.953T
+
+[rakash@bridges2-login011 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets           data                  __pycache__         shakesperejobscript.sh
+bench.py         LICENSE               README.md           slurm-16064969.out
+config           model.py              sample.py           train.py
+configurator.py  out-shakespeare-char  scaling_laws.ipynb  transformer_sizing.ipynb
+[rakash@bridges2-login011 nanoGPT]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16065196       GPU shakespe   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login011 nanoGPT]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16065196       GPU shakespe   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login011 nanoGPT]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16065196       GPU shakespe   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login011 nanoGPT]$ client_loop: send disconnect: Broken pipe
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br013.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Tue May  2 17:40:12 2023 from nat17220400.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,972 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 159.8G used of 1.953T
+
+[rakash@bridges2-login013 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login013 nanoGPT]$ ls
+assets            gpt2-may4.out16072996     __pycache__                   slurm-16064969.out
+bench.py          gpt2-may4-r2.out16075208  README.md                     train.py
+config            LICENSE                   sample.py                     transformer_sizing.ipynb
+configurator.py   model.py                  scaling_laws.ipynb
+data              out                       shakespere-13824.out16065196
+gpt2jobscript.sh  out-shakespeare-char      shakesperejobscript.sh
+[rakash@bridges2-login013 nanoGPT]$ nano gpt2-may4-r2.out16075208 
+[rakash@bridges2-login013 nanoGPT]$ ls
+assets            gpt2-may4.out16072996     __pycache__                   slurm-16064969.out
+bench.py          gpt2-may4-r2.out16075208  README.md                     train.py
+config            LICENSE                   sample.py                     transformer_sizing.ipynb
+configurator.py   model.py                  scaling_laws.ipynb
+data              out                       shakespere-13824.out16065196
+gpt2jobscript.sh  out-shakespeare-char      shakesperejobscript.sh
+[rakash@bridges2-login013 nanoGPT]$ my_quota
+-bash: my_quota: command not found
+[rakash@bridges2-login013 nanoGPT]$ my_quotas
+The quota for home directory /jet/home/rakash
+Storage quota: 25.00GiB
+ Storage used: 25.02GiB
+  Inode quota: 0
+  Inodes used: 62,746
+
+The quota for project directory /ocean/projects/cis230018p
+Storage quota: 1.95TiB
+ Storage used: 159.80GiB
+  Inode quota: 12,140,000
+  Inodes used: 165,965
+
+[rakash@bridges2-login013 nanoGPT]$ client_loop: send disconnect: Broken pipe
+
+
+
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br011.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Thu May  4 09:40:05 2023 from cpe-70-120-229-82.elp.res.rr.com
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,975 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 159.1G used of 1.953T
+
+[rakash@bridges2-login011 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets           LICENSE               sample.py                     train.py
+bench.py         model.py              scaling_laws.ipynb            transformer_sizing.ipynb
+config           out-shakespeare-char  shakespere-13824.out16065196
+configurator.py  __pycache__           shakesperejobscript.sh
+data             README.md             slurm-16064969.out
+[rakash@bridges2-login011 nanoGPT]$ nano shakespere-13824.out16065196 
+[rakash@bridges2-login011 nanoGPT]$ client_loop: send disconnect: Broken pipe
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br011.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Thu May  4 14:22:26 2023 from nat17220400.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,973 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 159.7G used of 1.953T
+
+[rakash@bridges2-login011 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets           gpt2jobscript.sh       out-shakespeare-char  shakespere-13824.out16065196
+bench.py         gpt2-may4.out16072996  __pycache__           shakesperejobscript.sh
+config           LICENSE                README.md             slurm-16064969.out
+configurator.py  model.py               sample.py             train.py
+data             out                    scaling_laws.ipynb    transformer_sizing.ipynb
+[rakash@bridges2-login011 nanoGPT]$ nano gpt2-may4.out16072996 
+[rakash@bridges2-login011 nanoGPT]$ client_loop: send disconnect: Broken pipe
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br012.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Thu May  4 00:01:08 2023 from cpe-70-120-229-82.elp.res.rr.com
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,973 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 159.7G used of 1.953T
+
+[rakash@bridges2-login012 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login012 nanoGPT]$ ls
+assets           gpt2jobscript.sh       out-shakespeare-char  shakespere-13824.out16065196
+bench.py         gpt2-may4.out16072996  __pycache__           shakesperejobscript.sh
+config           LICENSE                README.md             slurm-16064969.out
+configurator.py  model.py               sample.py             train.py
+data             out                    scaling_laws.ipynb    transformer_sizing.ipynb
+[rakash@bridges2-login012 nanoGPT]$ nano gpt2jobscript.sh 
+[rakash@bridges2-login012 nanoGPT]$ sbatch gpt2jobscript.sh 
+Submitted batch job 16075208
+[rakash@bridges2-login012 nanoGPT]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16075208       GPU gpt2jobs   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login012 nanoGPT]$ cd config/
+eval_gpt2_large.py            finetune_shakespeare_gpt2.py  train_gpt2_reduced.py
+eval_gpt2_medium.py           finetune_shakespeare.py       train_shakespeare_char.py
+eval_gpt2.py                  gpt2jobscript.sh              
+eval_gpt2_xl.py               train_gpt2.py                 
+[rakash@bridges2-login012 nanoGPT]$ cd config/
+[rakash@bridges2-login012 config]$ nano train_gpt2_reduced.py 
+[rakash@bridges2-login012 config]$ nano gpt2jobscript.sh 
+[rakash@bridges2-login012 config]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16075208       GPU gpt2jobs   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login012 config]$ client_loop: send disconnect: Broken pipe
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br011.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Thu May  4 15:02:21 2023 from nat17220400.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,972 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 159.8G used of 1.953T
+
+[rakash@bridges2-login011 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets            gpt2-may4.out16072996     __pycache__                   slurm-16064969.out
+bench.py          gpt2-may4-r2.out16075208  README.md                     train.py
+config            LICENSE                   sample.py                     transformer_sizing.ipynb
+configurator.py   model.py                  scaling_laws.ipynb
+data              out                       shakespere-13824.out16065196
+gpt2jobscript.sh  out-shakespeare-char      shakesperejobscript.sh
+[rakash@bridges2-login011 nanoGPT]$ nano gpt2jobscript.sh 
+[rakash@bridges2-login011 nanoGPT]$ sbatch gpt2jobscript.sh 
+Submitted batch job 16078664
+[rakash@bridges2-login011 nanoGPT]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16078664       GPU gpt2jobs   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login011 nanoGPT]$ squeue -u rakash
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          16078664       GPU gpt2jobs   rakash PD       0:00      1 (Resources)
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets            gpt2-may4.out16072996     out-shakespeare-char          shakesperejobscript.sh
+bench.py          gpt2-may4-r2.out16075208  __pycache__                   slurm-16064969.out
+config            gpt2-may4-r3.out16078664  README.md                     train.py
+configurator.py   LICENSE                   sample.py                     transformer_sizing.ipynb
+data              model.py                  scaling_laws.ipynb
+gpt2jobscript.sh  out                       shakespere-13824.out16065196
+[rakash@bridges2-login011 nanoGPT]$ ls
+assets            gpt2-may4.out16072996     out-shakespeare-char          shakesperejobscript.sh
+bench.py          gpt2-may4-r2.out16075208  __pycache__                   slurm-16064969.out
+config            gpt2-may4-r3.out16078664  README.md                     train.py
+configurator.py   LICENSE                   sample.py                     transformer_sizing.ipynb
+data              model.py                  scaling_laws.ipynb
+gpt2jobscript.sh  out                       shakespere-13824.out16065196
+[rakash@bridges2-login011 nanoGPT]$ ls -F
+assets/           gpt2-may4.out16072996     out-shakespeare-char/         shakesperejobscript.sh
+bench.py          gpt2-may4-r2.out16075208  __pycache__/                  slurm-16064969.out
+config/           gpt2-may4-r3.out16078664  README.md                     train.py
+configurator.py   LICENSE                   sample.py                     transformer_sizing.ipynb
+data/             model.py                  scaling_laws.ipynb
+gpt2jobscript.sh  out/                      shakespere-13824.out16065196
+[rakash@bridges2-login011 nanoGPT]$ ls out/
+ckpt.pt
+[rakash@bridges2-login011 nanoGPT]$ client_loop: send disconnect: Broken pipe

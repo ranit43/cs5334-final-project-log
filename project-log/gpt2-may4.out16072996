@@ -1,0 +1,721 @@
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ export HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ module load cuda
+++ /usr/share/lmod/lmod/libexec/lmod bash load cuda
++ eval '__LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_CPATH;' 'CPATH=/opt/packages/cuda/v11.7.1/include;' export 'CPATH;' 'CUDA_HOME=/opt/packages/cuda/v11.7.1;' export 'CUDA_HOME;' 'CUDA_PATH=/opt/packages/cuda/v11.7.1;' export 'CUDA_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' 'LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LD_LIBRARY_PATH;' '__LMOD_REF_COUNT_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LIBRARY_PATH;' 'LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LIBRARY_PATH;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h;' export '_ModuleTable001_;' '_ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs;' export '_ModuleTable002_;' '_ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi;' export '_ModuleTable003_;' '_ModuleTable004_=LH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;'
+++ __LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_CPATH
+++ CPATH=/opt/packages/cuda/v11.7.1/include
+++ export CPATH
+++ CUDA_HOME=/opt/packages/cuda/v11.7.1
+++ export CUDA_HOME
+++ CUDA_PATH=/opt/packages/cuda/v11.7.1
+++ export CUDA_PATH
+++ __LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LD_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LD_LIBRARY_PATH
+++ LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LD_LIBRARY_PATH
+++ __LMOD_REF_COUNT_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LIBRARY_PATH
+++ LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LIBRARY_PATH
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h
+++ export _ModuleTable001_
+++ _ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs
+++ export _ModuleTable002_
+++ _ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi
+++ export _ModuleTable003_
+++ _ModuleTable004_=LH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load cuda
++ return 0
++ module load anaconda3
+++ /usr/share/lmod/lmod/libexec/lmod bash load anaconda3
++ eval '__LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1;' export '__LMOD_REF_COUNT_ACLOCAL_PATH;' 'ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal;' export 'ACLOCAL_PATH;' '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1;' export '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH;' 'CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10;' export 'CMAKE_PREFIX_PATH;' 'CONDA_PKGS_DIRS=\$HOME/.conda/pkgs/;' export 'CONDA_PKGS_DIRS;' '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH;' 'CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'CPLUS_INCLUDE_PATH;' '__LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_C_INCLUDE_PATH;' 'C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'C_INCLUDE_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1\;/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1\;anaconda3/2022.10:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1\;/opt/packages/anaconda3-2022.10/man:1\;/opt/packages/anaconda3-2022.10/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/anaconda3-2022.10/bin:1\;/opt/packages/anaconda3-2022.10/condabin:1\;/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1\;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1\;/opt/modulefiles/production/anaconda3/2022.10.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k;' export '_ModuleTable001_;' '_ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs;' export '_ModuleTable002_;' '_ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp;' export '_ModuleTable003_;' '_ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;' '__LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv;' export '__LMOD_STACK_CONDA_PKGS_DIRS;' source '/opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh;' conda 'activate;'
+++ __LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1
+++ export __LMOD_REF_COUNT_ACLOCAL_PATH
+++ ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal
+++ export ACLOCAL_PATH
+++ __LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1
+++ export __LMOD_REF_COUNT_CMAKE_PREFIX_PATH
+++ CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10
+++ export CMAKE_PREFIX_PATH
+++ CONDA_PKGS_DIRS='$HOME/.conda/pkgs/'
+++ export CONDA_PKGS_DIRS
+++ __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH
+++ CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export CPLUS_INCLUDE_PATH
+++ __LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_C_INCLUDE_PATH
+++ C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export C_INCLUDE_PATH
+++ __LMOD_REF_COUNT_INCLUDE='/opt/packages/cuda/v11.7.1/include:1;/opt/packages/anaconda3-2022.10/include:1'
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1;anaconda3/2022.10:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1;/opt/packages/anaconda3-2022.10/man:1;/opt/packages/anaconda3-2022.10/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/anaconda3-2022.10/bin:1;/opt/packages/anaconda3-2022.10/condabin:1;/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH='/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1'
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1;/opt/modulefiles/production/anaconda3/2022.10.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k
+++ export _ModuleTable001_
+++ _ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs
+++ export _ModuleTable002_
+++ _ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp
+++ export _ModuleTable003_
+++ _ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ __LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv
+++ export __LMOD_STACK_CONDA_PKGS_DIRS
+++ source /opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ '[' -z '' ']'
++++ export CONDA_SHLVL=0
++++ CONDA_SHLVL=0
++++ '[' -n '' ']'
++++++ dirname /opt/packages/anaconda3-2022.10/bin/conda
+++++ dirname /opt/packages/anaconda3-2022.10/bin
++++ PATH=/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export PATH
++++ '[' -z '' ']'
++++ PS1=
+++ conda activate
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate
++++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate
+++ ask_conda='PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
+++ eval 'PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
++++ PS1='(base) '
++++ export PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=base
++++ CONDA_DEFAULT_ENV=base
++++ export 'CONDA_PROMPT_MODIFIER=(base) '
++++ CONDA_PROMPT_MODIFIER='(base) '
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh
+++++ '[' -n '' ']'
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/proj ']'
+++++ export PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ '[' -f /opt/packages/anaconda3-2022.10/share/proj/copyright_and_licenses.csv ']'
+++++ export PROJ_NETWORK=ON
+++++ PROJ_NETWORK=ON
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh
+++++ [[ -n '' ]]
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/udunits ']'
+++++ export UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++++ UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load anaconda3
++ return 0
++ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ '[' -n '' ']'
++ local ask_conda
+++ PS1='(base) '
+++ __conda_exe shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ ask_conda='. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
++ eval '. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh
++++ unset UDUNITS2_XML_PATH
++++ [[ -n '' ]]
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh
++++ unset PROJ_LIB
++++ unset PROJ_NETWORK
++++ '[' -n '' ']'
+++ PS1='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export CONDA_SHLVL=2
+++ CONDA_SHLVL=2
+++ export CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export 'CONDA_PROMPT_MODIFIER=(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ CONDA_PROMPT_MODIFIER='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
+++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2_reduced.py
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:
+Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:Overriding config with config/train_gpt2_reduced.py:
+
+
+
+
+
+Overriding config with config/train_gpt2_reduced.py:
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+# config for training GPT-2 (124M) down to very nice loss of ~2.85 on 1 node of 8X A100 40GB
+# launch as the following (e.g. in a screen session) and wait ~5 days:
+# $ torchrun --standalone --nproc_per_node=8 train.py config/train_gpt2.py
+
+# --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+# --n_layer=4 --n_head=4 --n_embd=128
+
+wandb_log = True
+wandb_project = 'owt'
+wandb_run_name = 'gpt2-124M-reduced'
+
+# these make the total batch size be ~0.5M
+# 12 batch size * 1024 block size * 5 gradaccum * 8 GPUs = 491,520
+batch_size = 12  # --batch_size=12
+block_size = 64  # --block_size=64
+gradient_accumulation_steps = 5 * 8
+
+# this makes total number of tokens be 300B
+max_iters = 2000  # --max_iters=2000
+lr_decay_iters = 2000  # --lr_decay_iters=2000
+
+# eval stuff
+eval_interval = 1000
+eval_iters = 20  # --eval_iters=20
+log_interval = 1  # --log_interval=1
+
+# weight decay
+weight_decay = 1e-1
+
+# model
+n_layer = 4  # --n_layer=4
+n_head = 4  # --n_head=4
+n_embd = 128  # --n_embd=128
+dropout = 0.0
+
+
+
+
+
+
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+tokens per iteration will be: 30,720
+Initializing a new model from scratch
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+Initializing a new model from scratchInitializing a new model from scratchInitializing a new model from scratch
+
+Initializing a new model from scratch
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)Initializing a new model from scratchdefaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)Initializing a new model from scratch
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+
+
+
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)Initializing a new model from scratch
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+
+
+
+defaulting to vocab_size of GPT-2 to 50304 (50257 rounded up for efficiency)
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23Mnumber of parameters: 7.23M
+
+number of parameters: 7.23M
+number of parameters: 7.23M
+number of parameters: 7.23M
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+wandb: ERROR api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 242, in <module>
+    wandb.init(project=wandb_project, name=wandb_run_name, config=config)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 1164, in init
+    raise e
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 1141, in init
+    wi.setup(kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 289, in setup
+    wandb_login._login(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/wandb/sdk/wandb_login.py", line 298, in _login
+    wlogin.prompt_api_key()
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/wandb/sdk/wandb_login.py", line 228, in prompt_api_key
+    raise UsageError("api_key not configured (no-tty). call " + directive)
+wandb.errors.UsageError: api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47724 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47725 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47726 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47727 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47728 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47729 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 47730 closing signal SIGTERM
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 47723) of binary: /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin/python
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.0.0', 'console_scripts', 'torchrun')())
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-05-04_14:53:34
+  host      : v008.ib.bridges2.psc.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 47723)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
++ python sample.py --out_dir=out-shakespeare
+Overriding: out_dir = out-shakespeare
+Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 38, in <module>
+    checkpoint = torch.load(ckpt_path, map_location=device)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'out-shakespeare/ckpt.pt'
++ python sample.py --init_from=gpt2 '--start=What is the answer to life, the universe, and everything?' --num_samples=5 --max_new_tokens=100
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+
+Downloading (…)lve/main/config.json:   0%|          | 0.00/665 [00:00<?, ?B/s]
+Downloading (…)lve/main/config.json: 100%|██████████| 665/665 [00:00<00:00, 6.08MB/s]
+
+Downloading pytorch_model.bin:   0%|          | 0.00/548M [00:00<?, ?B/s]Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 49, in <module>
+    model = GPT.from_pretrained(init_from, dict(dropout=0.0))
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/model.py", line 245, in from_pretrained
+    model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2450, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/utils/hub.py", line 409, in cached_file
+    resolved_file = hf_hub_download(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 120, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1364, in hf_hub_download
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 544, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+
+Downloading pytorch_model.bin:   2%|▏         | 10.5M/548M [00:00<00:18, 29.3MB/s]

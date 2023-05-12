@@ -1,0 +1,958 @@
+(base) ➜  ~ code ~/soft-study/projects/utep-study/cs5334-parallel-programming
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br012.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Sun May  7 20:52:17 2023 from cpe-70-120-229-82.elp.res.rr.com
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,953 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 204.5G used of 1.953T
+
+[rakash@bridges2-login012 ~]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+[rakash@bridges2-login012 nanoGPT]$ ls
+assets                               gpt2-may4-r2.out16075208  sample.py
+bench.py                             gpt2-may4-r3.out16078664  scaling_laws.ipynb
+config                               LICENSE                   shakespere-13824.out16065196
+configurator.py                      model.py                  shakesperejobscript.sh
+data                                 out                       slurm-16064969.out
+gpt2-af-train-may7-t-01.out16163553  out-shakespeare           train.py
+gpt2jobscript-af-train.sh            out-shakespeare-char      transformer_sizing.ipynb
+gpt2jobscript.sh                     __pycache__
+gpt2-may4.out16072996                README.md
+[rakash@bridges2-login012 nanoGPT]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/data/shakespeare
+[rakash@bridges2-login012 shakespeare]$ ls
+prepare.py  readme.md
+[rakash@bridges2-login012 shakespeare]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 16220548
+salloc: job 16220548 queued and waiting for resources
+salloc: job 16220548 has been allocated resources
+salloc: Granted job allocation 16220548
+salloc: Waiting for resource configuration
+salloc: Nodes v014 are ready for job
+[rakash@v014 shakespeare]$ exit
+salloc: Relinquishing job allocation 16220548
+salloc: Job allocation 16220548 has been revoked.
+[rakash@bridges2-login012 shakespeare]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 16220591
+salloc: job 16220591 queued and waiting for resources
+salloc: job 16220591 has been allocated resources
+salloc: Granted job allocation 16220591
+salloc: Waiting for resource configuration
+salloc: Nodes v003 are ready for job
+[rakash@v003 shakespeare]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/data/shakespeare
+[rakash@v003 shakespeare]$ ls
+prepare.py  readme.md
+[rakash@v003 shakespeare]$ python prepare.py
+bash: python: command not found
+[rakash@v003 shakespeare]$ module load cuda
+[rakash@v003 shakespeare]$ module load anaconda3
+(base) [rakash@v003 shakespeare]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 shakespeare]$ python sample.py 
+python: can't open file '/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/data/shakespeare/sample.py': [Errno 2] No such file or directory
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 shakespeare]$ ls
+prepare.py  readme.md
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 shakespeare]$ python prepare.py
+
+train has 301,966 tokens
+val has 36,059 tokens
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 shakespeare]$ 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 shakespeare]$ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ python train.py config/finetune_shakespeare_gpt2.py
+Overriding config with config/finetune_shakespeare_gpt2.py:
+import time
+
+out_dir = 'out-shakespeare'
+eval_interval = 5
+eval_iters = 40
+wandb_log = False  # feel free to turn on
+wandb_project = 'shakespeare'
+wandb_run_name = 'ft-' + str(time.time())
+
+dataset = 'shakespeare'
+init_from = 'gpt2'  # this is the largest GPT-2 model
+
+# only save checkpoints if the validation loss improves
+always_save_checkpoint = False
+
+# the number of examples per iter:
+# 1 batch_size * 32 grad_accum * 1024 tokens = 32,768 tokens/iter
+# shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
+batch_size = 1
+gradient_accumulation_steps = 32
+max_iters = 20
+
+# finetune at constant LR
+learning_rate = 3e-5
+decay_lr = False
+
+tokens per iteration will be: 32,768
+Initializing from OpenAI GPT-2 weights: gpt2
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+Downloading pytorch_model.bin:   2%| | 10.5M/548M [00Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 180, in <module>
+    model = GPT.from_pretrained(init_from, override_args)
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/model.py", line 245, in from_pretrained
+    model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2450, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/utils/hub.py", line 409, in cached_file
+    resolved_file = hf_hub_download(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 120, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1364, in hf_hub_download
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 544, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+Downloading pytorch_model.bin:   4%| | 21.0M/548M [00
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ pwd
+/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ python sample.py \
+>     --init_from=gpt2 \
+>     --start="What is the answer to life, the universe, and everything?" \
+>     --num_samples=5 --max_new_tokens=100 \
+>     --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+Downloading pytorch_model.bin:   2%|▋                                 | 10.5M/548M [00:00<00:18, 28.6MB/s]Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/sample.py", line 49, in <module>
+    model = GPT.from_pretrained(init_from, dict(dropout=0.0))
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/model.py", line 245, in from_pretrained
+    model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2450, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/utils/hub.py", line 409, in cached_file
+    resolved_file = hf_hub_download(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 120, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1364, in hf_hub_download
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 544, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+Downloading pytorch_model.bin:   4%|█▎                                | 21.0M/548M [00:01<00:31, 17.0MB/s]
+^C
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ export HF_DATASETS_CACHE="/ocean/projects/cis230018p/rakash/"
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ python train.py config/finetune_shakespeare_gpt2.py
+Overriding config with config/finetune_shakespeare_gpt2.py:
+import time
+
+out_dir = 'out-shakespeare'
+eval_interval = 5
+eval_iters = 40
+wandb_log = False  # feel free to turn on
+wandb_project = 'shakespeare'
+wandb_run_name = 'ft-' + str(time.time())
+
+dataset = 'shakespeare'
+init_from = 'gpt2'  # this is the largest GPT-2 model
+
+# only save checkpoints if the validation loss improves
+always_save_checkpoint = False
+
+# the number of examples per iter:
+# 1 batch_size * 32 grad_accum * 1024 tokens = 32,768 tokens/iter
+# shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
+batch_size = 1
+gradient_accumulation_steps = 32
+max_iters = 20
+
+# finetune at constant LR
+learning_rate = 3e-5
+decay_lr = False
+
+tokens per iteration will be: 32,768
+Initializing from OpenAI GPT-2 weights: gpt2
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+Downloading pytorch_model.bin:   2%|▋                                 | 10.5M/548M [00:00<00:11, 45.3MB/s]Traceback (most recent call last):
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/train.py", line 180, in <module>
+    model = GPT.from_pretrained(init_from, override_args)
+  File "/ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/model.py", line 245, in from_pretrained
+    model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2450, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/transformers/utils/hub.py", line 409, in cached_file
+    resolved_file = hf_hub_download(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 120, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1364, in hf_hub_download
+    http_get(
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 544, in http_get
+    temp_file.write(chunk)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/tempfile.py", line 483, in func_wrapper
+    return func(*args, **kwargs)
+OSError: [Errno 122] Disk quota exceeded
+Downloading pytorch_model.bin:   4%|█▎                                | 21.0M/548M [00:01<00:31, 16.8MB/s]
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ python sample.py     --init_from=gpt2     --start="What is the answer to life, the universe, and everything?"     --num_samples=5 --max_new_tokens=100     --out_dir=out-prompt
+Overriding: init_from = gpt2
+Overriding: start = What is the answer to life, the universe, and everything?
+Overriding: num_samples = 5
+Overriding: max_new_tokens = 100
+Overriding: out_dir = out-prompt
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+Downloading pytorch_model.bin: 100%|████████████████████████████████████| 548M/548M [00:02<00:00, 248MB/s]
+Downloading (…)neration_config.json: 100%|████████████████████████████████| 124/124 [00:00<00:00, 823kB/s]
+No meta.pkl found, assuming GPT-2 encodings...
+What is the answer to life, the universe, and everything?
+
+One of the most important questions we need to answer is:
+
+What is the answer to life?
+
+The answer to life is an individual, a theory, an idea. Someone who can answer that question is the answer to life. A theory who can answer that question is a theory whose identity is the answer to life.
+
+The idea is an idea; the theory is actually the idea involved. On the other hand, the universe is just a theory, but it is
+---------------
+What is the answer to life, the universe, and everything? Probably not. Try explaining to somebody why life is such a convenient answer to an obvious question. Try asking the question "Why do we have to feel this way?" Try saying "Mmmm, my god, I'm so glad you're here." Try saying "This is all due to me." Try saying "I'm not satisfied with this. I'm not satisfied with that." Try thinking that death can't be a good thing, but it can be a great thing. Try asking "Why
+---------------
+What is the answer to life, the universe, and everything?
+
+
+Can's you, I'm just telling you that if there is any question of this I have some knowledge, so let's face it, if you say, "Oh, I don't know precisely what you're talking about." Well, that's because the answer to it is, you don't want to talk about reality, you want to talk about something that is not real. And the only way to do that is through self-examination. You need to make it clear to yourself
+---------------
+What is the answer to life, the universe, and everything? In short, the answer is that all things and all beings are created and the universe is created and the universe is created. If we believe in God, then all beings will be created.
+
+The original Hebrew word for "God" is Lehi — the Old Testament word for "creator." The Bible literally says that God is the creator on all things in every part of creation, including the universe, and according to Noah, the Adam and Eve as well as the creation of all creatures on
+---------------
+What is the answer to life, the universe, and everything? This question has been asked many times before, by people who believe that there is a God, a supreme being, and that all things are created equal, and in a way that has no subject. In fact, this question has been asked on many occasions, and what I will try to look at in relation to this question is that there is no God.
+
+Think about our own physical and spiritual bodies. We are all built up of all sorts of very complex configurations and devices; and all
+---------------
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ python train.py config/finetune_shakespeare_gpt2.py
+Overriding config with config/finetune_shakespeare_gpt2.py:
+import time
+
+out_dir = 'out-shakespeare'
+eval_interval = 5
+eval_iters = 40
+wandb_log = False  # feel free to turn on
+wandb_project = 'shakespeare'
+wandb_run_name = 'ft-' + str(time.time())
+
+dataset = 'shakespeare'
+init_from = 'gpt2'  # this is the largest GPT-2 model
+
+# only save checkpoints if the validation loss improves
+always_save_checkpoint = False
+
+# the number of examples per iter:
+# 1 batch_size * 32 grad_accum * 1024 tokens = 32,768 tokens/iter
+# shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
+batch_size = 1
+gradient_accumulation_steps = 32
+max_iters = 20
+
+# finetune at constant LR
+learning_rate = 3e-5
+decay_lr = False
+
+tokens per iteration will be: 32,768
+Initializing from OpenAI GPT-2 weights: gpt2
+loading weights from pretrained gpt: gpt2
+forcing vocab_size=50257, block_size=1024, bias=True
+overriding dropout rate to 0.0
+number of parameters: 123.65M
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+step 0: train loss 4.1873, val loss 4.0326
+iter 0: loss 4.6553, time 87786.87ms, mfu -100.00%
+iter 1: loss 3.6397, time 1541.34ms, mfu -100.00%
+iter 2: loss 3.7515, time 1800.38ms, mfu -100.00%
+iter 3: loss 3.8437, time 1956.94ms, mfu -100.00%
+iter 4: loss 3.7712, time 1525.64ms, mfu -100.00%
+step 5: train loss 3.6274, val loss 3.4014
+saving checkpoint to out-shakespeare
+iter 5: loss 4.0614, time 7064.32ms, mfu 1.27%
+iter 6: loss 3.8364, time 1538.57ms, mfu 1.73%
+iter 7: loss 3.8428, time 1807.26ms, mfu 2.05%
+iter 8: loss 4.2751, time 1527.26ms, mfu 2.44%
+iter 9: loss 3.6976, time 4457.50ms, mfu 2.39%
+step 10: train loss 3.6093, val loss 3.3710
+saving checkpoint to out-shakespeare
+iter 10: loss 3.3592, time 5057.32ms, mfu 2.33%
+iter 11: loss 3.8322, time 1581.45ms, mfu 2.67%
+iter 12: loss 3.4306, time 2108.45ms, mfu 2.83%
+iter 13: loss 3.5095, time 1525.56ms, mfu 3.13%
+iter 14: loss 3.4067, time 1636.44ms, mfu 3.37%
+step 15: train loss 3.4973, val loss 3.3994
+iter 15: loss 3.1895, time 2876.47ms, mfu 3.34%
+iter 16: loss 2.6358, time 1530.30ms, mfu 3.60%
+iter 17: loss 3.8030, time 1531.71ms, mfu 3.82%
+iter 18: loss 3.4128, time 1928.88ms, mfu 3.91%
+iter 19: loss 3.2705, time 3627.89ms, mfu 3.76%
+step 20: train loss 3.4283, val loss 3.4036
+iter 20: loss 3.4980, time 2311.95ms, mfu 3.77%
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ python sample.py --out_dir=out-shakespeare
+Overriding: out_dir = out-shakespeare
+number of parameters: 123.65M
+No meta.pkl found, assuming GPT-2 encodings...
+
+- Show 10 All
+
+- Show
+
+- Show
+
+- Show
+
+- Show<|endoftext|>The Senate's power to revise North Korea's nuclear program is also being curbed.
+
+Sen. Lindsey Graham (R-S.C.) is pressing for Congress to renew an ban on the country's ballistic missile program, which could unleash a new "kill list" of weapons it has stockpiled.
+
+"I have a lot of concern about the North Korean nuclear program. Many of the nuclear program's weapons and programs deal with things like rogue satellites, war-making activities in the U.S., and covert operations in North Korea. We must do everything to address these things," Graham told the Senate Intelligence Committee on Wednesday. "There are a lot of difficult questions that need to be answered and we have to start in this direction. This is not a question of, 'Is there a guy sitting on the moon,' but of, 'Is there somebody in the U.S. government's government, who makes a decision about this?' "
+
+Graham's push for new legislation is an attempt by the Republican-controlled Senate to craft a compromise bill that could spur a congressional vote.
+
+Earlier this week, Graham did not mention the threat of new sanctions, but added, "Some very interesting things" he said he's heard on the issue.
+
+The senator's intervention likely comes after North Korea dismissed a similar prospect of nuclear war with the United States in late 2016, after testing a hydrogen bomb.
+
+With the United States no longer willing to go through with the latest nuclear test in defiance of international law, the Republican-controlled Senate is being forced to backtrack on its decision. If lawmakers do not agree on a nuclear strike, they would have to vote to reauthorize what remains a limited program known as North Korea's Terminal High Altitude Area Defense (THAAD) program.
+
+The Republican-controlled Senate could approve a bill to reschedule THAAD before it is due to be put through a vote next month.
+
+Graham's push for new legislation comes a week after North Korea warned against further U.S. retaliation, saying it would be "blatant" to target the country's nuclear program.
+
+Last month, North Korea's ballistic missile program was the subject of a wide-ranging congressional investigation and the United Nations General Assembly approved a new resolution condemning the country's actions.
+
+According
+---------------
+
+
+From left:
+
+John Ryan Johnson
+
+Dennis Dixon
+
+Mark Thomas
+
+Ewan Thomas
+
+Davion McLean<|endoftext|>Tales from the Borderlands: The Pre-Sequel
+
+by
+
+This is the first chapter in the Borderlands series.
+
+I haven't written anything in ten years. After years I'm almost done, I'm at a point where I just… start writing. I'm not done yet.
+
+So we get our first glimpse of the world of Borderlands 3 on Borderlands 2: Episode II. That's more Borderlands than the first game.
+
+In that vein, I must say that the writing is pretty good.
+
+The world is a bit more interesting.
+
+I'm glad that it's got a setting that I can think of. I'm pretty sure that the characters in this world are pretty much the same from game to game.
+
+But this world is different.
+
+We have some other worlds.
+
+There's a new world over there.
+
+So we get to talk about the world we'll be living in.
+
+And I'll tell you about the world of The Void:
+
+The Void is a small island in the ocean.
+
+The Void is a large one.
+
+There's a whole world to explore.
+
+There are quite a few interesting paths you can take in this world.
+
+I'm sure you'll find the best one.
+
+Welcome to the Void;
+
+Welcome to the Void of the Void.
+
+Over there, on the Void,
+
+You'll find the first battle of your life.
+
+In The Void:
+
+The first battle of your life is against the Void.
+
+The Void takes you up in the air.
+
+The Void takes you down in the air.
+
+It's there, and it's real.
+
+But it's not about me.
+
+It's about the Void.
+
+It's not about me.
+
+It's not about me.
+
+It's not about me.
+
+It's not about me.
+
+It's not about me.
+
+It's not about me.
+
+The Void takes you away from your life in the air.
+
+And it's there again.
+
+It's there again.
+
+And
+It's not like me.
+
+It's not
+---------------
+
+
+A second time, she went to dinner.
+
+"By Allah, I have seen thee," said Sheik, "and thou art such as, when thou art one of the members of my family, and thou wilt make me an apostle to testify that I am such."
+
+So saying, he said,
+"Indeed thou art such; but whatsoever thou art thou hast not seen."
+
+The prophet replied as follows:
+"What be thou, if thou hast seen, then I look upon thee and bid thee be circumcised and be made an apostle to testify that I am such;
+but for what is thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou, what be thou?
+
+A third time the prophet added to that tale:
+
+---------------
+
+
+The second is a longer and more intricate affair. The primary focus of the painting is the head of a man, so this is an allusion to the god of all gods, the Creator. Man, it is said, is called the god of all gods, because of his great stature, intelligence, and strength; and besides, the head.
+
+It is said, that the head is the head of the father, and the father is the head of the son; on the other hand, the son is the son of the father. The head is the head of the son, and the son is the son of the father. The head of the father is the head of the son; on the other hand, the son is the son of the father.
+
+And the head of the son is the head of the father, and the father is the father.
+
+It is said, that the head is the head of the father, and the father is the father.
+
+And the head of the son is the head of the father; on the other hand, the son is the son of the father.
+
+The head is the head of the son; on the other hand, the son is the son of the father.
+
+And the head is the head of the father; on the other hand, the son is the son of the father.
+
+And the head of the son is the head of the father; on the other hand, the son is the son of the father.
+
+And the head of the son is the head of the father; on the other hand, the son is the son of the father.
+
+The head of the son is the head of the father, and the father is the father.
+
+And the head of the son is the head of the father; on the other hand, the son is the son of the father.
+
+And the head of the son is the head of the father; on the other hand, the son is the son of the father.
+
+And the head of the son is the head of the father, and the father is the father.
+
+And the head of the son is the head of the father, and the father is the father.
+
+And the head of the son is the head of the father, and the father is the father.
+
+And the head of the son is the head of the father, and
+---------------
+
+'The whole world is for me'
+
+'The world are for me'
+
+'I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I are the world
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+and I am the world
+
+---------------
+
+
+Michele Berger
+
+Melissa Piggott
+
+Marbeth Haggis
+
+Maxine Lebeau
+
+Richard Harz
+
+Shabbir Ashmole
+
+Thomas J. Harris
+
+Ashley Landers
+
+Trevor J. Horneck
+
+Wesley L. Jenkins
+
+Paul E. Kessing
+
+Jeffrey R. Koehler
+
+Mark R. Koehler
+
+Bert J. Koehler
+
+Robert M. Keating
+
+Michael S. Keating
+
+Andrew Koehler
+
+Matthew Koehler
+
+John L. Keating
+
+Juan and Lisa Koehler
+
+Mark Koehler
+
+Jeffrey J. Koehler
+
+Sandy Lassens
+
+Mary J. Koehler
+
+Larry and Joseph Koehler
+
+James Schmaun
+
+Natalie J. Koehler
+
+Mark Stapley
+
+Michele and Suzanne G. Koehler
+
+Thomas Koehler
+
+James B. Koehler
+
+Devin Lassens
+
+William S. Koehler
+
+Ralph and Patrick Lassens
+
+Richard Koehler
+
+Richard H. Koehler
+
+Thalia Koehler
+
+Andrea Lassens
+
+John B. Koehler
+
+Thomas T. Koehler
+
+Wendy A. Koehler
+
+Thomas D. Koehler
+
+Thomas H. Koehler
+
+Julia P. Koehler
+
+Wendy A. Koehler
+
+William H. Koehler
+
+Thomas J. Koehler
+
+Michael S. Koehler
+
+Wendy L. Koehler
+
+Wendy S. Koehler
+
+Thomas A. Koehler
+
+Thomas J. Koehler
+
+Michael W. Koehler
+
+Thomas E. Koehler
+
+Thomas C. Koehler
+
+Thomas Robert Koehler
+
+Shirt-of-a-Rabbie
+
+Shirt-of-a-Rabbie
+
+Shirt-of-a-Rabbie
+
+Shirt-of-a-Rabbie
+
+Shirt-of-a-Rabbie
+
+Shirt-of
+---------------
+
+
+The first attempt was reported as early as Tuesday
+
+on reports that a military helicopter had made a daring incursion into a village
+
+of about 25,000 people.
+
+According to the hospital, the helicopter was 'first spotted by military personnel on the outskirts of
+
+the village' and also 'an eyewitness' the helicopter from the village that
+
+confronted the group said.
+
+The second attempt was reported as late as Wednesday
+
+on reports that a military helicopter had made a daring incursion into
+
+a village of about 25,000 people.
+
+According to the hospital, the helicopter was 'first spotted
+by military personnel on the outskirts of
+the village' and also 'an eyewitness' the
+
+military helicopter from the village that attacked the village.
+
+These reports have led to the arrest of one man on
+the spot.
+
+The second attempt was reported as late as Wednesday
+
+on reports that a military helicopter had made a daring incursion
+into a village of about 25,000 people.
+
+According to the hospital, the helicopter was 'first spotted
+by military personnel on the outskirts ofthe village
+
+that attacked the village.
+
+The third attempt was reported as late as Wednesday
+
+on reports that a military helicopter had made a daring incursion
+into a village of about 25,000 people.
+
+According to the hospital, the helicopter was 'first spotted
+by military personnel on the outskirts ofthe village
+
+that attacked the village.
+
+The fourth attempt was reported with 'any number of soldiers' in
+the village
+
+and also with 'any number of witnesses any of the time and
+
+with the use of any kind of firearm'.
+
+The fifth attempt was reported in the hospital with 'any number of
+military personnel' in the village.
+
+The final attempt has been reported with 'any number of
+soldiers'.
+
+All attempts were made on the night of Marmara's 7th
+day when the artillery was fired at the village.
+
+The army was ordered to sweep this village but no one was left alive.
+
+Even the most powerful artillery hit the village while the wounded were
+properly buried in the graves.
+
+At this time the army of the two armies of the two armies of
+the North had been prepared to use the artillery of the two armies of
+the North for the defence
+---------------
+
+SINCE the next project, the most anticipated is the first of three series, which will be based on the comic series.
+
+Advertisement
+
+"The fourth series is going to be about the characters in the first series," Kroll said. "So to start with, the series is going to be about two women. And that's really going to be the main focus. The second series is really about the men. So to put that on a par, so that you can get another series, I think it's gonna be well done."
+
+"If people love it," Kroll continued, "then by itself it'll be fantastic. But I think that's not the case for the third series."
+
+Advertisement
+
+So what is the motivation behind the show? "The comic book series is one of my greatest influences, and I think that all of us who have known me have in some way become that sort of audience. I think what the folks in the comic book industry have done, I think, is taken a little bit aback," Kroll said. "And because they did, and they have, they've sort of realized that they realized the sort of thing that comics is. And as a result, they've gotten to the point where they're more interested in what's going on in the comics industry."
+
+So what is the draw of the series? "The main thing that strikes me is, you know, how much of an impact it has on the medium. It's just the way that the world is. And so it's not so much a comic book book, it's a sort of a comedy. And I think that's some of the fun. But I think if you're going to do something that's actually going to be interesting, you've got to be able to draw something that's going to be funny."
+
+Advertisement
+
+But Kroll insists that the deal with Marvel is not over. "If you're going to do a movie, you've got to do a movie. I know I'm going to be doing a movie. And in some ways, the work that I do as a comic book artist, I'm not so much an artist as an actor and I'm not so much an actor. I am, in some ways, a stuntman. I'm a stunt guy. But there's no point in putting on a costume unless you're a stuntman, and that's the
+---------------
+
+
+As a result, the NSSDA has been reduced by 14% (from 15 in May 2016 to 16 in June 2016). This should be enough for the government to achieve its target of a per capita increase in state government spending by about $30,000 per year.
+
+In the meantime, as a result of this reduction, the increase in public services has been reduced by about $5,000.
+
+However, in the five years before the NSSDA was introduced, the government achieved its target of an increase in state government spending of $30,000 per year.
+
+This has been achieved by 10% of the total increase made by the government, up to $1.5 billion. The government has also improved performance by providing more than a third of the government's services.
+
+As per the government's guidance in 2016, the NSSDA has now been reduced by 22%, to a total of 16 in June 2016.
+
+The government has also promised to keep reducing the number of new jobs, but in the last year alone, the number of new jobs has increased by about 30,000, to 42,000 in May 2016.
+
+So it is hard to believe that this government has not been striving for a rise in state government spending.
+
+This is not the government who has been pushing the NSSDA into serious overstretch, as it has done this many times before.
+
+The government has not been doing it right.
+
+It is certainly not the government who has been on the wrong side of history.
+
+The government has been on the wrong side of history when it comes to education.
+
+Education is not about getting you high.
+
+The government has not been on the wrong side of history when it comes to making you miserable.
+
+The government has been on the wrong side of history when it comes to being a bastion of all the others who have done so wrong.<|endoftext|>A woman has been charged after a man allegedly hit her with a woman's head in a car in central London.
+
+The 34-year-old woman, from Cotswolds, south London, was in the north London borough of Hackney when she allegedly hit the woman with a head-on car because she wanted to help her lover.
+
+The woman is not believed to be the victim.
+
+The woman's male companion was wearing a black T-shirt when she
+---------------
+
+
+The same goes for the Internet. While most of the Internet is still extremely popular in the United States, the Internet has also taken off, and it's actually changing.
+
+According to a new report from the Center for Digital Economy titled "What's the Future of the Internet?"
+
+Citi Research found that when it comes to Internet use, the average Internet user is spending about 43% of their life on average watching the Internet, while the average person is spending about 32% of their life on average watching the Web.
+
+The report looks at the number of Internet-connected homes, with median life expectancy at 24 years, and gives some estimates of how many people live in their home than the average American household.
+
+The most popular Internet source of home consumption is the Internet streamer, where the average person spends some 8% of their time watching the Internet, while the average person spends almost 47% of their time watching the Web.
+
+Citi says this number is likely due to the fact that the Internet is generally more accessible and so therefore the Internet streamer has a smaller market share than the average person.
+
+Moreover, as this ranking shows, Internet use is up 24% from the year before and is increasing by 13% since 2013.<|endoftext|>I have a question about a post I just read from the British Archives:
+
+A man bought a piece of jewelry from the public with the intention of being asked by the purchaser to give up that piece of jewelry. The answer:
+
+Mr. Allen,
+
+What, please, am I asking you to do?
+
+The answer would be:
+
+You have more than enough money for nothing else.
+
+You have either never bought, or you failed to give the item.
+
+The answer, therefore, is:
+You have the right to refuse.
+
+But, then, ask yourself:
+What does I have to do with the object?
+
+I should prefer to have enough money to refuse, than to be compelled in the name of my neighbor to buy a piece of jewelry.
+
+That is a very curious matter, which is not only an unhappy matter for me, but a very melancholy one for the man.
+
+I have good reason to believe in this.
+But if I am not in a different position, I would rather have it in my hand:
+It is as if I had been asked to give up my gold
+---------------
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v003 nanoGPT]$ exit
+salloc: Relinquishing job allocation 16220591
+[rakash@bridges2-login012 shakespeare]$

@@ -1,0 +1,1071 @@
++ cd /ocean/projects/cis230018p/rakash/projects/nano-gpt-git-v0/nanoGPT/
++ export HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ HF_DATASETS_CACHE=/ocean/projects/cis230018p/rakash/
++ module load cuda
+++ /usr/share/lmod/lmod/libexec/lmod bash load cuda
++ eval '__LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_CPATH;' 'CPATH=/opt/packages/cuda/v11.7.1/include;' export 'CPATH;' 'CUDA_HOME=/opt/packages/cuda/v11.7.1;' export 'CUDA_HOME;' 'CUDA_PATH=/opt/packages/cuda/v11.7.1;' export 'CUDA_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' 'LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LD_LIBRARY_PATH;' '__LMOD_REF_COUNT_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:1\;/opt/packages/cuda/v11.7.1/nvvm/lib64:1\;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1;' export '__LMOD_REF_COUNT_LIBRARY_PATH;' 'LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64;' export 'LIBRARY_PATH;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h;' export '_ModuleTable001_;' '_ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs;' export '_ModuleTable002_;' '_ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi;' export '_ModuleTable003_;' '_ModuleTable004_=LH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;'
+++ __LMOD_REF_COUNT_CPATH=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_CPATH
+++ CPATH=/opt/packages/cuda/v11.7.1/include
+++ export CPATH
+++ CUDA_HOME=/opt/packages/cuda/v11.7.1
+++ export CUDA_HOME
+++ CUDA_PATH=/opt/packages/cuda/v11.7.1
+++ export CUDA_PATH
+++ __LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LD_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LD_LIBRARY_PATH
+++ LD_LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LD_LIBRARY_PATH
+++ __LMOD_REF_COUNT_LIBRARY_PATH='/opt/packages/cuda/v11.7.1/lib64:1;/opt/packages/cuda/v11.7.1/nvvm/lib64:1;/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64:1'
+++ export __LMOD_REF_COUNT_LIBRARY_PATH
+++ LIBRARY_PATH=/opt/packages/cuda/v11.7.1/lib64:/opt/packages/cuda/v11.7.1/nvvm/lib64:/opt/packages/cuda/v11.7.1/extras/CUPTI/lib64
+++ export LIBRARY_PATH
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9h
+++ export _ModuleTable001_
+++ _ModuleTable002_=ZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIs
+++ export _ModuleTable002_
+++ _ModuleTable003_=Ii9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUi
+++ export _ModuleTable003_
+++ _ModuleTable004_=LH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load cuda
++ return 0
++ module load anaconda3
+++ /usr/share/lmod/lmod/libexec/lmod bash load anaconda3
++ eval '__LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1;' export '__LMOD_REF_COUNT_ACLOCAL_PATH;' 'ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal;' export 'ACLOCAL_PATH;' '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1;' export '__LMOD_REF_COUNT_CMAKE_PREFIX_PATH;' 'CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10;' export 'CMAKE_PREFIX_PATH;' 'CONDA_PKGS_DIRS=\$HOME/.conda/pkgs/;' export 'CONDA_PKGS_DIRS;' '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_CPLUS_INCLUDE_PATH;' 'CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'CPLUS_INCLUDE_PATH;' '__LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_C_INCLUDE_PATH;' 'C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include;' export 'C_INCLUDE_PATH;' '__LMOD_REF_COUNT_INCLUDE=/opt/packages/cuda/v11.7.1/include:1\;/opt/packages/anaconda3-2022.10/include:1;' export '__LMOD_REF_COUNT_INCLUDE;' 'INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include;' export 'INCLUDE;' '__LMOD_REF_COUNT_LOADEDMODULES=allocations/1.0:1\;psc.allocations.user/1.0:1\;cuda/11.7.1:1\;anaconda3/2022.10:1;' export '__LMOD_REF_COUNT_LOADEDMODULES;' 'LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10;' export 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/opt/packages/cuda/v11.7.1/gds/man:1\;/usr/share/lmod/lmod/share/man:1\;/opt/puppetlabs/puppet/share/man:1\;/opt/packages/anaconda3-2022.10/man:1\;/opt/packages/anaconda3-2022.10/share/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man;' export 'MANPATH;' 'MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/packages/anaconda3-2022.10/bin:1\;/opt/packages/anaconda3-2022.10/condabin:1\;/opt/packages/cuda/v11.7.1/bin:1\;/opt/packages/cuda/v11.7.1/libnvvp:1\;/jet/home/rakash/.local/bin:1\;/jet/home/rakash/bin:1\;/opt/packages/psc.allocations.user/bin:1\;/opt/packages/allocations/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/usr/local/sbin:1\;/usr/sbin:1\;/opt/packages/interact/bin:1\;/opt/puppetlabs/bin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin;' export 'PATH;' '__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1\;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1;' export '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' 'PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig;' export 'PKG_CONFIG_PATH;' '__LMOD_REF_COUNT__LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:1\;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1\;/opt/modulefiles/production/cuda/11.7.1.lua:1\;/opt/modulefiles/production/anaconda3/2022.10.lua:1;' export '__LMOD_REF_COUNT__LMFILES_;' '_LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua;' export '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k;' export '_ModuleTable001_;' '_ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs;' export '_ModuleTable002_;' '_ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp;' export '_ModuleTable003_;' '_ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=;' export '_ModuleTable004_;' '_ModuleTable_Sz_=4;' export '_ModuleTable_Sz_;' '__LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv;' export '__LMOD_STACK_CONDA_PKGS_DIRS;' source '/opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh;' conda 'activate;'
+++ __LMOD_REF_COUNT_ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal:1
+++ export __LMOD_REF_COUNT_ACLOCAL_PATH
+++ ACLOCAL_PATH=/opt/packages/anaconda3-2022.10/share/aclocal
+++ export ACLOCAL_PATH
+++ __LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10:1
+++ export __LMOD_REF_COUNT_CMAKE_PREFIX_PATH
+++ CMAKE_PREFIX_PATH=/opt/packages/anaconda3-2022.10
+++ export CMAKE_PREFIX_PATH
+++ CONDA_PKGS_DIRS='$HOME/.conda/pkgs/'
+++ export CONDA_PKGS_DIRS
+++ __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_CPLUS_INCLUDE_PATH
+++ CPLUS_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export CPLUS_INCLUDE_PATH
+++ __LMOD_REF_COUNT_C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include:1
+++ export __LMOD_REF_COUNT_C_INCLUDE_PATH
+++ C_INCLUDE_PATH=/opt/packages/anaconda3-2022.10/include
+++ export C_INCLUDE_PATH
+++ __LMOD_REF_COUNT_INCLUDE='/opt/packages/cuda/v11.7.1/include:1;/opt/packages/anaconda3-2022.10/include:1'
+++ export __LMOD_REF_COUNT_INCLUDE
+++ INCLUDE=/opt/packages/cuda/v11.7.1/include:/opt/packages/anaconda3-2022.10/include
+++ export INCLUDE
+++ __LMOD_REF_COUNT_LOADEDMODULES='allocations/1.0:1;psc.allocations.user/1.0:1;cuda/11.7.1:1;anaconda3/2022.10:1'
+++ export __LMOD_REF_COUNT_LOADEDMODULES
+++ LOADEDMODULES=allocations/1.0:psc.allocations.user/1.0:cuda/11.7.1:anaconda3/2022.10
+++ export LOADEDMODULES
+++ __LMOD_REF_COUNT_MANPATH='/opt/packages/cuda/v11.7.1/gds/man:1;/usr/share/lmod/lmod/share/man:1;/opt/puppetlabs/puppet/share/man:1;/opt/packages/anaconda3-2022.10/man:1;/opt/packages/anaconda3-2022.10/share/man:1'
+++ export __LMOD_REF_COUNT_MANPATH
+++ MANPATH=/opt/packages/cuda/v11.7.1/gds/man:/usr/share/lmod/lmod/share/man::/opt/puppetlabs/puppet/share/man:/opt/packages/anaconda3-2022.10/man:/opt/packages/anaconda3-2022.10/share/man
+++ export MANPATH
+++ MODULEPATH=/opt/modulefiles/production:/opt/modulefiles/preproduction:/opt/modulefiles/deprecated:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+++ export MODULEPATH
+++ __LMOD_REF_COUNT_PATH='/opt/packages/anaconda3-2022.10/bin:1;/opt/packages/anaconda3-2022.10/condabin:1;/opt/packages/cuda/v11.7.1/bin:1;/opt/packages/cuda/v11.7.1/libnvvp:1;/jet/home/rakash/.local/bin:1;/jet/home/rakash/bin:1;/opt/packages/psc.allocations.user/bin:1;/opt/packages/allocations/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/packages/interact/bin:1;/opt/puppetlabs/bin:1'
+++ export __LMOD_REF_COUNT_PATH
+++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export PATH
+++ __LMOD_REF_COUNT_PKG_CONFIG_PATH='/opt/packages/cuda/v11.7.1/lib64/pkgconfig:1;/opt/packages/anaconda3-2022.10/lib/pkgconfig:1'
+++ export __LMOD_REF_COUNT_PKG_CONFIG_PATH
+++ PKG_CONFIG_PATH=/opt/packages/cuda/v11.7.1/lib64/pkgconfig:/opt/packages/anaconda3-2022.10/lib/pkgconfig
+++ export PKG_CONFIG_PATH
+++ __LMOD_REF_COUNT__LMFILES_='/opt/modulefiles/production/allocations/1.0.lua:1;/opt/modulefiles/production/psc.allocations.user/1.0.lua:1;/opt/modulefiles/production/cuda/11.7.1.lua:1;/opt/modulefiles/production/anaconda3/2022.10.lua:1'
+++ export __LMOD_REF_COUNT__LMFILES_
+++ _LMFILES_=/opt/modulefiles/production/allocations/1.0.lua:/opt/modulefiles/production/psc.allocations.user/1.0.lua:/opt/modulefiles/production/cuda/11.7.1.lua:/opt/modulefiles/production/anaconda3/2022.10.lua
+++ export _LMFILES_
+++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXthbGxvY2F0aW9ucz17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vYWxsb2NhdGlvbnMvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJhbGxvY2F0aW9ucy8xLjAiLFsibG9hZE9yZGVyIl09MSxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJhbGxvY2F0aW9ucyIsfSxhbmFjb25kYTM9e1siZm4iXT0iL29wdC9tb2R1bGVmaWxlcy9wcm9kdWN0aW9uL2FuYWNvbmRhMy8yMDIyLjEwLmx1YSIsWyJmdWxsTmFtZSJdPSJhbmFjb25k
+++ export _ModuleTable001_
+++ _ModuleTable002_=YTMvMjAyMi4xMCIsWyJsb2FkT3JkZXIiXT00LHByb3BUPXt9LFsic3RhY2tEZXB0aCJdPTAsWyJzdGF0dXMiXT0iYWN0aXZlIixbInVzZXJOYW1lIl09ImFuYWNvbmRhMyIsfSxjdWRhPXtbImZuIl09Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbi9jdWRhLzExLjcuMS5sdWEiLFsiZnVsbE5hbWUiXT0iY3VkYS8xMS43LjEiLFsibG9hZE9yZGVyIl09Myxwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJjdWRhIix9LFsicHNjLmFsbG9jYXRpb25zLnVzZXIiXT17WyJmbiJdPSIvb3B0L21vZHVsZWZpbGVzL3Byb2R1Y3Rpb24vcHNjLmFsbG9jYXRpb25zLnVzZXIvMS4wLmx1YSIsWyJmdWxsTmFtZSJdPSJwc2MuYWxs
+++ export _ModuleTable002_
+++ _ModuleTable003_=b2NhdGlvbnMudXNlci8xLjAiLFsibG9hZE9yZGVyIl09Mixwcm9wVD17fSxbInN0YWNrRGVwdGgiXT0wLFsic3RhdHVzIl09ImFjdGl2ZSIsWyJ1c2VyTmFtZSJdPSJwc2MuYWxsb2NhdGlvbnMudXNlciIsfSx9LG1wYXRoQT17Ii9vcHQvbW9kdWxlZmlsZXMvcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvcHJlcHJvZHVjdGlvbiIsIi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZCIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvb3B0L21vZHVsZWZp
+++ export _ModuleTable003_
+++ _ModuleTable004_=bGVzL3Byb2R1Y3Rpb246L29wdC9tb2R1bGVmaWxlcy9wcmVwcm9kdWN0aW9uOi9vcHQvbW9kdWxlZmlsZXMvZGVwcmVjYXRlZDovdXNyL3NoYXJlL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXg6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlOi91c3Ivc2hhcmUvbG1vZC9sbW9kL21vZHVsZWZpbGVzL0NvcmUiLH0=
+++ export _ModuleTable004_
+++ _ModuleTable_Sz_=4
+++ export _ModuleTable_Sz_
+++ __LMOD_STACK_CONDA_PKGS_DIRS=JEhPTUUvLmNvbmRhL3BrZ3Mv
+++ export __LMOD_STACK_CONDA_PKGS_DIRS
+++ source /opt/packages/anaconda3-2022.10/etc/profile.d/conda.sh
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ '[' -z '' ']'
++++ export CONDA_SHLVL=0
++++ CONDA_SHLVL=0
++++ '[' -n '' ']'
++++++ dirname /opt/packages/anaconda3-2022.10/bin/conda
+++++ dirname /opt/packages/anaconda3-2022.10/bin
++++ PATH=/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export PATH
++++ '[' -z '' ']'
++++ PS1=
+++ conda activate
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate
++++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate
+++ ask_conda='PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
+++ eval 'PS1='\''(base) '\''
+export PATH='\''/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\''
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh"'
++++ PS1='(base) '
++++ export PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ PATH=/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
++++ export CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ CONDA_PREFIX=/opt/packages/anaconda3-2022.10
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=base
++++ CONDA_DEFAULT_ENV=base
++++ export 'CONDA_PROMPT_MODIFIER=(base) '
++++ CONDA_PROMPT_MODIFIER='(base) '
++++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/proj4-activate.sh
+++++ '[' -n '' ']'
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/proj ']'
+++++ export PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ PROJ_LIB=/opt/packages/anaconda3-2022.10/share/proj
+++++ '[' -f /opt/packages/anaconda3-2022.10/share/proj/copyright_and_licenses.csv ']'
+++++ export PROJ_NETWORK=ON
+++++ PROJ_NETWORK=ON
++++ . /opt/packages/anaconda3-2022.10/etc/conda/activate.d/udunits2-activate.sh
+++++ [[ -n '' ]]
+++++ '[' -d /opt/packages/anaconda3-2022.10/share/udunits ']'
+++++ export UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++++ UDUNITS2_XML_PATH=/opt/packages/anaconda3-2022.10/share/udunits/udunits2.xml
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ : -s sh
++ eval
++ ret=0
++ /usr/share/lmod/8.2.7/libexec/log_modules load anaconda3
++ return 0
++ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ '[' -n '' ']'
++ local ask_conda
+++ PS1='(base) '
+++ __conda_exe shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ /opt/packages/anaconda3-2022.10/bin/conda shell.posix activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
++ ask_conda='. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
++ eval '. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export PATH='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin'\''
+export CONDA_PREFIX='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1'\''
+export CONDA_PROMPT_MODIFIER='\''(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '\''
+export CONDA_PREFIX_1='\''/opt/packages/anaconda3-2022.10'\''
+export CONDA_EXE='\''/opt/packages/anaconda3-2022.10/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/opt/packages/anaconda3-2022.10/bin/python'\'''
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/udunits2-deactivate.sh
++++ unset UDUNITS2_XML_PATH
++++ [[ -n '' ]]
+++ . /opt/packages/anaconda3-2022.10/etc/conda/deactivate.d/proj4-deactivate.sh
++++ unset PROJ_LIB
++++ unset PROJ_NETWORK
++++ '[' -n '' ']'
+++ PS1='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ PATH=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/anaconda3-2022.10/bin:/opt/packages/anaconda3-2022.10/condabin:/opt/packages/cuda/v11.7.1/bin:/opt/packages/cuda/v11.7.1/libnvvp:/jet/home/rakash/.local/bin:/jet/home/rakash/bin:/opt/packages/psc.allocations.user/bin:/opt/packages/allocations/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/packages/interact/bin:/opt/puppetlabs/bin
+++ export CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_PREFIX=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export CONDA_SHLVL=2
+++ CONDA_SHLVL=2
+++ export CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ CONDA_DEFAULT_ENV=/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+++ export 'CONDA_PROMPT_MODIFIER=(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ CONDA_PROMPT_MODIFIER='(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) '
+++ export CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ CONDA_PREFIX_1=/opt/packages/anaconda3-2022.10
+++ export CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ CONDA_EXE=/opt/packages/anaconda3-2022.10/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
+++ CONDA_PYTHON_EXE=/opt/packages/anaconda3-2022.10/bin/python
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+found vocab_size = 65 (inside data/shakespeare_char/meta.pkl)
+Initializing a new model from scratch
+number of parameters: 10.65M
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+step 0: train loss 4.2874, val loss 4.2823
+iter 0: loss 4.2714, time 50260.73ms, mfu -100.00%
+iter 10: loss 3.2441, time 35.83ms, mfu 10.40%
+iter 20: loss 2.7948, time 35.77ms, mfu 10.40%
+iter 30: loss 2.6397, time 35.90ms, mfu 10.40%
+iter 40: loss 2.5767, time 35.74ms, mfu 10.40%
+iter 50: loss 2.5238, time 35.82ms, mfu 10.40%
+iter 60: loss 2.5148, time 35.80ms, mfu 10.40%
+iter 70: loss 2.4932, time 35.67ms, mfu 10.41%
+iter 80: loss 2.4972, time 35.82ms, mfu 10.41%
+iter 90: loss 2.4795, time 35.74ms, mfu 10.41%
+iter 100: loss 2.4578, time 35.73ms, mfu 10.41%
+iter 110: loss 2.4500, time 35.64ms, mfu 10.42%
+iter 120: loss 2.4427, time 35.77ms, mfu 10.42%
+iter 130: loss 2.4183, time 35.75ms, mfu 10.42%
+iter 140: loss 2.4044, time 35.69ms, mfu 10.42%
+iter 150: loss 2.4079, time 35.87ms, mfu 10.42%
+iter 160: loss 2.3668, time 35.84ms, mfu 10.41%
+iter 170: loss 2.3549, time 35.85ms, mfu 10.41%
+iter 180: loss 2.3096, time 35.84ms, mfu 10.41%
+iter 190: loss 2.2533, time 35.92ms, mfu 10.41%
+iter 200: loss 2.2059, time 35.81ms, mfu 10.41%
+iter 210: loss 2.1462, time 35.81ms, mfu 10.41%
+iter 220: loss 2.1428, time 35.79ms, mfu 10.41%
+iter 230: loss 2.0835, time 35.81ms, mfu 10.41%
+iter 240: loss 2.0754, time 35.80ms, mfu 10.41%
+step 250: train loss 1.9566, val loss 2.0644
+saving checkpoint to out-shakespeare-char
+iter 250: loss 2.0322, time 4373.91ms, mfu 9.37%
+iter 260: loss 1.9822, time 35.73ms, mfu 9.48%
+iter 270: loss 1.9675, time 35.84ms, mfu 9.57%
+iter 280: loss 1.9810, time 35.93ms, mfu 9.65%
+iter 290: loss 1.9205, time 35.71ms, mfu 9.73%
+iter 300: loss 1.9027, time 35.87ms, mfu 9.80%
+iter 310: loss 1.8654, time 35.92ms, mfu 9.85%
+iter 320: loss 1.8583, time 35.88ms, mfu 9.91%
+iter 330: loss 1.8240, time 35.81ms, mfu 9.96%
+iter 340: loss 1.7879, time 35.88ms, mfu 10.00%
+iter 350: loss 1.8325, time 35.69ms, mfu 10.04%
+iter 360: loss 1.7726, time 35.77ms, mfu 10.08%
+iter 370: loss 1.7464, time 35.93ms, mfu 10.11%
+iter 380: loss 1.7165, time 35.78ms, mfu 10.14%
+iter 390: loss 1.7406, time 35.87ms, mfu 10.17%
+iter 400: loss 1.7664, time 35.85ms, mfu 10.19%
+iter 410: loss 1.6996, time 35.80ms, mfu 10.21%
+iter 420: loss 1.7146, time 35.88ms, mfu 10.23%
+iter 430: loss 1.6923, time 35.93ms, mfu 10.24%
+iter 440: loss 1.6653, time 36.02ms, mfu 10.25%
+iter 450: loss 1.6517, time 35.71ms, mfu 10.27%
+iter 460: loss 1.6048, time 35.80ms, mfu 10.28%
+iter 470: loss 1.6547, time 35.90ms, mfu 10.29%
+iter 480: loss 1.6113, time 35.90ms, mfu 10.30%
+iter 490: loss 1.5990, time 35.88ms, mfu 10.31%
+step 500: train loss 1.5246, val loss 1.7249
+saving checkpoint to out-shakespeare-char
+iter 500: loss 1.5880, time 4269.48ms, mfu 9.29%
+iter 510: loss 1.6064, time 35.94ms, mfu 9.40%
+iter 520: loss 1.5933, time 35.85ms, mfu 9.50%
+iter 530: loss 1.5604, time 35.79ms, mfu 9.59%
+iter 540: loss 1.6158, time 35.80ms, mfu 9.67%
+iter 550: loss 1.5663, time 35.95ms, mfu 9.74%
+iter 560: loss 1.5657, time 36.15ms, mfu 9.80%
+iter 570: loss 1.5761, time 35.94ms, mfu 9.85%
+iter 580: loss 1.5283, time 35.89ms, mfu 9.91%
+iter 590: loss 1.5000, time 35.99ms, mfu 9.95%
+iter 600: loss 1.5141, time 35.79ms, mfu 10.00%
+iter 610: loss 1.5339, time 36.03ms, mfu 10.03%
+iter 620: loss 1.5323, time 36.08ms, mfu 10.06%
+iter 630: loss 1.5063, time 35.95ms, mfu 10.09%
+iter 640: loss 1.4690, time 35.94ms, mfu 10.12%
+iter 650: loss 1.5018, time 35.95ms, mfu 10.14%
+iter 660: loss 1.5081, time 36.03ms, mfu 10.16%
+iter 670: loss 1.4512, time 36.06ms, mfu 10.18%
+iter 680: loss 1.5079, time 36.04ms, mfu 10.20%
+iter 690: loss 1.4553, time 35.93ms, mfu 10.21%
+iter 700: loss 1.4826, time 35.99ms, mfu 10.23%
+iter 710: loss 1.4556, time 36.05ms, mfu 10.24%
+iter 720: loss 1.4519, time 36.02ms, mfu 10.25%
+iter 730: loss 1.4253, time 35.88ms, mfu 10.26%
+iter 740: loss 1.4286, time 36.01ms, mfu 10.27%
+step 750: train loss 1.3584, val loss 1.5903
+saving checkpoint to out-shakespeare-char
+iter 750: loss 1.4213, time 4284.05ms, mfu 9.25%
+iter 760: loss 1.4377, time 35.95ms, mfu 9.36%
+iter 770: loss 1.4219, time 35.96ms, mfu 9.46%
+iter 780: loss 1.4124, time 36.04ms, mfu 9.55%
+iter 790: loss 1.4219, time 36.00ms, mfu 9.63%
+iter 800: loss 1.4322, time 35.84ms, mfu 9.71%
+iter 810: loss 1.4009, time 36.02ms, mfu 9.77%
+iter 820: loss 1.4120, time 35.97ms, mfu 9.83%
+iter 830: loss 1.3897, time 35.83ms, mfu 9.89%
+iter 840: loss 1.4048, time 35.86ms, mfu 9.94%
+iter 850: loss 1.3945, time 35.76ms, mfu 9.99%
+iter 860: loss 1.3983, time 35.79ms, mfu 10.03%
+iter 870: loss 1.3927, time 35.90ms, mfu 10.06%
+iter 880: loss 1.3836, time 35.84ms, mfu 10.10%
+iter 890: loss 1.3901, time 35.74ms, mfu 10.13%
+iter 900: loss 1.3715, time 35.81ms, mfu 10.16%
+iter 910: loss 1.3195, time 35.77ms, mfu 10.18%
+iter 920: loss 1.3561, time 35.99ms, mfu 10.20%
+iter 930: loss 1.3654, time 35.99ms, mfu 10.22%
+iter 940: loss 1.3475, time 35.97ms, mfu 10.23%
+iter 950: loss 1.3566, time 35.87ms, mfu 10.25%
+iter 960: loss 1.3684, time 36.06ms, mfu 10.25%
+iter 970: loss 1.3647, time 35.96ms, mfu 10.27%
+iter 980: loss 1.3506, time 35.93ms, mfu 10.28%
+iter 990: loss 1.3410, time 36.01ms, mfu 10.28%
+step 1000: train loss 1.2726, val loss 1.5150
+saving checkpoint to out-shakespeare-char
+iter 1000: loss 1.3434, time 4278.27ms, mfu 9.26%
+iter 1010: loss 1.3376, time 35.88ms, mfu 9.38%
+iter 1020: loss 1.3139, time 35.99ms, mfu 9.47%
+iter 1030: loss 1.3412, time 35.80ms, mfu 9.57%
+iter 1040: loss 1.3628, time 35.85ms, mfu 9.65%
+iter 1050: loss 1.2952, time 35.88ms, mfu 9.72%
+iter 1060: loss 1.3425, time 36.04ms, mfu 9.78%
+iter 1070: loss 1.3297, time 36.03ms, mfu 9.84%
+iter 1080: loss 1.3279, time 35.86ms, mfu 9.90%
+iter 1090: loss 1.3591, time 35.79ms, mfu 9.95%
+iter 1100: loss 1.3227, time 35.83ms, mfu 9.99%
+iter 1110: loss 1.3042, time 35.81ms, mfu 10.03%
+iter 1120: loss 1.3041, time 35.87ms, mfu 10.07%
+iter 1130: loss 1.2952, time 35.94ms, mfu 10.10%
+iter 1140: loss 1.3052, time 35.88ms, mfu 10.13%
+iter 1150: loss 1.3094, time 36.11ms, mfu 10.15%
+iter 1160: loss 1.3331, time 35.82ms, mfu 10.17%
+iter 1170: loss 1.3007, time 35.76ms, mfu 10.20%
+iter 1180: loss 1.3256, time 35.94ms, mfu 10.21%
+iter 1190: loss 1.2762, time 35.95ms, mfu 10.23%
+iter 1200: loss 1.2969, time 35.92ms, mfu 10.24%
+iter 1210: loss 1.2698, time 35.90ms, mfu 10.26%
+iter 1220: loss 1.3081, time 36.21ms, mfu 10.26%
+iter 1230: loss 1.2951, time 36.14ms, mfu 10.27%
+iter 1240: loss 1.3047, time 35.99ms, mfu 10.27%
+step 1250: train loss 1.2064, val loss 1.4906
+saving checkpoint to out-shakespeare-char
+iter 1250: loss 1.2738, time 4607.06ms, mfu 9.25%
+iter 1260: loss 1.2832, time 35.99ms, mfu 9.36%
+iter 1270: loss 1.2698, time 36.13ms, mfu 9.46%
+iter 1280: loss 1.2632, time 35.73ms, mfu 9.56%
+iter 1290: loss 1.2794, time 35.89ms, mfu 9.64%
+iter 1300: loss 1.3109, time 35.95ms, mfu 9.71%
+iter 1310: loss 1.2391, time 35.85ms, mfu 9.78%
+iter 1320: loss 1.3048, time 35.90ms, mfu 9.84%
+iter 1330: loss 1.2603, time 35.97ms, mfu 9.89%
+iter 1340: loss 1.3058, time 36.02ms, mfu 9.94%
+iter 1350: loss 1.2579, time 35.87ms, mfu 9.98%
+iter 1360: loss 1.2779, time 36.01ms, mfu 10.02%
+iter 1370: loss 1.2588, time 35.87ms, mfu 10.06%
+iter 1380: loss 1.2689, time 35.91ms, mfu 10.09%
+iter 1390: loss 1.2463, time 35.96ms, mfu 10.12%
+iter 1400: loss 1.2600, time 35.91ms, mfu 10.14%
+iter 1410: loss 1.2578, time 35.96ms, mfu 10.16%
+iter 1420: loss 1.2757, time 35.92ms, mfu 10.18%
+iter 1430: loss 1.2452, time 36.02ms, mfu 10.20%
+iter 1440: loss 1.2545, time 35.94ms, mfu 10.22%
+iter 1450: loss 1.2331, time 36.02ms, mfu 10.23%
+iter 1460: loss 1.2395, time 36.02ms, mfu 10.24%
+iter 1470: loss 1.2237, time 35.93ms, mfu 10.25%
+iter 1480: loss 1.2131, time 36.05ms, mfu 10.26%
+iter 1490: loss 1.2398, time 35.98ms, mfu 10.27%
+step 1500: train loss 1.1543, val loss 1.4761
+saving checkpoint to out-shakespeare-char
+iter 1500: loss 1.1931, time 4305.25ms, mfu 9.25%
+iter 1510: loss 1.2383, time 35.85ms, mfu 9.37%
+iter 1520: loss 1.2272, time 36.11ms, mfu 9.46%
+iter 1530: loss 1.2507, time 36.00ms, mfu 9.55%
+iter 1540: loss 1.1898, time 36.00ms, mfu 9.63%
+iter 1550: loss 1.2309, time 36.02ms, mfu 9.70%
+iter 1560: loss 1.2098, time 35.97ms, mfu 9.77%
+iter 1570: loss 1.2357, time 36.09ms, mfu 9.82%
+iter 1580: loss 1.2079, time 35.87ms, mfu 9.88%
+iter 1590: loss 1.1898, time 35.97ms, mfu 9.93%
+iter 1600: loss 1.2049, time 36.11ms, mfu 9.97%
+iter 1610: loss 1.2433, time 35.95ms, mfu 10.01%
+iter 1620: loss 1.1892, time 35.85ms, mfu 10.05%
+iter 1630: loss 1.2086, time 36.08ms, mfu 10.07%
+iter 1640: loss 1.2096, time 36.05ms, mfu 10.10%
+iter 1650: loss 1.1853, time 35.90ms, mfu 10.13%
+iter 1660: loss 1.2206, time 35.96ms, mfu 10.15%
+iter 1670: loss 1.2017, time 35.99ms, mfu 10.17%
+iter 1680: loss 1.2055, time 36.04ms, mfu 10.19%
+iter 1690: loss 1.2055, time 35.89ms, mfu 10.21%
+iter 1700: loss 1.1805, time 35.90ms, mfu 10.23%
+iter 1710: loss 1.1837, time 35.87ms, mfu 10.24%
+iter 1720: loss 1.1818, time 35.75ms, mfu 10.26%
+iter 1730: loss 1.1980, time 36.10ms, mfu 10.27%
+iter 1740: loss 1.1650, time 35.84ms, mfu 10.28%
+step 1750: train loss 1.1038, val loss 1.4725
+saving checkpoint to out-shakespeare-char
+iter 1750: loss 1.1900, time 4308.10ms, mfu 9.26%
+iter 1760: loss 1.1867, time 36.00ms, mfu 9.37%
+iter 1770: loss 1.1954, time 35.86ms, mfu 9.47%
+iter 1780: loss 1.2006, time 35.91ms, mfu 9.56%
+iter 1790: loss 1.1930, time 36.03ms, mfu 9.64%
+iter 1800: loss 1.1885, time 36.02ms, mfu 9.71%
+iter 1810: loss 1.1622, time 36.22ms, mfu 9.77%
+iter 1820: loss 1.1793, time 36.17ms, mfu 9.82%
+iter 1830: loss 1.1671, time 36.00ms, mfu 9.87%
+iter 1840: loss 1.1666, time 35.72ms, mfu 9.93%
+iter 1850: loss 1.1607, time 35.83ms, mfu 9.98%
+iter 1860: loss 1.1782, time 35.78ms, mfu 10.02%
+iter 1870: loss 1.1440, time 35.95ms, mfu 10.06%
+iter 1880: loss 1.1845, time 36.04ms, mfu 10.08%
+iter 1890: loss 1.1750, time 35.98ms, mfu 10.11%
+iter 1900: loss 1.1400, time 35.97ms, mfu 10.14%
+iter 1910: loss 1.1694, time 35.96ms, mfu 10.16%
+iter 1920: loss 1.1733, time 36.12ms, mfu 10.17%
+iter 1930: loss 1.1549, time 36.09ms, mfu 10.19%
+iter 1940: loss 1.1297, time 36.07ms, mfu 10.20%
+iter 1950: loss 1.1401, time 36.04ms, mfu 10.22%
+iter 1960: loss 1.1592, time 36.16ms, mfu 10.23%
+iter 1970: loss 1.1577, time 36.05ms, mfu 10.24%
+iter 1980: loss 1.1541, time 35.94ms, mfu 10.25%
+iter 1990: loss 1.1578, time 35.93ms, mfu 10.26%
+step 2000: train loss 1.0626, val loss 1.4860
+iter 2000: loss 1.1360, time 4110.84ms, mfu 9.24%
+iter 2010: loss 1.1196, time 35.93ms, mfu 9.36%
+iter 2020: loss 1.1261, time 36.01ms, mfu 9.46%
+iter 2030: loss 1.1623, time 35.92ms, mfu 9.55%
+iter 2040: loss 1.1465, time 36.04ms, mfu 9.63%
+iter 2050: loss 1.1200, time 35.97ms, mfu 9.70%
+iter 2060: loss 1.1073, time 36.24ms, mfu 9.76%
+iter 2070: loss 1.1324, time 35.82ms, mfu 9.82%
+iter 2080: loss 1.1238, time 36.01ms, mfu 9.88%
+iter 2090: loss 1.1389, time 35.97ms, mfu 9.92%
+iter 2100: loss 1.1388, time 36.08ms, mfu 9.96%
+iter 2110: loss 1.1311, time 36.07ms, mfu 10.00%
+iter 2120: loss 1.1368, time 35.95ms, mfu 10.04%
+iter 2130: loss 1.1408, time 36.09ms, mfu 10.07%
+iter 2140: loss 1.1469, time 36.07ms, mfu 10.09%
+iter 2150: loss 1.1307, time 36.01ms, mfu 10.12%
+iter 2160: loss 1.1485, time 36.09ms, mfu 10.14%
+iter 2170: loss 1.1419, time 35.91ms, mfu 10.16%
+iter 2180: loss 1.1198, time 35.97ms, mfu 10.18%
+iter 2190: loss 1.1116, time 35.99ms, mfu 10.20%
+iter 2200: loss 1.1334, time 35.99ms, mfu 10.22%
+iter 2210: loss 1.1124, time 35.89ms, mfu 10.23%
+iter 2220: loss 1.1189, time 35.96ms, mfu 10.24%
+iter 2230: loss 1.1212, time 36.11ms, mfu 10.25%
+iter 2240: loss 1.1255, time 36.05ms, mfu 10.26%
+step 2250: train loss 1.0122, val loss 1.4811
+iter 2250: loss 1.1056, time 4105.78ms, mfu 9.24%
+iter 2260: loss 1.1155, time 36.00ms, mfu 9.35%
+iter 2270: loss 1.1344, time 36.24ms, mfu 9.45%
+iter 2280: loss 1.0944, time 36.09ms, mfu 9.53%
+iter 2290: loss 1.1416, time 36.12ms, mfu 9.61%
+iter 2300: loss 1.1265, time 36.10ms, mfu 9.68%
+iter 2310: loss 1.0948, time 36.06ms, mfu 9.75%
+iter 2320: loss 1.0896, time 36.12ms, mfu 9.81%
+iter 2330: loss 1.1020, time 36.07ms, mfu 9.86%
+iter 2340: loss 1.1182, time 36.16ms, mfu 9.90%
+iter 2350: loss 1.1032, time 35.88ms, mfu 9.95%
+iter 2360: loss 1.1135, time 36.08ms, mfu 9.99%
+iter 2370: loss 1.0916, time 36.15ms, mfu 10.02%
+iter 2380: loss 1.0854, time 35.91ms, mfu 10.06%
+iter 2390: loss 1.0829, time 36.08ms, mfu 10.08%
+iter 2400: loss 1.0816, time 35.90ms, mfu 10.11%
+iter 2410: loss 1.0832, time 36.05ms, mfu 10.14%
+iter 2420: loss 1.0813, time 36.04ms, mfu 10.16%
+iter 2430: loss 1.0592, time 35.96ms, mfu 10.18%
+iter 2440: loss 1.0570, time 35.98ms, mfu 10.19%
+iter 2450: loss 1.0810, time 36.10ms, mfu 10.21%
+iter 2460: loss 1.0924, time 36.10ms, mfu 10.22%
+iter 2470: loss 1.0878, time 36.14ms, mfu 10.23%
+iter 2480: loss 1.0935, time 36.03ms, mfu 10.24%
+iter 2490: loss 1.0597, time 36.14ms, mfu 10.25%
+step 2500: train loss 0.9634, val loss 1.5012
+iter 2500: loss 1.0875, time 4114.00ms, mfu 9.23%
+iter 2510: loss 1.0749, time 36.04ms, mfu 9.34%
+iter 2520: loss 1.0547, time 36.14ms, mfu 9.44%
+iter 2530: loss 1.0552, time 35.93ms, mfu 9.53%
+iter 2540: loss 1.0634, time 36.10ms, mfu 9.61%
+iter 2550: loss 1.0717, time 36.08ms, mfu 9.68%
+iter 2560: loss 1.0591, time 36.10ms, mfu 9.75%
+iter 2570: loss 1.0860, time 36.13ms, mfu 9.80%
+iter 2580: loss 1.0739, time 35.91ms, mfu 9.86%
+iter 2590: loss 1.0705, time 35.92ms, mfu 9.91%
+iter 2600: loss 1.0714, time 36.00ms, mfu 9.96%
+iter 2610: loss 1.0423, time 36.20ms, mfu 9.99%
+iter 2620: loss 1.0492, time 36.19ms, mfu 10.02%
+iter 2630: loss 1.0290, time 36.11ms, mfu 10.05%
+iter 2640: loss 1.0393, time 36.09ms, mfu 10.08%
+iter 2650: loss 1.0705, time 35.95ms, mfu 10.11%
+iter 2660: loss 1.0557, time 35.86ms, mfu 10.13%
+iter 2670: loss 1.0206, time 36.11ms, mfu 10.15%
+iter 2680: loss 1.0600, time 36.14ms, mfu 10.17%
+iter 2690: loss 1.0602, time 36.02ms, mfu 10.19%
+iter 2700: loss 1.0291, time 35.96ms, mfu 10.20%
+iter 2710: loss 1.0572, time 35.97ms, mfu 10.22%
+iter 2720: loss 1.0436, time 36.08ms, mfu 10.23%
+iter 2730: loss 1.0609, time 36.01ms, mfu 10.24%
+iter 2740: loss 1.0208, time 36.11ms, mfu 10.25%
+step 2750: train loss 0.9172, val loss 1.5174
+iter 2750: loss 1.0403, time 4109.00ms, mfu 9.23%
+iter 2760: loss 1.0376, time 36.07ms, mfu 9.34%
+iter 2770: loss 1.0299, time 35.99ms, mfu 9.44%
+iter 2780: loss 1.0340, time 36.03ms, mfu 9.53%
+iter 2790: loss 1.0480, time 36.12ms, mfu 9.61%
+iter 2800: loss 1.0097, time 36.15ms, mfu 9.68%
+iter 2810: loss 1.0435, time 36.18ms, mfu 9.74%
+iter 2820: loss 1.0250, time 35.98ms, mfu 9.81%
+iter 2830: loss 1.0361, time 36.21ms, mfu 9.85%
+iter 2840: loss 0.9973, time 36.15ms, mfu 9.90%
+iter 2850: loss 1.0305, time 36.03ms, mfu 9.94%
+iter 2860: loss 1.0231, time 36.05ms, mfu 9.98%
+iter 2870: loss 1.0203, time 35.95ms, mfu 10.02%
+iter 2880: loss 1.0431, time 35.96ms, mfu 10.06%
+iter 2890: loss 1.0072, time 36.01ms, mfu 10.08%
+iter 2900: loss 1.0009, time 36.08ms, mfu 10.11%
+iter 2910: loss 1.0444, time 36.15ms, mfu 10.13%
+iter 2920: loss 1.0177, time 36.13ms, mfu 10.15%
+iter 2930: loss 0.9949, time 36.05ms, mfu 10.17%
+iter 2940: loss 0.9946, time 36.09ms, mfu 10.18%
+iter 2950: loss 1.0334, time 36.07ms, mfu 10.20%
+iter 2960: loss 1.0084, time 36.05ms, mfu 10.21%
+iter 2970: loss 0.9984, time 36.05ms, mfu 10.22%
+iter 2980: loss 0.9990, time 35.99ms, mfu 10.24%
+iter 2990: loss 0.9885, time 36.15ms, mfu 10.24%
+step 3000: train loss 0.8707, val loss 1.5181
+iter 3000: loss 0.9897, time 4108.25ms, mfu 9.23%
+iter 3010: loss 0.9951, time 36.05ms, mfu 9.34%
+iter 3020: loss 1.0090, time 36.09ms, mfu 9.44%
+iter 3030: loss 1.0115, time 35.97ms, mfu 9.53%
+iter 3040: loss 1.0239, time 36.09ms, mfu 9.61%
+iter 3050: loss 0.9853, time 36.18ms, mfu 9.68%
+iter 3060: loss 1.0008, time 36.16ms, mfu 9.74%
+iter 3070: loss 1.0289, time 35.99ms, mfu 9.80%
+iter 3080: loss 1.0007, time 36.00ms, mfu 9.86%
+iter 3090: loss 0.9866, time 36.02ms, mfu 9.91%
+iter 3100: loss 0.9964, time 36.04ms, mfu 9.95%
+iter 3110: loss 0.9747, time 36.18ms, mfu 9.98%
+iter 3120: loss 1.0017, time 36.07ms, mfu 10.02%
+iter 3130: loss 0.9782, time 35.94ms, mfu 10.05%
+iter 3140: loss 0.9858, time 36.14ms, mfu 10.08%
+iter 3150: loss 0.9974, time 36.09ms, mfu 10.10%
+iter 3160: loss 1.0133, time 36.04ms, mfu 10.13%
+iter 3170: loss 0.9654, time 35.98ms, mfu 10.15%
+iter 3180: loss 0.9808, time 36.14ms, mfu 10.17%
+iter 3190: loss 1.0000, time 35.96ms, mfu 10.19%
+iter 3200: loss 0.9626, time 36.01ms, mfu 10.20%
+iter 3210: loss 0.9786, time 36.15ms, mfu 10.21%
+iter 3220: loss 0.9606, time 36.11ms, mfu 10.22%
+iter 3230: loss 0.9656, time 36.33ms, mfu 10.23%
+iter 3240: loss 0.9643, time 36.00ms, mfu 10.24%
+step 3250: train loss 0.8300, val loss 1.5513
+iter 3250: loss 0.9813, time 4113.32ms, mfu 9.22%
+iter 3260: loss 0.9714, time 35.91ms, mfu 9.34%
+iter 3270: loss 0.9834, time 36.11ms, mfu 9.44%
+iter 3280: loss 0.9620, time 35.93ms, mfu 9.53%
+iter 3290: loss 0.9566, time 36.13ms, mfu 9.61%
+iter 3300: loss 0.9485, time 35.99ms, mfu 9.68%
+iter 3310: loss 0.9579, time 36.04ms, mfu 9.75%
+iter 3320: loss 0.9735, time 36.21ms, mfu 9.80%
+iter 3330: loss 0.9618, time 35.97ms, mfu 9.86%
+iter 3340: loss 0.9636, time 36.21ms, mfu 9.90%
+iter 3350: loss 0.9678, time 35.92ms, mfu 9.95%
+iter 3360: loss 0.9265, time 36.10ms, mfu 9.99%
+iter 3370: loss 0.9597, time 35.98ms, mfu 10.02%
+iter 3380: loss 0.9555, time 35.94ms, mfu 10.06%
+iter 3390: loss 0.9566, time 36.18ms, mfu 10.08%
+iter 3400: loss 0.9663, time 35.94ms, mfu 10.11%
+iter 3410: loss 0.9467, time 36.12ms, mfu 10.13%
+iter 3420: loss 0.9477, time 36.12ms, mfu 10.15%
+iter 3430: loss 0.9501, time 36.14ms, mfu 10.17%
+iter 3440: loss 0.9881, time 36.18ms, mfu 10.18%
+iter 3450: loss 0.9657, time 36.06ms, mfu 10.19%
+iter 3460: loss 0.9514, time 36.02ms, mfu 10.21%
+iter 3470: loss 0.9488, time 36.06ms, mfu 10.22%
+iter 3480: loss 0.9598, time 36.20ms, mfu 10.23%
+iter 3490: loss 0.9262, time 35.91ms, mfu 10.24%
+step 3500: train loss 0.7883, val loss 1.5741
+iter 3500: loss 0.9186, time 4113.07ms, mfu 9.23%
+iter 3510: loss 0.9169, time 36.11ms, mfu 9.34%
+iter 3520: loss 0.9321, time 36.03ms, mfu 9.44%
+iter 3530: loss 0.9604, time 36.11ms, mfu 9.53%
+iter 3540: loss 0.9335, time 36.17ms, mfu 9.60%
+iter 3550: loss 0.9369, time 36.02ms, mfu 9.68%
+iter 3560: loss 0.9637, time 36.07ms, mfu 9.74%
+iter 3570: loss 0.9425, time 36.12ms, mfu 9.80%
+iter 3580: loss 0.9302, time 36.07ms, mfu 9.85%
+iter 3590: loss 0.9327, time 36.07ms, mfu 9.90%
+iter 3600: loss 0.9317, time 36.07ms, mfu 9.94%
+iter 3610: loss 0.9241, time 36.15ms, mfu 9.98%
+iter 3620: loss 0.9176, time 36.03ms, mfu 10.02%
+iter 3630: loss 0.9334, time 35.91ms, mfu 10.05%
+iter 3640: loss 0.9185, time 36.01ms, mfu 10.08%
+iter 3650: loss 0.9191, time 35.99ms, mfu 10.11%
+iter 3660: loss 0.9508, time 36.08ms, mfu 10.13%
+iter 3670: loss 0.9410, time 36.11ms, mfu 10.15%
+iter 3680: loss 0.9233, time 36.00ms, mfu 10.17%
+iter 3690: loss 0.9358, time 36.01ms, mfu 10.19%
+iter 3700: loss 0.8777, time 36.11ms, mfu 10.20%
+iter 3710: loss 0.8922, time 36.02ms, mfu 10.22%
+iter 3720: loss 0.9123, time 36.17ms, mfu 10.22%
+iter 3730: loss 0.9102, time 36.08ms, mfu 10.23%
+iter 3740: loss 0.9112, time 36.09ms, mfu 10.24%
+step 3750: train loss 0.7503, val loss 1.5979
+iter 3750: loss 0.9102, time 4118.41ms, mfu 9.23%
+iter 3760: loss 0.9422, time 36.19ms, mfu 9.33%
+iter 3770: loss 0.9362, time 36.16ms, mfu 9.43%
+iter 3780: loss 0.9235, time 36.09ms, mfu 9.52%
+iter 3790: loss 0.9021, time 36.22ms, mfu 9.60%
+iter 3800: loss 0.9128, time 36.04ms, mfu 9.67%
+iter 3810: loss 0.9217, time 36.15ms, mfu 9.74%
+iter 3820: loss 0.8937, time 36.28ms, mfu 9.79%
+iter 3830: loss 0.9002, time 36.16ms, mfu 9.84%
+iter 3840: loss 0.9011, time 36.22ms, mfu 9.89%
+iter 3850: loss 0.8952, time 36.08ms, mfu 9.93%
+iter 3860: loss 0.8828, time 36.04ms, mfu 9.97%
+iter 3870: loss 0.8965, time 36.01ms, mfu 10.01%
+iter 3880: loss 0.8978, time 36.10ms, mfu 10.04%
+iter 3890: loss 0.8956, time 36.32ms, mfu 10.06%
+iter 3900: loss 0.9048, time 36.20ms, mfu 10.09%
+iter 3910: loss 0.8974, time 36.54ms, mfu 10.10%
+iter 3920: loss 0.8702, time 36.12ms, mfu 10.12%
+iter 3930: loss 0.9008, time 36.13ms, mfu 10.14%
+iter 3940: loss 0.8867, time 36.23ms, mfu 10.15%
+iter 3950: loss 0.8829, time 36.23ms, mfu 10.17%
+iter 3960: loss 0.9155, time 36.13ms, mfu 10.18%
+iter 3970: loss 0.9001, time 36.04ms, mfu 10.20%
+iter 3980: loss 0.9133, time 35.91ms, mfu 10.21%
+iter 3990: loss 0.8827, time 36.02ms, mfu 10.23%
+step 4000: train loss 0.7171, val loss 1.6241
+iter 4000: loss 0.8648, time 4120.84ms, mfu 9.21%
+iter 4010: loss 0.8903, time 36.12ms, mfu 9.32%
+iter 4020: loss 0.8949, time 36.19ms, mfu 9.42%
+iter 4030: loss 0.8902, time 35.98ms, mfu 9.51%
+iter 4040: loss 0.8809, time 36.06ms, mfu 9.60%
+iter 4050: loss 0.8824, time 36.08ms, mfu 9.67%
+iter 4060: loss 0.8665, time 35.96ms, mfu 9.74%
+iter 4070: loss 0.8620, time 36.10ms, mfu 9.80%
+iter 4080: loss 0.8869, time 36.13ms, mfu 9.85%
+iter 4090: loss 0.8609, time 36.14ms, mfu 9.90%
+iter 4100: loss 0.9049, time 36.08ms, mfu 9.94%
+iter 4110: loss 0.8839, time 35.93ms, mfu 9.98%
+iter 4120: loss 0.8859, time 36.15ms, mfu 10.01%
+iter 4130: loss 0.8642, time 36.05ms, mfu 10.05%
+iter 4140: loss 0.8820, time 36.41ms, mfu 10.07%
+iter 4150: loss 0.8872, time 36.00ms, mfu 10.09%
+iter 4160: loss 0.8656, time 35.96ms, mfu 10.12%
+iter 4170: loss 0.8772, time 36.01ms, mfu 10.14%
+iter 4180: loss 0.8767, time 36.08ms, mfu 10.16%
+iter 4190: loss 0.8819, time 36.19ms, mfu 10.18%
+iter 4200: loss 0.8600, time 36.08ms, mfu 10.19%
+iter 4210: loss 0.8800, time 36.10ms, mfu 10.20%
+iter 4220: loss 0.8663, time 35.99ms, mfu 10.22%
+iter 4230: loss 0.8933, time 36.27ms, mfu 10.22%
+iter 4240: loss 0.8781, time 36.24ms, mfu 10.23%
+step 4250: train loss 0.6868, val loss 1.6428
+iter 4250: loss 0.8755, time 4119.03ms, mfu 9.22%
+iter 4260: loss 0.8737, time 36.02ms, mfu 9.33%
+iter 4270: loss 0.8735, time 36.18ms, mfu 9.43%
+iter 4280: loss 0.8674, time 36.16ms, mfu 9.51%
+iter 4290: loss 0.8376, time 36.11ms, mfu 9.59%
+iter 4300: loss 0.8363, time 36.05ms, mfu 9.67%
+iter 4310: loss 0.8638, time 36.10ms, mfu 9.73%
+iter 4320: loss 0.8539, time 35.96ms, mfu 9.80%
+iter 4330: loss 0.8672, time 36.16ms, mfu 9.85%
+iter 4340: loss 0.8480, time 36.04ms, mfu 9.90%
+iter 4350: loss 0.8485, time 36.03ms, mfu 9.94%
+iter 4360: loss 0.8639, time 35.96ms, mfu 9.98%
+iter 4370: loss 0.8635, time 36.19ms, mfu 10.01%
+iter 4380: loss 0.8484, time 36.08ms, mfu 10.05%
+iter 4390: loss 0.8690, time 36.25ms, mfu 10.07%
+iter 4400: loss 0.8557, time 36.13ms, mfu 10.09%
+iter 4410: loss 0.8754, time 35.91ms, mfu 10.12%
+iter 4420: loss 0.8680, time 36.14ms, mfu 10.14%
+iter 4430: loss 0.8592, time 36.00ms, mfu 10.16%
+iter 4440: loss 0.8565, time 36.12ms, mfu 10.18%
+iter 4450: loss 0.8561, time 36.21ms, mfu 10.19%
+iter 4460: loss 0.8463, time 36.11ms, mfu 10.20%
+iter 4470: loss 0.8593, time 36.17ms, mfu 10.21%
+iter 4480: loss 0.8404, time 36.32ms, mfu 10.22%
+iter 4490: loss 0.8513, time 36.13ms, mfu 10.23%
+step 4500: train loss 0.6616, val loss 1.6678
+iter 4500: loss 0.8719, time 4121.07ms, mfu 9.21%
+iter 4510: loss 0.8557, time 36.15ms, mfu 9.32%
+iter 4520: loss 0.8488, time 36.10ms, mfu 9.42%
+iter 4530: loss 0.8560, time 36.16ms, mfu 9.51%
+iter 4540: loss 0.8492, time 36.25ms, mfu 9.59%
+iter 4550: loss 0.8925, time 36.25ms, mfu 9.66%
+iter 4560: loss 0.8492, time 36.27ms, mfu 9.72%
+iter 4570: loss 0.8496, time 36.26ms, mfu 9.77%
+iter 4580: loss 0.8572, time 36.22ms, mfu 9.83%
+iter 4590: loss 0.8651, time 36.44ms, mfu 9.87%
+iter 4600: loss 0.8301, time 36.24ms, mfu 9.91%
+iter 4610: loss 0.8760, time 36.13ms, mfu 9.95%
+iter 4620: loss 0.8399, time 36.13ms, mfu 9.98%
+iter 4630: loss 0.8339, time 36.08ms, mfu 10.02%
+iter 4640: loss 0.8472, time 36.08ms, mfu 10.05%
+iter 4650: loss 0.8642, time 36.06ms, mfu 10.08%
+iter 4660: loss 0.8650, time 36.25ms, mfu 10.10%
+iter 4670: loss 0.8457, time 36.20ms, mfu 10.12%
+iter 4680: loss 0.8576, time 36.12ms, mfu 10.14%
+iter 4690: loss 0.8645, time 36.01ms, mfu 10.16%
+iter 4700: loss 0.8362, time 36.28ms, mfu 10.17%
+iter 4710: loss 0.8002, time 36.02ms, mfu 10.19%
+iter 4720: loss 0.8429, time 36.15ms, mfu 10.20%
+iter 4730: loss 0.8255, time 36.08ms, mfu 10.21%
+iter 4740: loss 0.8368, time 36.05ms, mfu 10.22%
+step 4750: train loss 0.6468, val loss 1.6813
+iter 4750: loss 0.8165, time 4124.06ms, mfu 9.21%
+iter 4760: loss 0.8341, time 36.00ms, mfu 9.33%
+iter 4770: loss 0.8060, time 36.03ms, mfu 9.43%
+iter 4780: loss 0.8181, time 36.19ms, mfu 9.51%
+iter 4790: loss 0.8496, time 36.22ms, mfu 9.59%
+iter 4800: loss 0.8260, time 36.06ms, mfu 9.67%
+iter 4810: loss 0.8440, time 36.12ms, mfu 9.73%
+iter 4820: loss 0.8276, time 35.92ms, mfu 9.79%
+iter 4830: loss 0.8257, time 36.19ms, mfu 9.85%
+iter 4840: loss 0.8405, time 35.97ms, mfu 9.90%
+iter 4850: loss 0.8323, time 36.08ms, mfu 9.94%
+iter 4860: loss 0.8269, time 36.11ms, mfu 9.98%
+iter 4870: loss 0.8172, time 36.18ms, mfu 10.01%
+iter 4880: loss 0.8413, time 36.11ms, mfu 10.04%
+iter 4890: loss 0.8172, time 36.07ms, mfu 10.07%
+iter 4900: loss 0.8125, time 36.18ms, mfu 10.09%
+iter 4910: loss 0.8397, time 36.12ms, mfu 10.12%
+iter 4920: loss 0.8284, time 36.12ms, mfu 10.14%
+iter 4930: loss 0.8061, time 36.21ms, mfu 10.15%
+iter 4940: loss 0.8074, time 36.09ms, mfu 10.17%
+iter 4950: loss 0.8364, time 36.10ms, mfu 10.18%
+iter 4960: loss 0.8355, time 36.16ms, mfu 10.20%
+iter 4970: loss 0.7913, time 36.18ms, mfu 10.21%
+iter 4980: loss 0.8042, time 36.13ms, mfu 10.22%
+iter 4990: loss 0.8348, time 36.27ms, mfu 10.22%
+step 5000: train loss 0.6322, val loss 1.7062
+iter 5000: loss 0.8278, time 4124.76ms, mfu 9.21%
++ python sample.py --out_dir=out-shakespeare-char
+Overriding: out_dir = out-shakespeare-char
+number of parameters: 10.65M
+Loading meta from data/shakespeare_char/meta.pkl...
+
+
+Clown:
+So, who is here?
+
+Clown:
+Ay, my lord.
+
+CLAUDIO:
+My lord,
+My Lord Angelo hath been determined away,
+And hand a wizon man of the of it.
+
+DUKE VINCENTIO:
+Why, we should that Hermione that Bona like his eyes,
+Well and peace the market-body and all the tyrants
+Have no other golden part with the king.
+
+DUKE VINCENTIO:
+So thou shalt never meet to have heard
+To know thrust for the great shadow your power,
+Made her brother Hermione still have admired.
+
+ESCALUS:
+Go your garden bless prover your ha
+---------------
+
+Men passion may make your garden sorrow.
+Where is my heart's matter? what said God comes both.
+
+TYBALT:
+I must be come, madam. Why, the world's well?
+Ah, thou take doth the worst kneel of it.
+
+Servant:
+The Romans are come, sir, sir, thou lovest not, or a
+change bearer against the way of levy.
+
+LUCIO:
+Come, come, let's go.
+
+MENENIUS:
+Come, let's the noble friend.
+
+Second Citizen:
+No, she come to me with the coward that way: something
+she makes some me appared to the time worthily
+take your with e
+---------------
+
+Men than I have. Their fellows are under their eyess,
+And take them to cheek him with her sweet posts;
+And so in his execution must be their children?
+
+MARIANA:
+WhInest sad in his lady?
+
+DUKE VINCENTIO:
+That was my breaster in twenty soul
+Disgrace I did to see the fortune here.
+Thus lay prove me for the most grace of the friends,
+And all the night, still below your honour on your the bed,
+Which I have set the common a bell to hear the people!
+Am I the tender that grounds you have farewell!
+
+ROME
+---------------
+
+The slaves I will keep the shore, as I hate done.
+
+GLOUCESTER:
+But she is well sent for me of my chamber
+As I am against that you plain
+'Twas made a right. The lark of Gloucester, could have
+A case of the houses.
+
+GLOUCESTER:
+Indeed, I know not what I have proved!
+
+LADY ANNE:
+I shall be counterfeit with a month court,
+Which you have done that I have so done to scarce;
+For I have no settly pursuit me,
+I would not a brave more than your hoparish.
+
+LADY ANNE:
+'Tis that may seem off a hundred man in
+---------------
+
+That late did spurn my knee with come to grow.
+Gracious lord, look you, Aufidius,
+For that country's highness are little labour:
+O Capitol!
+The people's golden seize of the crown news in the very people,
+Which we do not slumble now him; he loves, he look upon him
+To his comfort and house as if your advice.
+
+VOLUMNIA:
+Nay, to bear. Alas, noble Marcius,
+I have mad my father's son and honour and your house
+Lay to such a dear little heart as we may tell you.
+
+MENENIUS:
+He hath been as you that seem 
+---------------
+
+
+MENENIUS:
+He hath been a servant thousand a guard men
+That I am could frame with my noble wind,
+I had for the most of death of his harm,
+That we may dry not ourselves it in bloody me
+For either even lamb and set away,
+And comfort to his part arms of him. Look up,
+That like Henry Lord Hastings' royalty's son:
+That it was my father is hours,
+Till we are gone to me; and, as I had holy contempt
+That our brother than they are dead, and so much
+Between yet more, when I report to see.
+
+SIR STEPHEN SCR
+---------------
+
+Shepherd: but he will forthwith these heavy squings.
+
+Lord:
+Why, why, is the truth world calls?
+
+ANGELO:
+I know not the story of such a present place?
+
+CLAUDIO:
+Go that, or she's a horn in my lord;
+I will be satisfied.
+
+ISABELLA:
+Your honour to her gentle hand husband. I will say,
+If you will say, if you do prove your ment.
+
+ANGELO:
+Madam, you find and I hear them alack.
+
+ISABELLA:
+Your lady charity well a soldier,
+You must be sound to take a word of your gates.
+
+DUKE VINCENTIO:
+And light a gues
+---------------
+
+lady, when meal'd and fortunes with heaven.
+
+Servant:
+I saw the ghostly foe, I say not persuade the bowl
+of the heart-eye of the palties of my mouth.
+This was known to us but a children's death-blood
+And swell undirect'd that summons unborn do something:
+Tell me, which I enjoy, strange, there's a soldier white
+Which nature to be the vantage of my eye.
+
+KING RICHARD II:
+Why, go we then?
+
+QUEEN ELIZABETH:
+Come, he knows not to some thou many of us.
+
+KING RICHARD III:
+Why, my lord, when she calls m
+---------------
+
+GLOUCESTER:
+Lord Angelo, you shall fool for the molehy,
+And knew not these fiercess to their senses,
+To the sun, which slaughters and soldiers against them
+What he still be so, he should have dream'd
+The world of Christians lament on rosemary.
+
+YORK:
+To acceptain ambush, Prince in him,
+My brother Edward, and as he will will depose him.
+
+WARWICK:
+Ay, unto the father of Warwick hath his fountry hither.
+
+WARWICK:
+O Clarence did Warwick night of that fournishmen:
+I then were dry such as it fassingly
+---------------
+
+How cheer to rather, have he spoken now?
+
+CLARENCE:
+Do you look up the flower, if you be not?
+
+BRAKENBURY:
+Ay, sweet bid her sleeping this foot house,
+And youngest majesty hath the room of the person.
+
+KING RICHARD II:
+So for stop when you look'd to leave it in the offence.
+
+QUEEN ELIZABETH:
+But as that trumpets place you were born your hate
+To make one than a great accuser the need
+Before that they say happy so such a shroud
+As to her accuse in the complexion.
+
+ANGELO:
+Why; then, I am not many 
+---------------

@@ -1,0 +1,1722 @@
+(base) ➜  ~ ping google.com                                                  
+(base) ➜  ~ ssh rakash@bridges2.psc.edu        
+(base) ➜  ~ sudo service NetworkManager restart
+
+^CFace detection timeout reached
+[sudo] password for ranit: 
+sudo: a password is required
+(base) ➜  ~ ssh rakash@bridges2.psc.edu
+rakash@bridges2.psc.edu's password: 
+********************************* W A R N I N G ********************************
+You have connected to br012.ib.bridges2.psc.edu, a login node of Bridges 2.
+
+This computing resource is the property of the Pittsburgh Supercomputing Center. 
+It is for authorized use only.  By using this system, all users acknowledge 
+notice of, and agree to comply with, PSC polices including the Resource Use 
+Policy, available at http://www.psc.edu/index.php/policies. Unauthorized or 
+improper use of this system may result in administrative disciplinary action, 
+civil charges/criminal penalties, and/or other sanctions as set forth in PSC 
+policies. By continuing to use this system you indicate your awareness of and 
+consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
+
+
+********************************* W A R N I N G ********************************
+
+For documentation on Bridges 2, please see www.psc.edu/resources/bridges-2/user-guide/
+Please contact help@psc.edu with any comments/concerns.
+Last login: Tue Apr 18 12:40:39 2023 from nat17220400.utep.edu
+ 
+Projects
+----------------------------------------------------------------------------------------------------------
+Project: cis230018p [Default charging account] PI: Shirley Moore
+  GPU                        1,983 SU remain of 2,000 SU        Active: Yes
+  Ocean /ocean/projects/cis230018p 9.208G used of 1.953T
+
+[rakash@bridges2-login012 ~]$ ls
+class-mar28-nv100  project
+[rakash@bridges2-login012 ~]$ cd project/
+[rakash@bridges2-login012 project]$ module load anaconda3
+(base) [rakash@bridges2-login012 project]$ conda env list
+# conda environments:
+#
+rda-ngpt-env-v0          /jet/home/rakash/.conda/envs/rda-ngpt-env-v0
+                         /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+base                  *  /opt/packages/anaconda3-2022.10
+um_earhg_wz              /opt/packages/anaconda3-2022.10/envs/um_earhg_wz
+viennarna                /opt/packages/anaconda3-2022.10/envs/viennarna
+
+(base) [rakash@bridges2-login012 project]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 project]$ ls
+nano-gpt-git-v0
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 project]$ cd nano-gpt-git-v0/
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ ls
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ gh repo clone karpathy/nanoGPT
+-bash: gh: command not found
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ git clone karpathy/nanoGPT
+fatal: repository 'karpathy/nanoGPT' does not exist
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ git clone git@github.com:karpathy/nanoGPT.git
+Cloning into 'nanoGPT'...
+The authenticity of host 'github.com (140.82.113.4)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com,140.82.113.4' (ECDSA) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ git clone https://github.com/karpathy/nanoGPT.git
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ ls
+nanoGPT
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nano-gpt-git-v0]$ cd nanoGPT/
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 15984530
+salloc: job 15984530 queued and waiting for resources
+salloc: job 15984530 has been allocated resources
+salloc: Granted job allocation 15984530
+salloc: Waiting for resource configuration
+salloc: Nodes v034 are ready for job
+[rakash@v034 nanoGPT]$ ls
+assets           data       sample.py
+bench.py         LICENSE    scaling_laws.ipynb
+config           model.py   train.py
+configurator.py  README.md  transformer_sizing.ipynb
+[rakash@v034 nanoGPT]$ python data/shakespeare_char/prepare.py
+length of dataset in characters: 1,115,394
+all the unique characters: 
+ !$&',-.3:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+vocab size: 65
+train has 1,003,854 tokens
+val has 111,540 tokens
+[rakash@v034 nanoGPT]$ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/train.py", line 110, in <module>
+    ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 234, in __init__
+    raise RuntimeError('Current CUDA Device does not support bfloat16. Please switch dtype to float16.')
+RuntimeError: Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+[rakash@v034 nanoGPT]$ exit
+srun: error: v034: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 15984530
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ module --list
+Lmod Warning:  Unknown Option: "list"
+
+
+
+
+Modules based on Lua: Version 8.2.7  2019-11-30 09:41 -06:00
+    by Robert McLay mclay@tacc.utexas.edu
+
+module [options] sub-command [args ...]
+
+Help sub-commands:
+------------------
+  help                              prints this message
+  help                module [...]  print help message from module(s)
+
+Loading/Unloading sub-commands:
+-------------------------------
+  load | add          module [...]  load module(s)
+  try-load | try-add  module [...]  Add module(s), do not complain if not found
+  del | unload        module [...]  Remove module(s), do not complain if not found
+  swap | sw | switch  m1 m2         unload m1 and load m2
+  purge                             unload all modules
+  refresh                           reload aliases from current list of modules.
+  update                            reload all currently loaded modules.
+
+Listing / Searching sub-commands:
+---------------------------------
+  list                              List loaded modules
+  list                s1 s2 ...     List loaded modules that match the pattern
+  avail | av                        List available modules
+  avail | av          string        List available modules that contain "string".
+  spider                            List all possible modules
+  spider              module        List all possible version of that module file
+  spider              string        List all module that contain the "string".
+  spider              name/version  Detailed information about that version of the module.
+  whatis              module        Print whatis information about module
+  keyword | key       string        Search all name and whatis that contain "string".
+
+Searching with Lmod:
+--------------------
+  All searching (spider, list, avail, keyword) support regular expressions:
+
+
+  -r spider           '^p'          Finds all the modules that start with `p' or `P'
+  -r spider           mpi           Finds all modules that have "mpi" in their name.
+  -r spider           'mpi$         Finds all modules that end with "mpi" in their name.
+
+Handling a collection of modules:
+--------------------------------
+  save | s                          Save the current list of modules to a user defined "default" collection.
+  save | s            name          Save the current list of modules to "name" collection.
+  reset                             The same as "restore system"
+  restore | r                       Restore modules from the user's "default" or system default.
+  restore | r         name          Restore modules from "name" collection.
+  restore             system        Restore module state to system defaults.
+  savelist                          List of saved collections.
+  describe | mcc      name          Describe the contents of a module collection.
+  disable             name          Disable (i.e. remove) a collection.
+
+Deprecated commands:
+--------------------
+  getdefault          [name]        load name collection of modules or user's "default" if no name given.
+                                    ===> Use "restore" instead  <====
+  setdefault          [name]        Save current list of modules to name if given, otherwise save as the default list for you the user.
+                                    ===> Use "save" instead. <====
+
+Miscellaneous sub-commands:
+---------------------------
+  is-loaded           modulefile    return a true status if module is loaded
+  is-avail            modulefile    return a true status if module can be loaded
+  show                modulefile    show the commands in the module file.
+  use [-a]            path          Prepend or Append path to MODULEPATH.
+  unuse               path          remove path from MODULEPATH.
+  tablelist                         output list of active modules as a lua table.
+
+Important Environment Variables:
+--------------------------------
+  LMOD_COLORIZE                     If defined to be "YES" then Lmod prints properties and warning in color.
+
+    -----------------------------------------------
+Lmod Web Sites
+
+  Documentation:    http://lmod.readthedocs.org
+  Github:           https://github.com/TACC/Lmod
+  Sourceforge:      https://lmod.sf.net
+  TACC Homepage:    https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+
+  To report a bug please read http://lmod.readthedocs.io/en/latest/075_bug_reporting.html
+    -----------------------------------------------
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ module cuda -v
+
+Modules based on Lua: Version 8.2.7  2019-11-30 09:41 -06:00
+    by Robert McLay mclay@tacc.utexas.edu
+
+module [options] sub-command [args ...]
+
+Help sub-commands:
+------------------
+  help                              prints this message
+  help                module [...]  print help message from module(s)
+
+Loading/Unloading sub-commands:
+-------------------------------
+  load | add          module [...]  load module(s)
+  try-load | try-add  module [...]  Add module(s), do not complain if not found
+  del | unload        module [...]  Remove module(s), do not complain if not found
+  swap | sw | switch  m1 m2         unload m1 and load m2
+  purge                             unload all modules
+  refresh                           reload aliases from current list of modules.
+  update                            reload all currently loaded modules.
+
+Listing / Searching sub-commands:
+---------------------------------
+  list                              List loaded modules
+  list                s1 s2 ...     List loaded modules that match the pattern
+  avail | av                        List available modules
+  avail | av          string        List available modules that contain "string".
+  spider                            List all possible modules
+  spider              module        List all possible version of that module file
+  spider              string        List all module that contain the "string".
+  spider              name/version  Detailed information about that version of the module.
+  whatis              module        Print whatis information about module
+  keyword | key       string        Search all name and whatis that contain "string".
+
+Searching with Lmod:
+--------------------
+  All searching (spider, list, avail, keyword) support regular expressions:
+
+
+  -r spider           '^p'          Finds all the modules that start with `p' or `P'
+  -r spider           mpi           Finds all modules that have "mpi" in their name.
+  -r spider           'mpi$         Finds all modules that end with "mpi" in their name.
+
+Handling a collection of modules:
+--------------------------------
+  save | s                          Save the current list of modules to a user defined "default" collection.
+  save | s            name          Save the current list of modules to "name" collection.
+  reset                             The same as "restore system"
+  restore | r                       Restore modules from the user's "default" or system default.
+  restore | r         name          Restore modules from "name" collection.
+  restore             system        Restore module state to system defaults.
+  savelist                          List of saved collections.
+  describe | mcc      name          Describe the contents of a module collection.
+  disable             name          Disable (i.e. remove) a collection.
+
+Deprecated commands:
+--------------------
+  getdefault          [name]        load name collection of modules or user's "default" if no name given.
+                                    ===> Use "restore" instead  <====
+  setdefault          [name]        Save current list of modules to name if given, otherwise save as the default list for you the user.
+                                    ===> Use "save" instead. <====
+
+Miscellaneous sub-commands:
+---------------------------
+  is-loaded           modulefile    return a true status if module is loaded
+  is-avail            modulefile    return a true status if module can be loaded
+  show                modulefile    show the commands in the module file.
+  use [-a]            path          Prepend or Append path to MODULEPATH.
+  unuse               path          remove path from MODULEPATH.
+  tablelist                         output list of active modules as a lua table.
+
+Important Environment Variables:
+--------------------------------
+  LMOD_COLORIZE                     If defined to be "YES" then Lmod prints properties and warning in color.
+
+    -----------------------------------------------
+Lmod Web Sites
+
+  Documentation:    http://lmod.readthedocs.org
+  Github:           https://github.com/TACC/Lmod
+  Sourceforge:      https://lmod.sf.net
+  TACC Homepage:    https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+
+  To report a bug please read http://lmod.readthedocs.io/en/latest/075_bug_reporting.html
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ ls
+assets    configurator.py  model.py              README.md           train.py
+bench.py  data             out-shakespeare-char  sample.py           transformer_sizing.ipynb
+config    LICENSE          __pycache__           scaling_laws.ipynb
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ module load cuda
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 15984659
+salloc: job 15984659 queued and waiting for resources
+salloc: job 15984659 has been allocated resources
+salloc: Granted job allocation 15984659
+salloc: Waiting for resource configuration
+salloc: Nodes v015 are ready for job
+[rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/train.py", line 110, in <module>
+    ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 234, in __init__
+    raise RuntimeError('Current CUDA Device does not support bfloat16. Please switch dtype to float16.')
+RuntimeError: Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+[rakash@v015 nanoGPT]$ module load cuda
+[rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/train.py", line 110, in <module>
+    ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 234, in __init__
+    raise RuntimeError('Current CUDA Device does not support bfloat16. Please switch dtype to float16.')
+RuntimeError: Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+[rakash@v015 nanoGPT]$ module load anaconda3
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda deactivate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+(base) [rakash@v015 nanoGPT]$ module activate 
+add      keyword  restore  spider   update
+avail    list     rm       swap     use
+delete   load     save     unload   whatis
+help     purge    show     unuse    
+(base) [rakash@v015 nanoGPT]$ conda activate 
+assets/                   model.py
+bench.py                  out-shakespeare-char/
+config/                   __pycache__/
+configurator.py           README.md
+data/                     sample.py
+.git/                     scaling_laws.ipynb
+.gitattributes            train.py
+.gitignore                transformer_sizing.ipynb
+LICENSE                   
+(base) [rakash@v015 nanoGPT]$ conda activate 
+assets/                   model.py
+bench.py                  out-shakespeare-char/
+config/                   __pycache__/
+configurator.py           README.md
+data/                     sample.py
+.git/                     scaling_laws.ipynb
+.gitattributes            train.py
+.gitignore                transformer_sizing.ipynb
+LICENSE                   
+(base) [rakash@v015 nanoGPT]$ conda env list
+# conda environments:
+#
+rda-ngpt-env-v0          /jet/home/rakash/.conda/envs/rda-ngpt-env-v0
+                         /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+base                  *  /opt/packages/anaconda3-2022.10
+um_earhg_wz              /opt/packages/anaconda3-2022.10/envs/um_earhg_wz
+viennarna                /opt/packages/anaconda3-2022.10/envs/viennarna
+
+(base) [rakash@v015 nanoGPT]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/train.py", line 110, in <module>
+    ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 234, in __init__
+    raise RuntimeError('Current CUDA Device does not support bfloat16. Please switch dtype to float16.')
+RuntimeError: Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+bash: /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1: Is a directory
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py^C
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ module spider AI/anaconda
+
+-------------------------------------------------
+  AI:
+-------------------------------------------------
+    Description:
+      TensorFlow 2.10.0 AI development
+      environment
+
+     Versions:
+        AI/anaconda2-tf1.2019.10
+        AI/anaconda3-tf1.2020.11
+        AI/anaconda3-tf2.2020.11
+        AI/pytorch_22.07-1.12-py3
+        AI/pytorch_23.02-1.13.1-py3
+        AI/tensorflow_22.07-2.8-py3
+        AI/tensorflow_23.02-2.10.0-py3
+
+-------------------------------------------------
+  For detailed information about a specific "AI" pack
+age (including how to load the modules) use the modul
+e's full name.
+  Note that names that have a trailing (E) are extens
+ions provided by other modules.
+  For example:
+
+     $ module spider AI/tensorflow_23.02-2.10.0-py3
+-------------------------------------------------
+
+ 
+
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py^C
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python data/shakespeare_char/prepare.py
+length of dataset in characters: 1,115,394
+all the unique characters: 
+ !$&',-.3:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+vocab size: 65
+train has 1,003,854 tokens
+val has 111,540 tokens
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/train.py", line 110, in <module>
+    ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 234, in __init__
+    raise RuntimeError('Current CUDA Device does not support bfloat16. Please switch dtype to float16.')
+RuntimeError: Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ exit
+srun: error: v015: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 15984659
+salloc: Job allocation 15984659 has been revoked.
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ ls
+assets           out-shakespeare-char
+bench.py         __pycache__
+config           README.md
+configurator.py  sample.py
+data             scaling_laws.ipynb
+LICENSE          train.py
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ nano train.py 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ nano train.py 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ nano -c train.py 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ nano -c train.py 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ interact -p GPU-shared --gres=gpu:v100-32:2 -t 1:00:00
+
+A command prompt will appear when your session begins
+"Ctrl+d" or "exit" will end your session
+
+--gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc -J Interact --gres=gpu:v100-32:2 --partition=GPU-shared --time=1:00:00
+salloc: Pending job allocation 15985043
+salloc: job 15985043 queued and waiting for resources
+salloc: job 15985043 has been allocated resources
+salloc: Granted job allocation 15985043
+salloc: Waiting for resource configuration
+salloc: Nodes v015 are ready for job
+[rakash@v015 nanoGPT]$ module load anaconda3
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda deactivate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+(base) [rakash@v015 nanoGPT]$ conda deactivate
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ module load cuda
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ module 
+add      help     load     rm       spider   unuse    whatis   
+avail    keyword  purge    save     swap     update   
+delete   list     restore  show     unload   use      
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ module avail
+
+----------------------------- /opt/modulefiles/production ------------------------------
+   ABySS/2.1.5                              gurobi/9.1.1
+   AI/anaconda2-tf1.2019.10                 gurobi/9.5.0                         (D)
+   AI/anaconda3-tf1.2020.11                 hashdeep/4.4
+   AI/anaconda3-tf2.2020.11                 hdf5/1.10.7-gcc10.2.0
+   AI/pytorch_22.07-1.12-py3                hdf5/1.12.0-intel20.4                (D)
+   AI/pytorch_23.02-1.13.1-py3              hisat2/2.2.1
+   AI/tensorflow_22.07-2.8-py3              hmmer/3.3.1
+   AI/tensorflow_23.02-2.10.0-py3  (D)      homer/4.11.0
+   AUGUSTUS/3.4.0                           htslib/1.13
+   Abinit/9.4.2-intel                       iRODS-iCommands/4.3.0
+   BEDOPS/2.4.39                            infernal/1.1.3
+   BLAST/2.9.0                              intel/20.4
+   BLAST/2.11.0                    (D)      intel/2021.3.0                       (D)
+   BLAT/36                                  intelmpi/20.4-intel20.4
+   BWA/0.7.3a                               intelmpi/2021.3.0-intel2021.3.0      (D)
+   CP2K/7.1-intel                           julia/1.5.2
+   CP2K/8.1-gcc10.2.0-openmpi4.0.5 (D)      kraken2/2.1.2
+   CheckM/1.1.3                             lazygit/0.28.2
+   FastQC/0.11.9                            lowcharts/0.4.2
+   GATK/4.1.9.0                             matlab/R2019b
+   GeneMark-ES/4.65                         matlab/R2021a
+   LAMMPS/3Mar20                            matlab/R2021b
+   LAMMPS/14Dec21-intel                     matlab/R2022b                        (D)
+   LAMMPS/27Oct21-intel                     mc/4.8.26
+   LAMMPS/29Oct20-intel            (D)      methylpy/1.4.3
+   MEME-suite/5.4.1                         mkl/2020.4.304
+   MentorGraphics/tessent.2022.1            mvapich2/2.3.5-gcc8.3.1
+   MuST/1.5-intel                           mvapich2/2.3.5-intel20.4             (D)
+   QuantumEspresso/6.7-pgi                  namd/2.13-gpu
+   QuantumEspresso/6.7-intel-omp            namd/2.14-cpu                        (D)
+   QuantumEspresso/6.7-intel                ncdu/1.15.1
+   QuantumEspresso/7.0-intel       (D)      ncview/2.1.8
+   RAxML/8.2.9                              nextflow/21.10.6
+   SPAdes/3.14.1                            numpy/1.19.4
+   STAR-Fusion/1.9.1                        nvhpc/20.11
+   STAR-Fusion/1.11.1              (D)      nvhpc/21.2
+   STAR/2.7.6a                              nvhpc/21.5
+   STAR/2.7.10b                    (D)      nvhpc/21.7
+   TIGER/5.32.1                             nvhpc/22.1
+   Trimmomatic/0.39                         nvhpc/22.9                           (D)
+   Trinity/2.11.0                           nwchem/7.0.2
+   allocations/1.0                 (L)      octave/6.2.0
+   anaconda2/2019.10                        openblas/0.3.12-gcc10.2.0
+   anaconda3/2020.07                        openblas/0.3.13-intel20.4            (D)
+   anaconda3/2020.11                        opencv/4.2.0
+   anaconda3/2022.10               (L,D)    openfoam/6.0
+   ansys/201                                openmpi/3.1.5-nvhpc21.2
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ module list
+
+Currently Loaded Modules:
+  1) allocations/1.0            3) anaconda3/2022.10
+  2) psc.allocations.user/1.0   4) cuda/11.7.1
+
+ 
+
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ module load anaconda3
+(base) [rakash@v015 nanoGPT]$ /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+bash: /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1: Is a directory
+(base) [rakash@v015 nanoGPT]$ conda activate /ocean/projects/cis230018p/rakash/rda-ngpt-env-v1
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python train.py config/train_shakespeare_char.py
+Overriding config with config/train_shakespeare_char.py:
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+
+out_dir = 'out-shakespeare-char'
+eval_interval = 250 # keep frequent because we'll overfit
+eval_iters = 200
+log_interval = 10 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'shakespeare-char'
+wandb_run_name = 'mini-gpt'
+
+dataset = 'shakespeare_char'
+gradient_accumulation_steps = 1
+batch_size = 64
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 6
+n_head = 6
+n_embd = 384
+dropout = 0.2
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 5000
+lr_decay_iters = 5000 # make equal to max_iters usually
+min_lr = 1e-4 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 100 # not super necessary potentially
+
+# on macbook also add
+# device = 'cpu'  # run on cpu only
+# compile = False # do not torch compile the model
+
+tokens per iteration will be: 16,384
+found vocab_size = 65 (inside data/shakespeare_char/meta.pkl)
+Initializing a new model from scratch
+number of parameters: 10.65M
+using fused AdamW: True
+compiling the model... (takes a ~minute)
+step 0: train loss 4.2874, val loss 4.2823
+iter 0: loss 4.2714, time 41756.76ms, mfu -100.00%
+iter 10: loss 3.2441, time 35.64ms, mfu 10.46%
+iter 20: loss 2.7948, time 35.70ms, mfu 10.45%
+iter 30: loss 2.6397, time 35.77ms, mfu 10.45%
+iter 40: loss 2.5767, time 35.73ms, mfu 10.45%
+iter 50: loss 2.5238, time 35.68ms, mfu 10.45%
+iter 60: loss 2.5148, time 35.75ms, mfu 10.45%
+iter 70: loss 2.4930, time 35.59ms, mfu 10.45%
+iter 80: loss 2.4971, time 35.98ms, mfu 10.44%
+iter 90: loss 2.4791, time 35.74ms, mfu 10.44%
+iter 100: loss 2.4578, time 35.74ms, mfu 10.44%
+iter 110: loss 2.4506, time 35.71ms, mfu 10.44%
+iter 120: loss 2.4338, time 35.64ms, mfu 10.44%
+iter 130: loss 2.4152, time 35.63ms, mfu 10.44%
+iter 140: loss 2.4227, time 35.68ms, mfu 10.44%
+iter 150: loss 2.4150, time 35.65ms, mfu 10.44%
+iter 160: loss 2.3686, time 35.75ms, mfu 10.44%
+iter 170: loss 2.3680, time 35.69ms, mfu 10.44%
+iter 180: loss 2.3219, time 35.80ms, mfu 10.44%
+iter 190: loss 2.2465, time 35.70ms, mfu 10.44%
+iter 200: loss 2.2129, time 35.75ms, mfu 10.44%
+iter 210: loss 2.1388, time 35.72ms, mfu 10.44%
+iter 220: loss 2.1326, time 35.97ms, mfu 10.43%
+iter 230: loss 2.0722, time 35.77ms, mfu 10.43%
+iter 240: loss 2.0833, time 35.91ms, mfu 10.42%
+step 250: train loss 1.9534, val loss 2.0529
+saving checkpoint to out-shakespeare-char
+iter 250: loss 2.0320, time 4395.33ms, mfu 9.39%
+iter 260: loss 1.9782, time 35.90ms, mfu 9.49%
+iter 270: loss 1.9705, time 35.76ms, mfu 9.58%
+iter 280: loss 1.9852, time 35.70ms, mfu 9.67%
+iter 290: loss 1.9254, time 35.79ms, mfu 9.74%
+iter 300: loss 1.9055, time 35.67ms, mfu 9.81%
+iter 310: loss 1.8708, time 35.87ms, mfu 9.87%
+iter 320: loss 1.8642, time 35.69ms, mfu 9.93%
+iter 330: loss 1.8249, time 35.83ms, mfu 9.97%
+iter 340: loss 1.7931, time 36.05ms, mfu 10.01%
+iter 350: loss 1.8366, time 35.67ms, mfu 10.05%
+iter 360: loss 1.7737, time 35.89ms, mfu 10.09%
+iter 370: loss 1.7489, time 35.78ms, mfu 10.12%
+iter 380: loss 1.7237, time 35.72ms, mfu 10.15%
+iter 390: loss 1.7408, time 35.78ms, mfu 10.18%
+iter 400: loss 1.7694, time 35.87ms, mfu 10.20%
+iter 410: loss 1.7032, time 35.76ms, mfu 10.22%
+iter 420: loss 1.7155, time 35.68ms, mfu 10.24%
+iter 430: loss 1.6937, time 35.76ms, mfu 10.26%
+iter 440: loss 1.6637, time 35.64ms, mfu 10.28%
+iter 450: loss 1.6483, time 35.70ms, mfu 10.30%
+iter 460: loss 1.6029, time 35.72ms, mfu 10.31%
+iter 470: loss 1.6572, time 35.82ms, mfu 10.32%
+iter 480: loss 1.6164, time 35.86ms, mfu 10.33%
+iter 490: loss 1.6025, time 35.79ms, mfu 10.33%
+step 500: train loss 1.5235, val loss 1.7184
+saving checkpoint to out-shakespeare-char
+iter 500: loss 1.5958, time 4275.96ms, mfu 9.31%
+iter 510: loss 1.6103, time 35.65ms, mfu 9.42%
+iter 520: loss 1.5949, time 35.84ms, mfu 9.52%
+iter 530: loss 1.5637, time 35.74ms, mfu 9.61%
+iter 540: loss 1.6220, time 35.78ms, mfu 9.69%
+iter 550: loss 1.5730, time 35.89ms, mfu 9.76%
+iter 560: loss 1.5668, time 35.78ms, mfu 9.83%
+iter 570: loss 1.5754, time 35.87ms, mfu 9.88%
+iter 580: loss 1.5325, time 35.81ms, mfu 9.93%
+iter 590: loss 1.5012, time 35.79ms, mfu 9.98%
+iter 600: loss 1.5188, time 35.83ms, mfu 10.02%
+iter 610: loss 1.5414, time 35.78ms, mfu 10.06%
+iter 620: loss 1.5362, time 35.95ms, mfu 10.09%
+iter 630: loss 1.5120, time 35.82ms, mfu 10.12%
+iter 640: loss 1.4642, time 35.83ms, mfu 10.15%
+iter 650: loss 1.5057, time 35.84ms, mfu 10.18%
+iter 660: loss 1.5089, time 35.80ms, mfu 10.20%
+iter 670: loss 1.4467, time 35.94ms, mfu 10.22%
+iter 680: loss 1.5098, time 35.78ms, mfu 10.24%
+iter 690: loss 1.4656, time 35.64ms, mfu 10.26%
+iter 700: loss 1.4870, time 35.68ms, mfu 10.28%
+iter 710: loss 1.4561, time 35.84ms, mfu 10.29%
+iter 720: loss 1.4432, time 35.76ms, mfu 10.30%
+iter 730: loss 1.4277, time 35.78ms, mfu 10.31%
+iter 740: loss 1.4329, time 35.82ms, mfu 10.32%
+step 750: train loss 1.3607, val loss 1.5890
+saving checkpoint to out-shakespeare-char
+iter 750: loss 1.4303, time 4275.79ms, mfu 9.30%
+iter 760: loss 1.4523, time 35.87ms, mfu 9.41%
+iter 770: loss 1.4281, time 35.84ms, mfu 9.51%
+iter 780: loss 1.4181, time 35.86ms, mfu 9.59%
+iter 790: loss 1.4174, time 35.69ms, mfu 9.68%
+iter 800: loss 1.4338, time 35.88ms, mfu 9.75%
+iter 810: loss 1.4089, time 35.86ms, mfu 9.81%
+iter 820: loss 1.4143, time 35.98ms, mfu 9.87%
+iter 830: loss 1.3920, time 35.95ms, mfu 9.92%
+iter 840: loss 1.4080, time 35.83ms, mfu 9.97%
+iter 850: loss 1.3964, time 35.82ms, mfu 10.01%
+iter 860: loss 1.4018, time 35.88ms, mfu 10.05%
+iter 870: loss 1.3958, time 35.96ms, mfu 10.08%
+iter 880: loss 1.3777, time 35.82ms, mfu 10.11%
+iter 890: loss 1.3956, time 35.82ms, mfu 10.14%
+iter 900: loss 1.3739, time 35.78ms, mfu 10.17%
+iter 910: loss 1.3231, time 35.85ms, mfu 10.19%
+iter 920: loss 1.3628, time 35.82ms, mfu 10.21%
+iter 930: loss 1.3536, time 35.91ms, mfu 10.23%
+iter 940: loss 1.3475, time 35.70ms, mfu 10.25%
+iter 950: loss 1.3579, time 35.89ms, mfu 10.26%
+iter 960: loss 1.3667, time 35.78ms, mfu 10.28%
+iter 970: loss 1.3646, time 35.75ms, mfu 10.29%
+iter 980: loss 1.3492, time 35.66ms, mfu 10.31%
+iter 990: loss 1.3421, time 35.80ms, mfu 10.32%
+step 1000: train loss 1.2733, val loss 1.5152
+saving checkpoint to out-shakespeare-char
+iter 1000: loss 1.3417, time 4278.42ms, mfu 9.30%
+iter 1010: loss 1.3394, time 35.86ms, mfu 9.40%
+iter 1020: loss 1.3151, time 35.77ms, mfu 9.51%
+iter 1030: loss 1.3438, time 35.74ms, mfu 9.60%
+iter 1040: loss 1.3622, time 35.93ms, mfu 9.68%
+iter 1050: loss 1.3022, time 35.89ms, mfu 9.75%
+iter 1060: loss 1.3369, time 35.84ms, mfu 9.81%
+iter 1070: loss 1.3347, time 35.84ms, mfu 9.87%
+iter 1080: loss 1.3320, time 35.89ms, mfu 9.92%
+iter 1090: loss 1.3527, time 35.78ms, mfu 9.97%
+iter 1100: loss 1.3227, time 35.91ms, mfu 10.01%
+iter 1110: loss 1.3025, time 35.91ms, mfu 10.05%
+iter 1120: loss 1.2965, time 35.78ms, mfu 10.08%
+iter 1130: loss 1.2984, time 35.77ms, mfu 10.12%
+iter 1140: loss 1.3060, time 35.75ms, mfu 10.15%
+iter 1150: loss 1.3117, time 35.86ms, mfu 10.17%
+iter 1160: loss 1.3363, time 36.01ms, mfu 10.19%
+iter 1170: loss 1.2979, time 36.06ms, mfu 10.20%
+iter 1180: loss 1.3241, time 35.90ms, mfu 10.22%
+iter 1190: loss 1.2708, time 35.84ms, mfu 10.24%
+iter 1200: loss 1.2922, time 36.07ms, mfu 10.25%
+iter 1210: loss 1.2692, time 35.78ms, mfu 10.27%
+iter 1220: loss 1.3044, time 35.92ms, mfu 10.28%
+iter 1230: loss 1.3005, time 35.72ms, mfu 10.29%
+iter 1240: loss 1.3022, time 35.73ms, mfu 10.31%
+step 1250: train loss 1.2039, val loss 1.4948
+saving checkpoint to out-shakespeare-char
+iter 1250: loss 1.2713, time 4283.33ms, mfu 9.28%
+iter 1260: loss 1.2832, time 35.75ms, mfu 9.40%
+iter 1270: loss 1.2632, time 35.94ms, mfu 9.49%
+iter 1280: loss 1.2594, time 36.03ms, mfu 9.58%
+iter 1290: loss 1.2875, time 35.80ms, mfu 9.66%
+iter 1300: loss 1.3076, time 35.87ms, mfu 9.73%
+iter 1310: loss 1.2372, time 35.76ms, mfu 9.80%
+iter 1320: loss 1.3072, time 35.82ms, mfu 9.86%
+iter 1330: loss 1.2625, time 35.82ms, mfu 9.92%
+iter 1340: loss 1.2962, time 35.84ms, mfu 9.97%
+iter 1350: loss 1.2563, time 35.90ms, mfu 10.01%
+iter 1360: loss 1.2796, time 35.82ms, mfu 10.05%
+iter 1370: loss 1.2538, time 35.79ms, mfu 10.08%
+iter 1380: loss 1.2638, time 35.75ms, mfu 10.12%
+iter 1390: loss 1.2457, time 35.87ms, mfu 10.14%
+iter 1400: loss 1.2575, time 35.89ms, mfu 10.17%
+iter 1410: loss 1.2532, time 35.75ms, mfu 10.19%
+iter 1420: loss 1.2726, time 35.84ms, mfu 10.21%
+iter 1430: loss 1.2412, time 35.86ms, mfu 10.23%
+iter 1440: loss 1.2528, time 35.84ms, mfu 10.25%
+iter 1450: loss 1.2297, time 35.93ms, mfu 10.26%
+iter 1460: loss 1.2400, time 35.81ms, mfu 10.27%
+iter 1470: loss 1.2176, time 35.82ms, mfu 10.29%
+iter 1480: loss 1.2103, time 35.82ms, mfu 10.30%
+iter 1490: loss 1.2368, time 35.75ms, mfu 10.31%
+step 1500: train loss 1.1531, val loss 1.4728
+saving checkpoint to out-shakespeare-char
+iter 1500: loss 1.1873, time 4291.41ms, mfu 9.29%
+iter 1510: loss 1.2338, time 36.81ms, mfu 9.37%
+iter 1520: loss 1.2331, time 35.98ms, mfu 9.47%
+iter 1530: loss 1.2537, time 35.91ms, mfu 9.56%
+iter 1540: loss 1.1958, time 35.86ms, mfu 9.64%
+iter 1550: loss 1.2280, time 35.88ms, mfu 9.72%
+iter 1560: loss 1.2059, time 35.96ms, mfu 9.78%
+iter 1570: loss 1.2293, time 35.98ms, mfu 9.84%
+iter 1580: loss 1.2031, time 35.80ms, mfu 9.90%
+iter 1590: loss 1.1890, time 35.90ms, mfu 9.95%
+iter 1600: loss 1.1997, time 35.97ms, mfu 9.99%
+iter 1610: loss 1.2368, time 35.97ms, mfu 10.02%
+iter 1620: loss 1.1841, time 35.96ms, mfu 10.06%
+iter 1630: loss 1.2024, time 35.96ms, mfu 10.09%
+iter 1640: loss 1.2165, time 36.04ms, mfu 10.11%
+iter 1650: loss 1.1815, time 36.22ms, mfu 10.13%
+iter 1660: loss 1.2106, time 35.98ms, mfu 10.15%
+iter 1670: loss 1.1988, time 35.98ms, mfu 10.17%
+iter 1680: loss 1.1967, time 35.86ms, mfu 10.20%
+iter 1690: loss 1.1977, time 35.86ms, mfu 10.22%
+iter 1700: loss 1.1859, time 35.90ms, mfu 10.23%
+iter 1710: loss 1.1775, time 35.86ms, mfu 10.25%
+iter 1720: loss 1.1857, time 35.97ms, mfu 10.26%
+iter 1730: loss 1.2042, time 35.90ms, mfu 10.27%
+iter 1740: loss 1.1694, time 35.95ms, mfu 10.28%
+step 1750: train loss 1.0997, val loss 1.4702
+saving checkpoint to out-shakespeare-char
+iter 1750: loss 1.1804, time 4303.86ms, mfu 9.26%
+iter 1760: loss 1.1837, time 35.84ms, mfu 9.37%
+iter 1770: loss 1.2021, time 35.94ms, mfu 9.47%
+iter 1780: loss 1.1998, time 35.88ms, mfu 9.56%
+iter 1790: loss 1.1944, time 35.91ms, mfu 9.65%
+iter 1800: loss 1.1832, time 35.97ms, mfu 9.72%
+iter 1810: loss 1.1553, time 35.87ms, mfu 9.78%
+iter 1820: loss 1.1724, time 35.83ms, mfu 9.85%
+iter 1830: loss 1.1702, time 35.95ms, mfu 9.90%
+iter 1840: loss 1.1613, time 36.01ms, mfu 9.94%
+iter 1850: loss 1.1582, time 36.07ms, mfu 9.98%
+iter 1860: loss 1.1797, time 36.02ms, mfu 10.02%
+iter 1870: loss 1.1421, time 36.10ms, mfu 10.05%
+iter 1880: loss 1.1872, time 35.81ms, mfu 10.08%
+iter 1890: loss 1.1782, time 36.04ms, mfu 10.11%
+iter 1900: loss 1.1337, time 35.83ms, mfu 10.14%
+iter 1910: loss 1.1626, time 36.07ms, mfu 10.16%
+iter 1920: loss 1.1761, time 36.09ms, mfu 10.17%
+iter 1930: loss 1.1450, time 35.90ms, mfu 10.19%
+iter 1940: loss 1.1307, time 35.87ms, mfu 10.21%
+iter 1950: loss 1.1394, time 35.84ms, mfu 10.23%
+iter 1960: loss 1.1538, time 35.86ms, mfu 10.25%
+iter 1970: loss 1.1538, time 35.82ms, mfu 10.26%
+iter 1980: loss 1.1542, time 35.87ms, mfu 10.28%
+iter 1990: loss 1.1507, time 35.96ms, mfu 10.28%
+step 2000: train loss 1.0559, val loss 1.4762
+iter 2000: loss 1.1303, time 4108.49ms, mfu 9.27%
+iter 2010: loss 1.1248, time 36.04ms, mfu 9.37%
+iter 2020: loss 1.1191, time 36.02ms, mfu 9.47%
+iter 2030: loss 1.1545, time 35.93ms, mfu 9.56%
+iter 2040: loss 1.1472, time 35.81ms, mfu 9.64%
+iter 2050: loss 1.1138, time 35.84ms, mfu 9.72%
+iter 2060: loss 1.0996, time 35.94ms, mfu 9.78%
+iter 2070: loss 1.1249, time 36.05ms, mfu 9.84%
+iter 2080: loss 1.1279, time 35.88ms, mfu 9.89%
+iter 2090: loss 1.1333, time 35.93ms, mfu 9.94%
+iter 2100: loss 1.1271, time 35.87ms, mfu 9.99%
+iter 2110: loss 1.1292, time 35.95ms, mfu 10.02%
+iter 2120: loss 1.1280, time 35.86ms, mfu 10.06%
+iter 2130: loss 1.1325, time 35.83ms, mfu 10.10%
+iter 2140: loss 1.1327, time 35.88ms, mfu 10.12%
+iter 2150: loss 1.1237, time 35.85ms, mfu 10.15%
+iter 2160: loss 1.1393, time 35.94ms, mfu 10.17%
+iter 2170: loss 1.1323, time 35.98ms, mfu 10.19%
+iter 2180: loss 1.1138, time 35.96ms, mfu 10.21%
+iter 2190: loss 1.1157, time 35.91ms, mfu 10.23%
+iter 2200: loss 1.1270, time 35.91ms, mfu 10.24%
+iter 2210: loss 1.1117, time 35.86ms, mfu 10.26%
+iter 2220: loss 1.1244, time 36.08ms, mfu 10.26%
+iter 2230: loss 1.1222, time 35.98ms, mfu 10.27%
+iter 2240: loss 1.1191, time 36.01ms, mfu 10.28%
+step 2250: train loss 1.0068, val loss 1.4847
+iter 2250: loss 1.1091, time 4100.87ms, mfu 9.26%
+iter 2260: loss 1.1105, time 35.90ms, mfu 9.37%
+iter 2270: loss 1.1295, time 35.96ms, mfu 9.47%
+iter 2280: loss 1.0914, time 35.86ms, mfu 9.56%
+iter 2290: loss 1.1412, time 36.05ms, mfu 9.64%
+iter 2300: loss 1.1210, time 35.95ms, mfu 9.71%
+iter 2310: loss 1.0971, time 36.13ms, mfu 9.77%
+iter 2320: loss 1.0906, time 36.02ms, mfu 9.83%
+iter 2330: loss 1.1011, time 35.94ms, mfu 9.88%
+iter 2340: loss 1.1197, time 35.95ms, mfu 9.93%
+iter 2350: loss 1.1064, time 36.19ms, mfu 9.97%
+iter 2360: loss 1.1060, time 36.24ms, mfu 10.00%
+iter 2370: loss 1.0880, time 36.06ms, mfu 10.03%
+iter 2380: loss 1.0827, time 36.08ms, mfu 10.06%
+iter 2390: loss 1.0763, time 35.88ms, mfu 10.09%
+iter 2400: loss 1.0743, time 35.90ms, mfu 10.12%
+iter 2410: loss 1.0642, time 35.96ms, mfu 10.15%
+iter 2420: loss 1.0805, time 35.93ms, mfu 10.17%
+iter 2430: loss 1.0525, time 35.91ms, mfu 10.19%
+iter 2440: loss 1.0552, time 35.87ms, mfu 10.21%
+iter 2450: loss 1.0720, time 35.93ms, mfu 10.23%
+iter 2460: loss 1.0898, time 36.01ms, mfu 10.24%
+iter 2470: loss 1.0951, time 35.87ms, mfu 10.25%
+iter 2480: loss 1.0860, time 36.02ms, mfu 10.26%
+iter 2490: loss 1.0570, time 35.89ms, mfu 10.27%
+step 2500: train loss 0.9573, val loss 1.4938
+iter 2500: loss 1.0863, time 4112.75ms, mfu 9.26%
+iter 2510: loss 1.0705, time 35.86ms, mfu 9.37%
+iter 2520: loss 1.0447, time 35.91ms, mfu 9.47%
+iter 2530: loss 1.0462, time 35.98ms, mfu 9.56%
+iter 2540: loss 1.0551, time 35.94ms, mfu 9.64%
+iter 2550: loss 1.0679, time 35.98ms, mfu 9.71%
+iter 2560: loss 1.0566, time 36.00ms, mfu 9.78%
+iter 2570: loss 1.0804, time 36.11ms, mfu 9.83%
+iter 2580: loss 1.0788, time 35.97ms, mfu 9.88%
+iter 2590: loss 1.0664, time 36.02ms, mfu 9.93%
+iter 2600: loss 1.0620, time 36.06ms, mfu 9.97%
+iter 2610: loss 1.0470, time 36.01ms, mfu 10.01%
+iter 2620: loss 1.0391, time 36.03ms, mfu 10.04%
+iter 2630: loss 1.0238, time 35.89ms, mfu 10.07%
+iter 2640: loss 1.0485, time 36.09ms, mfu 10.10%
+iter 2650: loss 1.0724, time 36.04ms, mfu 10.12%
+iter 2660: loss 1.0488, time 35.89ms, mfu 10.15%
+iter 2670: loss 1.0182, time 36.08ms, mfu 10.17%
+iter 2680: loss 1.0510, time 35.97ms, mfu 10.19%
+iter 2690: loss 1.0522, time 36.16ms, mfu 10.20%
+iter 2700: loss 1.0245, time 36.06ms, mfu 10.21%
+iter 2710: loss 1.0549, time 36.08ms, mfu 10.22%
+iter 2720: loss 1.0381, time 36.13ms, mfu 10.23%
+iter 2730: loss 1.0606, time 35.95ms, mfu 10.25%
+iter 2740: loss 1.0227, time 36.06ms, mfu 10.25%
+step 2750: train loss 0.9120, val loss 1.5121
+iter 2750: loss 1.0305, time 4108.37ms, mfu 9.24%
+iter 2760: loss 1.0303, time 36.19ms, mfu 9.34%
+iter 2770: loss 1.0248, time 36.26ms, mfu 9.44%
+iter 2780: loss 1.0242, time 36.13ms, mfu 9.52%
+iter 2790: loss 1.0405, time 36.20ms, mfu 9.60%
+iter 2800: loss 1.0084, time 36.06ms, mfu 9.67%
+iter 2810: loss 1.0354, time 35.87ms, mfu 9.75%
+iter 2820: loss 1.0173, time 36.07ms, mfu 9.80%
+iter 2830: loss 1.0282, time 36.08ms, mfu 9.86%
+iter 2840: loss 0.9993, time 36.11ms, mfu 9.90%
+iter 2850: loss 1.0184, time 36.05ms, mfu 9.95%
+iter 2860: loss 1.0168, time 35.86ms, mfu 9.99%
+iter 2870: loss 1.0055, time 36.00ms, mfu 10.03%
+iter 2880: loss 1.0300, time 36.03ms, mfu 10.06%
+iter 2890: loss 1.0000, time 36.00ms, mfu 10.09%
+iter 2900: loss 0.9958, time 36.15ms, mfu 10.11%
+iter 2910: loss 1.0346, time 35.91ms, mfu 10.14%
+iter 2920: loss 1.0007, time 36.03ms, mfu 10.16%
+iter 2930: loss 0.9990, time 35.92ms, mfu 10.18%
+iter 2940: loss 0.9911, time 36.01ms, mfu 10.20%
+iter 2950: loss 1.0224, time 36.22ms, mfu 10.21%
+iter 2960: loss 0.9995, time 35.92ms, mfu 10.22%
+iter 2970: loss 0.9895, time 36.09ms, mfu 10.23%
+iter 2980: loss 1.0020, time 36.09ms, mfu 10.24%
+iter 2990: loss 0.9887, time 35.99ms, mfu 10.25%
+step 3000: train loss 0.8643, val loss 1.5172
+iter 3000: loss 0.9853, time 4114.18ms, mfu 9.24%
+iter 3010: loss 0.9941, time 35.86ms, mfu 9.35%
+iter 3020: loss 0.9944, time 36.03ms, mfu 9.45%
+iter 3030: loss 1.0051, time 36.01ms, mfu 9.54%
+iter 3040: loss 1.0216, time 35.94ms, mfu 9.62%
+iter 3050: loss 0.9757, time 36.14ms, mfu 9.69%
+iter 3060: loss 0.9962, time 36.13ms, mfu 9.75%
+iter 3070: loss 1.0191, time 36.08ms, mfu 9.81%
+iter 3080: loss 0.9913, time 36.01ms, mfu 9.87%
+iter 3090: loss 0.9761, time 36.09ms, mfu 9.91%
+iter 3100: loss 0.9958, time 35.98ms, mfu 9.96%
+iter 3110: loss 0.9675, time 36.07ms, mfu 9.99%
+iter 3120: loss 0.9918, time 36.04ms, mfu 10.03%
+iter 3130: loss 0.9758, time 36.02ms, mfu 10.06%
+iter 3140: loss 0.9812, time 36.04ms, mfu 10.09%
+iter 3150: loss 0.9940, time 35.93ms, mfu 10.12%
+iter 3160: loss 1.0020, time 36.13ms, mfu 10.14%
+iter 3170: loss 0.9607, time 36.05ms, mfu 10.16%
+iter 3180: loss 0.9733, time 36.04ms, mfu 10.17%
+iter 3190: loss 0.9866, time 36.04ms, mfu 10.19%
+iter 3200: loss 0.9670, time 36.10ms, mfu 10.20%
+iter 3210: loss 0.9605, time 36.13ms, mfu 10.22%
+iter 3220: loss 0.9535, time 36.00ms, mfu 10.23%
+iter 3230: loss 0.9593, time 35.90ms, mfu 10.24%
+iter 3240: loss 0.9595, time 36.09ms, mfu 10.25%
+step 3250: train loss 0.8218, val loss 1.5547
+iter 3250: loss 0.9678, time 4114.58ms, mfu 9.24%
+iter 3260: loss 0.9526, time 36.02ms, mfu 9.35%
+iter 3270: loss 0.9717, time 35.84ms, mfu 9.45%
+iter 3280: loss 0.9489, time 35.91ms, mfu 9.54%
+iter 3290: loss 0.9477, time 36.09ms, mfu 9.62%
+iter 3300: loss 0.9437, time 36.08ms, mfu 9.69%
+iter 3310: loss 0.9441, time 36.09ms, mfu 9.76%
+iter 3320: loss 0.9680, time 35.94ms, mfu 9.82%
+iter 3330: loss 0.9601, time 36.08ms, mfu 9.87%
+iter 3340: loss 0.9559, time 35.98ms, mfu 9.92%
+iter 3350: loss 0.9585, time 35.93ms, mfu 9.96%
+iter 3360: loss 0.9264, time 36.02ms, mfu 10.00%
+iter 3370: loss 0.9558, time 36.05ms, mfu 10.03%
+iter 3380: loss 0.9462, time 36.01ms, mfu 10.07%
+iter 3390: loss 0.9491, time 35.97ms, mfu 10.09%
+iter 3400: loss 0.9558, time 35.90ms, mfu 10.12%
+iter 3410: loss 0.9438, time 36.03ms, mfu 10.15%
+iter 3420: loss 0.9448, time 35.90ms, mfu 10.17%
+iter 3430: loss 0.9459, time 35.93ms, mfu 10.19%
+iter 3440: loss 0.9792, time 36.08ms, mfu 10.20%
+iter 3450: loss 0.9518, time 36.08ms, mfu 10.22%
+iter 3460: loss 0.9453, time 35.90ms, mfu 10.23%
+iter 3470: loss 0.9377, time 36.01ms, mfu 10.24%
+iter 3480: loss 0.9506, time 35.96ms, mfu 10.26%
+iter 3490: loss 0.9170, time 36.09ms, mfu 10.26%
+step 3500: train loss 0.7802, val loss 1.5711
+iter 3500: loss 0.9075, time 4116.35ms, mfu 9.25%
+iter 3510: loss 0.9124, time 36.00ms, mfu 9.36%
+iter 3520: loss 0.9227, time 35.95ms, mfu 9.46%
+iter 3530: loss 0.9481, time 35.94ms, mfu 9.55%
+iter 3540: loss 0.9320, time 35.98ms, mfu 9.63%
+iter 3550: loss 0.9279, time 36.01ms, mfu 9.70%
+iter 3560: loss 0.9569, time 36.04ms, mfu 9.76%
+iter 3570: loss 0.9375, time 36.02ms, mfu 9.82%
+iter 3580: loss 0.9259, time 36.02ms, mfu 9.87%
+iter 3590: loss 0.9270, time 35.94ms, mfu 9.92%
+iter 3600: loss 0.9249, time 35.96ms, mfu 9.97%
+iter 3610: loss 0.9140, time 35.96ms, mfu 10.01%
+iter 3620: loss 0.9069, time 36.04ms, mfu 10.04%
+iter 3630: loss 0.9225, time 35.91ms, mfu 10.07%
+iter 3640: loss 0.9145, time 35.97ms, mfu 10.10%
+iter 3650: loss 0.9106, time 35.97ms, mfu 10.13%
+iter 3660: loss 0.9437, time 36.07ms, mfu 10.15%
+iter 3670: loss 0.9367, time 35.96ms, mfu 10.17%
+iter 3680: loss 0.9099, time 36.00ms, mfu 10.19%
+iter 3690: loss 0.9347, time 36.09ms, mfu 10.20%
+iter 3700: loss 0.8705, time 35.98ms, mfu 10.22%
+iter 3710: loss 0.8820, time 36.12ms, mfu 10.23%
+iter 3720: loss 0.9064, time 36.05ms, mfu 10.24%
+iter 3730: loss 0.9046, time 36.05ms, mfu 10.25%
+iter 3740: loss 0.9020, time 36.06ms, mfu 10.26%
+step 3750: train loss 0.7421, val loss 1.5970
+iter 3750: loss 0.8943, time 4113.34ms, mfu 9.24%
+iter 3760: loss 0.9342, time 35.96ms, mfu 9.35%
+iter 3770: loss 0.9333, time 36.14ms, mfu 9.45%
+iter 3780: loss 0.9236, time 36.01ms, mfu 9.54%
+iter 3790: loss 0.9020, time 36.02ms, mfu 9.62%
+iter 3800: loss 0.9141, time 36.04ms, mfu 9.69%
+iter 3810: loss 0.9219, time 36.26ms, mfu 9.75%
+iter 3820: loss 0.8897, time 35.96ms, mfu 9.81%
+iter 3830: loss 0.9016, time 35.98ms, mfu 9.87%
+iter 3840: loss 0.8859, time 36.16ms, mfu 9.91%
+iter 3850: loss 0.8803, time 36.14ms, mfu 9.95%
+iter 3860: loss 0.8734, time 36.08ms, mfu 9.99%
+iter 3870: loss 0.9000, time 36.04ms, mfu 10.02%
+iter 3880: loss 0.8953, time 35.96ms, mfu 10.06%
+iter 3890: loss 0.8922, time 36.11ms, mfu 10.08%
+iter 3900: loss 0.8978, time 35.99ms, mfu 10.11%
+iter 3910: loss 0.8844, time 35.97ms, mfu 10.13%
+iter 3920: loss 0.8666, time 36.02ms, mfu 10.16%
+iter 3930: loss 0.8909, time 35.87ms, mfu 10.18%
+iter 3940: loss 0.8805, time 35.97ms, mfu 10.20%
+iter 3950: loss 0.8751, time 36.02ms, mfu 10.21%
+iter 3960: loss 0.9116, time 36.06ms, mfu 10.22%
+iter 3970: loss 0.8936, time 35.98ms, mfu 10.24%
+iter 3980: loss 0.8943, time 36.05ms, mfu 10.25%
+iter 3990: loss 0.8761, time 36.01ms, mfu 10.26%
+step 4000: train loss 0.7096, val loss 1.6213
+iter 4000: loss 0.8622, time 4135.40ms, mfu 9.24%
+iter 4010: loss 0.8734, time 36.10ms, mfu 9.35%
+iter 4020: loss 0.8850, time 36.20ms, mfu 9.44%
+iter 4030: loss 0.8753, time 35.98ms, mfu 9.53%
+iter 4040: loss 0.8788, time 35.91ms, mfu 9.62%
+iter 4050: loss 0.8788, time 35.96ms, mfu 9.69%
+iter 4060: loss 0.8662, time 35.87ms, mfu 9.76%
+iter 4070: loss 0.8600, time 36.04ms, mfu 9.82%
+iter 4080: loss 0.8888, time 36.01ms, mfu 9.87%
+iter 4090: loss 0.8462, time 36.07ms, mfu 9.92%
+iter 4100: loss 0.8984, time 35.92ms, mfu 9.96%
+iter 4110: loss 0.8696, time 35.90ms, mfu 10.01%
+iter 4120: loss 0.8775, time 35.90ms, mfu 10.04%
+iter 4130: loss 0.8594, time 35.98ms, mfu 10.07%
+iter 4140: loss 0.8768, time 36.04ms, mfu 10.10%
+iter 4150: loss 0.8687, time 35.99ms, mfu 10.13%
+iter 4160: loss 0.8560, time 36.11ms, mfu 10.15%
+iter 4170: loss 0.8668, time 36.13ms, mfu 10.16%
+iter 4180: loss 0.8725, time 36.00ms, mfu 10.18%
+iter 4190: loss 0.8661, time 36.19ms, mfu 10.19%
+iter 4200: loss 0.8574, time 36.04ms, mfu 10.21%
+iter 4210: loss 0.8744, time 36.00ms, mfu 10.22%
+iter 4220: loss 0.8594, time 35.89ms, mfu 10.24%
+iter 4230: loss 0.8847, time 36.05ms, mfu 10.25%
+iter 4240: loss 0.8717, time 36.10ms, mfu 10.26%
+step 4250: train loss 0.6794, val loss 1.6485
+iter 4250: loss 0.8728, time 4120.88ms, mfu 9.24%
+iter 4260: loss 0.8604, time 35.94ms, mfu 9.35%
+iter 4270: loss 0.8616, time 36.03ms, mfu 9.45%
+iter 4280: loss 0.8567, time 35.96ms, mfu 9.54%
+iter 4290: loss 0.8240, time 36.03ms, mfu 9.62%
+iter 4300: loss 0.8246, time 35.94ms, mfu 9.70%
+iter 4310: loss 0.8500, time 35.98ms, mfu 9.76%
+iter 4320: loss 0.8332, time 36.06ms, mfu 9.82%
+iter 4330: loss 0.8626, time 35.85ms, mfu 9.88%
+iter 4340: loss 0.8320, time 36.20ms, mfu 9.92%
+iter 4350: loss 0.8418, time 35.91ms, mfu 9.96%
+iter 4360: loss 0.8626, time 36.15ms, mfu 10.00%
+iter 4370: loss 0.8623, time 36.11ms, mfu 10.03%
+iter 4380: loss 0.8405, time 36.23ms, mfu 10.06%
+iter 4390: loss 0.8640, time 35.96ms, mfu 10.09%
+iter 4400: loss 0.8484, time 36.08ms, mfu 10.11%
+iter 4410: loss 0.8645, time 36.04ms, mfu 10.13%
+iter 4420: loss 0.8645, time 35.93ms, mfu 10.16%
+iter 4430: loss 0.8389, time 36.07ms, mfu 10.17%
+iter 4440: loss 0.8449, time 36.20ms, mfu 10.19%
+iter 4450: loss 0.8527, time 36.26ms, mfu 10.20%
+iter 4460: loss 0.8291, time 36.02ms, mfu 10.21%
+iter 4470: loss 0.8527, time 36.17ms, mfu 10.22%
+iter 4480: loss 0.8338, time 36.06ms, mfu 10.23%
+iter 4490: loss 0.8380, time 36.12ms, mfu 10.24%
+step 4500: train loss 0.6541, val loss 1.6663
+iter 4500: loss 0.8653, time 4134.15ms, mfu 9.22%
+iter 4510: loss 0.8458, time 36.09ms, mfu 9.33%
+iter 4520: loss 0.8448, time 35.87ms, mfu 9.44%
+iter 4530: loss 0.8509, time 36.08ms, mfu 9.53%
+iter 4540: loss 0.8499, time 36.03ms, mfu 9.61%
+iter 4550: loss 0.8718, time 36.16ms, mfu 9.68%
+iter 4560: loss 0.8413, time 36.13ms, mfu 9.74%
+iter 4570: loss 0.8371, time 36.15ms, mfu 9.80%
+iter 4580: loss 0.8516, time 35.98ms, mfu 9.86%
+iter 4590: loss 0.8531, time 36.02ms, mfu 9.90%
+iter 4600: loss 0.8324, time 36.09ms, mfu 9.95%
+iter 4610: loss 0.8629, time 35.96ms, mfu 9.99%
+iter 4620: loss 0.8334, time 35.98ms, mfu 10.02%
+iter 4630: loss 0.8204, time 35.99ms, mfu 10.06%
+iter 4640: loss 0.8399, time 36.02ms, mfu 10.09%
+iter 4650: loss 0.8562, time 36.12ms, mfu 10.11%
+iter 4660: loss 0.8512, time 35.93ms, mfu 10.14%
+iter 4670: loss 0.8375, time 36.07ms, mfu 10.15%
+iter 4680: loss 0.8515, time 35.93ms, mfu 10.18%
+iter 4690: loss 0.8478, time 36.11ms, mfu 10.19%
+iter 4700: loss 0.8269, time 36.14ms, mfu 10.20%
+iter 4710: loss 0.7979, time 36.18ms, mfu 10.21%
+iter 4720: loss 0.8367, time 36.00ms, mfu 10.23%
+iter 4730: loss 0.8229, time 36.16ms, mfu 10.23%
+iter 4740: loss 0.8337, time 35.94ms, mfu 10.25%
+step 4750: train loss 0.6368, val loss 1.6850
+iter 4750: loss 0.8121, time 4124.92ms, mfu 9.23%
+iter 4760: loss 0.8163, time 35.91ms, mfu 9.35%
+iter 4770: loss 0.7937, time 35.95ms, mfu 9.45%
+iter 4780: loss 0.8140, time 36.01ms, mfu 9.54%
+iter 4790: loss 0.8298, time 35.96ms, mfu 9.62%
+iter 4800: loss 0.8178, time 36.00ms, mfu 9.69%
+iter 4810: loss 0.8406, time 36.01ms, mfu 9.76%
+iter 4820: loss 0.8253, time 36.08ms, mfu 9.82%
+iter 4830: loss 0.8220, time 36.02ms, mfu 9.87%
+iter 4840: loss 0.8381, time 35.97ms, mfu 9.92%
+iter 4850: loss 0.8331, time 35.89ms, mfu 9.96%
+iter 4860: loss 0.8122, time 35.86ms, mfu 10.01%
+iter 4870: loss 0.8046, time 35.97ms, mfu 10.04%
+iter 4880: loss 0.8200, time 35.92ms, mfu 10.08%
+iter 4890: loss 0.8091, time 36.11ms, mfu 10.10%
+iter 4900: loss 0.8008, time 36.05ms, mfu 10.12%
+iter 4910: loss 0.8260, time 35.93ms, mfu 10.15%
+iter 4920: loss 0.8186, time 35.98ms, mfu 10.17%
+iter 4930: loss 0.8023, time 36.03ms, mfu 10.19%
+iter 4940: loss 0.7986, time 36.06ms, mfu 10.20%
+iter 4950: loss 0.8308, time 36.01ms, mfu 10.22%
+iter 4960: loss 0.8241, time 36.00ms, mfu 10.23%
+iter 4970: loss 0.7801, time 36.03ms, mfu 10.24%
+iter 4980: loss 0.7910, time 35.93ms, mfu 10.25%
+iter 4990: loss 0.8255, time 36.11ms, mfu 10.26%
+step 5000: train loss 0.6225, val loss 1.7026
+iter 5000: loss 0.8265, time 4123.60ms, mfu 9.24%
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python sample.py --out_dir=out-shakespeare-char
+Overriding: out_dir = out-shakespeare-char
+Traceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/sample.py", line 32, in <module>
+    ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 234, in __init__
+    raise RuntimeError('Current CUDA Device does not support bfloat16. Please switch dtype to float16.')
+RuntimeError: Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ nano -c sample.py 
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python sample.py --out_dir=out-shakespeare-char
+Overriding: out_dir = out-shakespeare-char
+number of parameters: 10.65M
+Loading meta from data/shakespeare_char/meta.pkl...
+
+
+ANGELO:
+And cowards is a brief a serious blood
+Should straight us barriage, unquite but redels
+Have away'd up that action of those proofs,
+If it be lended by earnest, be content;
+For that that is merit, in that will lingly could shrift
+The same of itself, yet look'd nor open it.
+
+KING RICHARD II:
+It is in one dead in the story,
+Will never reconcile me to the day of thrust,
+I' the great shall divide on the field?
+
+KING RICHARD II:
+And by this day my gracious husband.
+
+DUCHESS OF YORK:
+An of this
+---------------
+
+Men pardon, marry, I will give me a plant.
+
+BUCKINGHAM:
+Not that, my good lord.
+
+GLOUCESTER:
+O, my lord! why, some mighty mother with me.
+
+GLOUCESTER:
+Believe me, my lord.
+
+KING EDWARD IV:
+Catesby, how fares me, sweet for my sceptress,
+And we contend me to the hardy to great Edward:
+An old Duke of Florizelor, thou canst not send them?
+Their hath brought the earth of this officer
+To our fever summer approaches with their hearts
+And lie below the husband; and therefore, both the sea,
+Give me give 
+---------------
+
+Men take it well, as I can speak, as I did
+A virtuous death to the charge of his womb,
+For we might swear within it.
+
+FRIAR LAURENCE:
+But now, come, I will be contInuate.
+
+FRIAR LAURENCE:
+We are denied.
+
+CATESBY:
+First, let me not not my hand; I will inform your love.
+He is famour to my princely life for justice: 'Your
+Most shall be gone, be not short to be brief;
+And let my liege, subscriber to visit the power.
+
+CATESBY:
+I am not the people of the Coriolanus.
+
+HASTINGS:
+Willingly Richmond thou 
+---------------
+
+The sleep of wretched place, say some followers,
+That scarce the proveth is comfort
+That should be gone devil? or my Lord Hastings,
+Did thou deserve me and arm'd, where I should be
+My man, then as I am guilty to such a land,
+Which thou flatter'st thy babest course to our kindness?
+Therefore, where we may follow'd our flesh rose,
+From falsehood ourselves with a sceptre's chant;
+The appoint proud he could not speak what we cannot
+When the parliaments for death; for that to his office
+In her and wi
+---------------
+
+That lamb Ned thus: but he is better in the free duke
+His friends and subjects the frown recover do.
+Come, come on; then let him be custom'd,
+I have sorry down to some place of the court.
+
+Second Servant:
+A man that he hath his noble head of more prophecy
+To champ him to man unto him.
+
+CORIOLANUS:
+Had he hath coming
+The princess is his better to me all the state malice,
+When he hath made grave a tiding but ere no short,
+A villain, and painted as it is done home,
+To see him to my strength: and th
+---------------
+
+
+MENENIUS:
+Have been so proved the gods!
+
+SICINIUS:
+Not a goodly messenger,
+And that now have done a man a love
+Of the prophecy hour have crave made error
+That shall not be content to course good,
+To know no other more with than you.
+
+SICINIUS:
+Why, then? if you could cannot have here been for't
+Under him, and Baptista, and your lordship souling,
+Like a cold and to the court-blow.
+
+MENENIUS:
+The town, the rest that has this precious lamb,
+As the gods disgrass of predeceition, sparing,
+And like t
+---------------
+
+She would be my life did to slip the sea,
+And so say 'We are as too know all the sun:'
+And that all that I know why it becomes
+To Romeo do an irra-like true time
+With my own lies, that I would not say.
+
+ROMEO:
+To sleep my living wind; for I will warrant,
+And yet was cause, my sister's land;
+But that lives what I say, then I will give.
+
+DUKE VINCENTIO:
+Torment them on the sister of her turn.
+
+DUKE VINCENTIO:
+John Hence, your master and till I have to good.
+
+CLAUDIO:
+I am torn your honour.
+
+HORTEN
+---------------
+
+lady, who does on thee fellows?
+
+LADY CAPULET:
+A sort as it cannot be gone!
+Trust not me to your head was a cold fight;
+And I will laugh another, will I wish
+You have dull done your arms: over I have say
+you so doing to be a man of love I brother,
+Your forefence has your enemy, sir; for your power
+To the whole is hole for good prophecy:
+The old moe world had now to be holy son well;
+For what you had demised and so he shall appear'd our foil
+And as an am to be of my banishment: my good lord,
+If y
+---------------
+
+
+LEONTES:
+The realm bell not a comand. But if I mighty,
+I like of this woman to beAr the guests
+Of some three-stored shallow'd to the sea,
+Till the common of mine eye, the mayrring.
+
+PAULINA:
+I did love the duke my soul,
+If you may be reflented to your wind coal wholesome he be in
+any short in the bloody of the
+most fitness of unstoppose, grief have upon the field of fight
+With a royal purpose too, and to be so good of love
+From Christian and not four heaven: I then go along
+As I am in this was 
+---------------
+^CTraceback (most recent call last):
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/sample.py", line 87, in <module>
+    y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/model.py", line 355, in generate
+    logits, _ = self(idx_cond)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/model.py", line 188, in forward
+    x = block(x)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/model.py", line 111, in forward
+    x = x + self.attn(self.ln_1(x))
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/jet/home/rakash/project/nano-gpt-git-v0/nanoGPT/model.py", line 35, in forward
+    return F.layer_norm(input, self.weight.shape, self.weight, self.bias, 1e-5)
+  File "/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1/lib/python3.10/site-packages/torch/nn/functional.py", line 2515, in layer_norm
+    return torch.layer_norm(input, normalized_shape, weight, bias, eps, torch.backends.cudnn.enabled)
+KeyboardInterrupt
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ python sample.py --out_dir=out-shakespeare-char
+Overriding: out_dir = out-shakespeare-char
+number of parameters: 10.65M
+Loading meta from data/shakespeare_char/meta.pkl...
+
+
+ANGELO:
+And cowards is a brief a serious blood
+Should straight us barriage, unquite but redels
+Have away'd up that action of those proofs,
+If it be lended by earnest, be content;
+For that that is merit, in that will lingly could shrift
+The same of itself, yet look'd nor open it.
+
+KING RICHARD II:
+It is in one dead in the story,
+Will never reconcile me to the day of thrust,
+I' the great shall divide on the field?
+
+KING RICHARD II:
+And by this day my gracious husband.
+
+DUCHESS OF YORK:
+An of this
+---------------
+
+Men pardon, marry, I will give me a plant.
+
+BUCKINGHAM:
+Not that, my good lord.
+
+GLOUCESTER:
+O, my lord! why, some mighty mother with me.
+
+GLOUCESTER:
+Believe me, my lord.
+
+KING EDWARD IV:
+Catesby, how fares me, sweet for my sceptress,
+And we contend me to the hardy to great Edward:
+An old Duke of Florizelor, thou canst not send them?
+Their hath brought the earth of this officer
+To our fever summer approaches with their hearts
+And lie below the husband; and therefore, both the sea,
+Give me give 
+---------------
+
+Men take it well, as I can speak, as I did
+A virtuous death to the charge of his womb,
+For we might swear within it.
+
+FRIAR LAURENCE:
+But now, come, I will be contInuate.
+
+FRIAR LAURENCE:
+We are denied.
+
+CATESBY:
+First, let me not not my hand; I will inform your love.
+He is famour to my princely life for justice: 'Your
+Most shall be gone, be not short to be brief;
+And let my liege, subscriber to visit the power.
+
+CATESBY:
+I am not the people of the Coriolanus.
+
+HASTINGS:
+Willingly Richmond thou 
+---------------
+
+The sleep of wretched place, say some followers,
+That scarce the proveth is comfort
+That should be gone devil? or my Lord Hastings,
+Did thou deserve me and arm'd, where I should be
+My man, then as I am guilty to such a land,
+Which thou flatter'st thy babest course to our kindness?
+Therefore, where we may follow'd our flesh rose,
+From falsehood ourselves with a sceptre's chant;
+The appoint proud he could not speak what we cannot
+When the parliaments for death; for that to his office
+In her and wi
+---------------
+
+That lamb Ned thus: but he is better in the free duke
+His friends and subjects the frown recover do.
+Come, come on; then let him be custom'd,
+I have sorry down to some place of the court.
+
+Second Servant:
+A man that he hath his noble head of more prophecy
+To champ him to man unto him.
+
+CORIOLANUS:
+Had he hath coming
+The princess is his better to me all the state malice,
+When he hath made grave a tiding but ere no short,
+A villain, and painted as it is done home,
+To see him to my strength: and th
+---------------
+
+
+MENENIUS:
+Have been so proved the gods!
+
+SICINIUS:
+Not a goodly messenger,
+And that now have done a man a love
+Of the prophecy hour have crave made error
+That shall not be content to course good,
+To know no other more with than you.
+
+SICINIUS:
+Why, then? if you could cannot have here been for't
+Under him, and Baptista, and your lordship souling,
+Like a cold and to the court-blow.
+
+MENENIUS:
+The town, the rest that has this precious lamb,
+As the gods disgrass of predeceition, sparing,
+And like t
+---------------
+
+She would be my life did to slip the sea,
+And so say 'We are as too know all the sun:'
+And that all that I know why it becomes
+To Romeo do an irra-like true time
+With my own lies, that I would not say.
+
+ROMEO:
+To sleep my living wind; for I will warrant,
+And yet was cause, my sister's land;
+But that lives what I say, then I will give.
+
+DUKE VINCENTIO:
+Torment them on the sister of her turn.
+
+DUKE VINCENTIO:
+John Hence, your master and till I have to good.
+
+CLAUDIO:
+I am torn your honour.
+
+HORTEN
+---------------
+
+lady, who does on thee fellows?
+
+LADY CAPULET:
+A sort as it cannot be gone!
+Trust not me to your head was a cold fight;
+And I will laugh another, will I wish
+You have dull done your arms: over I have say
+you so doing to be a man of love I brother,
+Your forefence has your enemy, sir; for your power
+To the whole is hole for good prophecy:
+The old moe world had now to be holy son well;
+For what you had demised and so he shall appear'd our foil
+And as an am to be of my banishment: my good lord,
+If y
+---------------
+
+
+LEONTES:
+The realm bell not a comand. But if I mighty,
+I like of this woman to beAr the guests
+Of some three-stored shallow'd to the sea,
+Till the common of mine eye, the mayrring.
+
+PAULINA:
+I did love the duke my soul,
+If you may be reflented to your wind coal wholesome he be in
+any short in the bloody of the
+most fitness of unstoppose, grief have upon the field of fight
+With a royal purpose too, and to be so good of love
+From Christian and not four heaven: I then go along
+As I am in this was 
+---------------
+
+He hath not settled and her eyes all to his company,
+She is her eyes to see him alone.
+
+CAMILLO:
+Bring the second that hath seen him to the
+people.
+
+Clown:
+How fares of the tent he had not wronger than he hath so rid
+on him to the court'sield whole shed he hath in hope of his
+noble complain, and as it is a most complain for him the crown hoars
+his fortune's house; what's the very honour, you are flayed: he
+was in singulity to the Tower. Prisoner, as to Harfondine Wales' crown,
+but, and but many 
+---------------
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@v015 nanoGPT]$ exit
+salloc: Relinquishing job allocation 15985043
+(/ocean/projects/cis230018p/rakash/rda-ngpt-env-v1) [rakash@bridges2-login012 nanoGPT]$ 
